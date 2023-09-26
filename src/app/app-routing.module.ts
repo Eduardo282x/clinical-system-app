@@ -6,7 +6,9 @@ import { RegistroComponent } from './modules/registro/registro.component';
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
+  {path: '**', component: LoginComponent},
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

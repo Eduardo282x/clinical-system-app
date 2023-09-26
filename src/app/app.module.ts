@@ -5,6 +5,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './modules/login/login.component';
 import { RegistroComponent } from './modules/registro/registro.component';
 import { SharedModule } from './modules/shared/shared.module';
+import { RouterModule, Routes } from '@angular/router';
+
+const routes: Routes = [
+  {path: '', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent},
+  {path: '**', component: LoginComponent},
+];
+
 
 @NgModule({
   declarations: [
@@ -15,7 +23,8 @@ import { SharedModule } from './modules/shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    RouterModule.forRoot(routes),
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
