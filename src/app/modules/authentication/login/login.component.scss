@@ -1,5 +1,4 @@
 .background{
-  background: #2656bd;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -22,7 +21,7 @@ h1{
   width: 40vw;
 }
 .img{
-  background-image: url('../../../assets/Logos/Logo-removebg-preview.png');
+  background-image: url('../../../../assets/Logos/Logo-removebg-preview.png');
   width: 8rem;
   height: 8rem;
   background-position: center;
@@ -34,6 +33,7 @@ h1{
 .text p{
   line-height: 5px;
   text-align: center;
+  font-weight: bold;
 }
 
 .formColumun{
@@ -69,18 +69,8 @@ h1{
 }
 
 
-footer{
-  background: #000272;
-  width: 100%;
-  height: 6vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: #fff;
+.app-footer{
   position: absolute;
   bottom: 0;
-}
-footer p{
-  font-style: italic;
-  margin: auto;
+  width: 100%;
 }
