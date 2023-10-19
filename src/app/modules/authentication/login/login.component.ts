@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { Snackbar } from 'src/app/core/interface/snackbar';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,7 +35,8 @@ export class LoginComponent implements OnInit {
   ];
 
   constructor (
-    private _snackBar: MatSnackBar)
+    private _snackBar: MatSnackBar,
+    private _router: Router)
   {}
 
   ngOnInit(): void {
@@ -45,7 +48,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLoggin(): void{
-    console.log(this.formLogin.value);
     const data= {
       user: this.formLogin.get('user')?.value,
       password: this.formLogin.get('password')?.value,
@@ -61,6 +63,8 @@ export class LoginComponent implements OnInit {
         duration: 2000,
         data: dataSnackbar
       });
+
+      this._router.navigate(['/home']);
     } else {
       const dataSnackbarError: Snackbar = {
         message: "Usuario Invalido",
