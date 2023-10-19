@@ -15,7 +15,6 @@ export class RecuperarComponent implements OnInit {
     security:     new FormControl('', [Validators.required]),
   });
 
-
   footerData: string[] = [
     'Diseñado por ACH Systems "Sistemas a tu medida"',
     'J-40658132-1 ',
@@ -38,7 +37,6 @@ export class RecuperarComponent implements OnInit {
     private _router: Router
     ){
   }
-
 
   ngOnInit(): void {
     this.recuperarService.getData$().subscribe({

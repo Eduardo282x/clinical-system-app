@@ -10,8 +10,7 @@ export class RecuperarService {
 
   constructor(private state: RecuperarState) { }
 
-
-  getData$(): Observable<any>{
+  getData$(): Observable<Recuperar | any>{
     return this.state.getState$();
   }
 
