@@ -1,4 +1,6 @@
 export interface Snackbar {
-  title: string;
   success: boolean;
+  message: string;
+  statusCode: number;
+  trackTrace: string;
 }
