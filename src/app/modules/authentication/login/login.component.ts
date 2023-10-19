@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     if(this.dataUser.find(us => us.user == data.user && us.password == data.password))
     {
       const dataSnackbar: Snackbar = {
-        title: "Bienvenido",
+        message: "Bienvenido",
         success: true
       }
 
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       });
     } else {
       const dataSnackbarError: Snackbar = {
-        title: "Usuario Invalido",
+        message: "Usuario Invalido",
         success: false
       }
       this._snackBar.openFromComponent(SnackBarComponent,{
