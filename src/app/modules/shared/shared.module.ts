@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
+import { MatStepperModule } from '@angular/material/stepper';
 @NgModule({
   declarations: [
     SnackBarComponent
@@ -22,6 +23,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatStepperModule,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -32,6 +34,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
     MatIconModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatStepperModule,
   ],
 })
 export class SharedModule { }

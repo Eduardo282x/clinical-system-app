@@ -15,6 +15,11 @@ export class RecuperarComponent implements OnInit {
     security:     new FormControl('', [Validators.required]),
   });
 
+  userPassForm: FormGroup = new FormGroup({
+    new:     new FormControl('', [Validators.required]),
+    newPass:     new FormControl('', [Validators.required]),
+  });
+
   footerData: string[] = [
     'Diseñado por ACH Systems "Sistemas a tu medida"',
     'J-40658132-1 ',
