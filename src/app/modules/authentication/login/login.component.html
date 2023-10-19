@@ -36,8 +36,8 @@
       </form>
     </div>
     <div class="password">
-      <a [routerLink]="['/registro']">Olvidé la contraseña</a>
-      <a href="">Olvidé el usuario</a>
+      <p class="pLink" (click)="redirect('contraseña')">Olvidé la contraseña</p>
+      <p class="pLink" (click)="redirect('usuario')">Olvidé el usuario</p>
     </div>
   </div>
 

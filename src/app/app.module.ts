@@ -6,13 +6,15 @@ import { LoginComponent } from './modules/authentication/login/login.component';
 import { RegistroComponent } from './modules/authentication/registro/registro.component';
 import { SharedModule } from './modules/shared/shared.module';
 import { FooterComponent } from './modules/shared/footer/footer.component';
+import { RecuperarComponent } from './modules/authentication/recuperar/recuperar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
-    FooterComponent
+    FooterComponent,
+    RecuperarComponent
   ],
   imports: [
     BrowserModule,
