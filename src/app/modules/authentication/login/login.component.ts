@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { Snackbar } from 'src/app/core/interface/snackbar';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
