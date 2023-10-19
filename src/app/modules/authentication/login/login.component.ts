@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
+import { Snackbar } from 'src/app/core/interface/snackbar';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
 
   hidden: boolean = true;
+  durationInSeconds = 5;
   formLogin = new FormGroup({
     user:     new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
@@ -50,11 +53,24 @@ export class LoginComponent implements OnInit {
     }
     if(this.dataUser.find(us => us.user == data.user && us.password == data.password))
     {
-      console.log('Bienvenido');
-      this._snackBar.open('Bienvenido');
+      const dataSnackbar: Snackbar = {
+        title: "Bienvenido",
+        success: true
+      }
+
+      this._snackBar.openFromComponent(SnackBarComponent,{
+        duration: 2000,
+        data: dataSnackbar
+      });
     } else {
-      console.log('Usuario Invalido');
-      this._snackBar.open('Usuario Invalido ❌');
+      const dataSnackbarError: Snackbar = {
+        title: "Usuario Invalido",
+        success: false
+      }
+      this._snackBar.openFromComponent(SnackBarComponent,{
+        duration: 2000,
+        data: dataSnackbarError
+      });
     }
   }
 }
