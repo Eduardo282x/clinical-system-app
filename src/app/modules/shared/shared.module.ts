@@ -28,6 +28,7 @@ import { BannerComponent } from './banner/banner.component';
     MatStepperModule,
   ],
   exports: [
+    BannerComponent,
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,

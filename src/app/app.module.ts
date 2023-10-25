@@ -7,12 +7,14 @@ import { RegistroComponent } from './modules/authentication/registro/registro.co
 import { SharedModule } from './modules/shared/shared.module';
 import { FooterComponent } from './modules/shared/footer/footer.component';
 import { RecuperarComponent } from './modules/authentication/recuperar/recuperar.component';
+import { HomeComponent } from './modules/home/components/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
+    HomeComponent,
     FooterComponent,
     RecuperarComponent
   ],
