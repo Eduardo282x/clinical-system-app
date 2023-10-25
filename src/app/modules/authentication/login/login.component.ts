@@ -4,8 +4,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Snackbar } from 'src/app/core/interface/snackbar/snackbar';
 import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { Router } from '@angular/router';
-import { RecuperarService } from 'src/app/core/services/recuperar.service';
+import { RecuperarService } from 'src/app/core/services/authentication/recuperar.service';
 import { Recuperar } from 'src/app/core/interface/recuperar';
+import { Login } from 'src/app/core/interface/login/login';
+import { LoginService } from 'src/app/core/services/authentication/login.service';
 
 @Component({
   selector: 'app-login',
@@ -29,10 +31,10 @@ export class LoginComponent implements OnInit {
     typeText2:''
   };
 
-  dataUser:any[] = [
-    {user:'admin',password:'admin'},
-    {user:'admin2',password:'admin2'},
-    {user:'admin3',password:'admin3'},
+  dataUser:Login[] = [
+    {username:'admin',password:'admin'},
+    {username:'admin2',password:'admin2'},
+    {username:'admin3',password:'admin3'},
   ];
 
   footerData: string[] = [
@@ -47,7 +49,9 @@ export class LoginComponent implements OnInit {
   constructor (
     private _snackBar: MatSnackBar,
     private _router: Router,
-    private recuperarService: RecuperarService)
+    private recuperarService: RecuperarService,
+    private loginService: LoginService
+    )
   {}
 
   ngOnInit(): void {
@@ -59,11 +63,11 @@ export class LoginComponent implements OnInit {
   }
 
   onLoggin(): void{
-    const data= {
-      user: this.formLogin.get('user')?.value,
+    const data: Login = {
+      username: this.formLogin.get('user')?.value,
       password: this.formLogin.get('password')?.value,
     }
-    if(this.dataUser.find(us => us.user == data.user && us.password == data.password))
+    if(this.dataUser.find(us => us.username == data.username && us.password == data.password))
     {
       const dataSnackbar: Snackbar = {
         message: "Bienvenido",
@@ -74,6 +78,8 @@ export class LoginComponent implements OnInit {
         duration: 2000,
         data: dataSnackbar
       });
+      
+      this.loginService.validateUser(data);
 
       this._router.navigate(['/home']);
     } else {

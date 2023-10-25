@@ -9,9 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { BannerComponent } from './banner/banner.component';
 @NgModule({
   declarations: [
-    SnackBarComponent
+    SnackBarComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule,
