@@ -1,2 +1,4 @@
-<span>{{data.title}} {{data.success ? '✔' : '❌'}}</span>
-
+<div class="snackbar">
+    <mat-icon color="{{data.success ? 'primary' : 'warn' }}">{{data.success ? 'done' : 'error'}}</mat-icon>
+    <span class="mat-body"> {{ data.message }} </span>
+</div>

@@ -1,0 +1,98 @@
+.background {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 40vw;
+    color: #000;
+    background-color: #fff;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.hiddenButton {
+    opacity: 0;
+}
+
+.header h1 {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+
+.content,
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #000080;
+    padding: 2rem 1.5rem;
+    width: 40vw;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.form {
+    width: 90%;
+    margin: auto;
+    flex-direction: column;
+    background-color: #d9dfde;
+    border-radius: 0.5rem;
+}
+
+.inputForm {
+    font-size: 18px;
+    text-align: center;
+}
+
+.inputText {
+    width: 20vw;
+}
+
+.app-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.message {
+    width: 80%;
+    margin: 2rem auto;
+    margin-top: 5rem;
+}
+
+.message p {
+    text-align: center;
+    color: #6485be;
+}
+
+.message p a {
+    color: #000080;
+    font-weight: bold;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+    margin-top: 16px;
+}
+
+.matStepper{
+    width: 100%;
+}
+
+.btnStepp{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+}
