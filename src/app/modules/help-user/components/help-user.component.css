@@ -1,0 +1,109 @@
+.helpBackground {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    width: 50vw;
+    color: #000;
+    background-color: #f9f9f9;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.hiddenButton {
+    opacity: 0;
+}
+
+.header h1 {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+
+.helpContent{
+    background-color: #000080;
+    width: 50vw;
+    padding: 0 1.5rem;
+    border-radius: 0 0 0.5rem 0.5rem ;
+    height: 50vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content{
+    border-radius: 1rem;
+    background-color: #f9f9f9;
+    width: 95%;
+    height: 80%;
+}
+
+.content h1{
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    margin: auto;
+    padding: 0 2rem;
+}
+
+.message .img{
+    width: 10rem;
+    height: 10rem;
+    background-image: url('/assets/Icons/Sistem.jpg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.message .textMessage{
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+}
+.message .textMessage .messageBlue{
+    color: #4170bb;
+    word-wrap: break-word;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.message .textMessage .horario{
+    color: #000180;
+}
+
+.contact{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+}
+.contact .call, .contact .whatsapp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact .whatsapp p, .contact .call p{
+    margin: auto;
+    margin-left: 1rem;
+}

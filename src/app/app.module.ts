@@ -8,6 +8,8 @@ import { SharedModule } from './modules/shared/shared.module';
 import { FooterComponent } from './modules/shared/footer/footer.component';
 import { RecuperarComponent } from './modules/authentication/recuperar/recuperar.component';
 import { HomeComponent } from './modules/home/components/home.component';
+import { ResultsComponent } from './modules/results/results.component';
+import { HelpUserComponent } from './modules/help-user/components/help-user.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { HomeComponent } from './modules/home/components/home.component';
     HomeComponent,
     FooterComponent,
     RecuperarComponent,
+    ResultsComponent,
+    HelpUserComponent
   ],
   imports: [
     BrowserModule,
