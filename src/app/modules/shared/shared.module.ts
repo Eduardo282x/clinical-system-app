@@ -10,10 +10,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BannerComponent } from './banner/banner.component';
+import { CardComponent } from '../home/card/card.component';
 @NgModule({
   declarations: [
     SnackBarComponent,
-    BannerComponent
+    BannerComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { BannerComponent } from './banner/banner.component';
   ],
   exports: [
     BannerComponent,
+    CardComponent,
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,

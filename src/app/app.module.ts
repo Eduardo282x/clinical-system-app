@@ -16,7 +16,7 @@ import { HomeComponent } from './modules/home/components/home.component';
     RegistroComponent,
     HomeComponent,
     FooterComponent,
-    RecuperarComponent
+    RecuperarComponent,
   ],
   imports: [
     BrowserModule,

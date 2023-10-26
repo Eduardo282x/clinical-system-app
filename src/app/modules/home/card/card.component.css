@@ -1,0 +1,14 @@
+h1{
+    color: #000;
+}
+
+.cardBackground{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    opacity: .9;
+    border-radius: .5rem;
+    padding: 2rem 1.5rem;
+    width: 14vw;
+}
