@@ -10,19 +10,23 @@ export class HomeComponent implements OnInit {
 
   cardArray: Card[] = [{
     name:'Modulo de Empleados',
-    icon: 'user'
+    icon: 'usuario-check',
+    redirect: 'empleados'
   },
   {
     name: 'Modulo de Facturación',
-    icon: 'pay'
+    icon: 'usuario-pay',
+    redirect: 'facturacion'
   },
   {
     name: 'Modulo de Exámenes',
-    icon: 'exam'
+    icon: 'investigate',
+    redirect: 'examenes'
   },
   {
     name: 'Carga de Resultados',
-    icon: ''
+    icon: 'usuario-list',
+    redirect: 'resultados'
   }];
 
   footerData: string[] = [
@@ -33,17 +37,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const dataUser = JSON.parse(localStorage.getItem('userData') ?? '{}');
-    console.log(dataUser);
     const date = new Date();
-    console.log(date.toLocaleDateString());
-    
     this.footerData.push(dataUser.name)
     this.footerData.push(dataUser.rol)
     this.footerData.push(`Ultima vez: ${date.toLocaleDateString()}`)
     this.footerData.push(`${date.getFullYear()} ©Todos los derechos reservados.`)
-    
-    
+  }
 
+  redirect(location: string): void{
+    console.log(location);
   }
 
 }

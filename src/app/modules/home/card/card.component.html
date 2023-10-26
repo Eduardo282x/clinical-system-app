@@ -1,4 +1,4 @@
-<div class="cardBackground">
-
+<div class="cardBackground" (click)="redirect(card.redirect)">
+    <mat-icon  svgIcon="{{card.icon}}"></mat-icon>
     <h1>{{card.name}}</h1>
 </div>
