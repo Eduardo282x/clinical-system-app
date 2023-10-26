@@ -1,1 +1,9 @@
-<p>home works!</p>
+<app-banner></app-banner>
+
+<div class="menu">
+    <ng-container *ngFor="let card of cardArray">
+        <app-card [card]="card"></app-card>
+    </ng-container>
+</div>
+
+<app-footer class="app-footer" [footerData]="footerData"></app-footer>

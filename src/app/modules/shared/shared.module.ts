@@ -10,10 +10,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BannerComponent } from './banner/banner.component';
+import { CardComponent } from '../home/card/card.component';
+import { HttpClientModule } from '@angular/common/http';
+
+
 @NgModule({
   declarations: [
     SnackBarComponent,
-    BannerComponent
+    BannerComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -26,8 +31,11 @@ import { BannerComponent } from './banner/banner.component';
     MatButtonModule,
     MatSnackBarModule,
     MatStepperModule,
+    HttpClientModule,
   ],
   exports: [
+    BannerComponent,
+    CardComponent,
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
@@ -37,6 +45,7 @@ import { BannerComponent } from './banner/banner.component';
     MatButtonModule,
     MatSnackBarModule,
     MatStepperModule,
+    HttpClientModule,
   ],
 })
 export class SharedModule { }

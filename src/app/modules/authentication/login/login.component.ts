@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
   };
 
   dataUser:Login[] = [
-    {username:'admin',password:'admin'},
-    {username:'admin2',password:'admin2'},
-    {username:'admin3',password:'admin3'},
+    {username:'admin',password:'admin', name:'Admin',rol:'Administrador'},
+    {username:'admin2',password:'admin2',name: 'Aixa', rol:'Directora'},
+    {username:'admin3',password:'admin3',name: 'Eduardo', rol:'Sistemas'},
   ];
 
   footerData: string[] = [
@@ -67,7 +67,8 @@ export class LoginComponent implements OnInit {
       username: this.formLogin.get('user')?.value,
       password: this.formLogin.get('password')?.value,
     }
-    if(this.dataUser.find(us => us.username == data.username && us.password == data.password))
+    const userFind = this.dataUser.find(us => us.username == data.username && us.password == data.password);
+    if(userFind)
     {
       const dataSnackbar: Snackbar = {
         message: "Bienvenido",
@@ -79,7 +80,7 @@ export class LoginComponent implements OnInit {
         data: dataSnackbar
       });
       
-      this.loginService.validateUser(data);
+      this.loginService.validateUser(userFind);
 
       this._router.navigate(['/home']);
     } else {

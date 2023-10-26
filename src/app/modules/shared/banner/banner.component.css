@@ -1,0 +1,58 @@
+.banner{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    color: #fff;
+}
+
+.imgContent{
+    background-color: #c3d4d2;
+    opacity: .9;
+    border-radius: 2rem;
+    padding: 2rem 1.5rem;
+}
+
+.img{
+    background-image: url('/assets/Logos/Logo-removebg-preview.png');
+    width: 6rem;
+    height: 6rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.textContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.textContent h1{
+    font-size: 2rem;
+    width: 20rem;
+}
+
+.logout,.help{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.help p{
+    margin: 0 1rem;
+    margin-top: -1rem;
+}
+
+
+mat-icon{
+    scale: 1.8;
+}
+
+.logout p{
+    font-size: 1.5rem;
+    margin: auto 1rem;
+}

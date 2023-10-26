@@ -1,1 +1,32 @@
-<p>help-user works!</p>
+<div class="helpBackground">
+    <div class="header">
+        <button mat-button (click)="back()"><mat-icon>arrow_back</mat-icon></button>
+        <h1>Ventana de ayuda al usuario</h1>
+        <button mat-button class="hiddenButton">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div class="helpContent">
+        <div class="content">
+            <h1>¿Necesitas ayuda?</h1>
+            <div class="message">
+                <div class="img"></div>
+                <div class="textMessage">
+                    <p class="messageBlue">Recuerde que gracias a su suscripción usted puede solicitar soporte técnico en el siguiente horario:</p>
+                    <p class="horario">De Lunes a Viernes a partir de las 8AM hasta las 5PM.</p>
+                </div>
+            </div>
+            <div class="contact">
+                <div class="call">
+                    <mat-icon svgIcon="call"></mat-icon>
+                    <p>+58 424-637-5061</p>
+                </div>
+                <div class="whatsapp">
+                    <mat-icon>send</mat-icon>
+                    <a href="https://wa.me/584246375061">+58 424-6375061</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
