@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
         typeText2: 'password',
       }
     }
-    else {
+    else if(route == 'contraseña') {
       this.recuperarData = {
         title: 'Recuperar Usuario',
         text1: 'Ingrese el nuevo nombre de usuario',
@@ -114,8 +114,9 @@ export class LoginComponent implements OnInit {
         typeText2: 'text',
       }
     }  
-    this.recuperarService.setDataState(this.recuperarData)
-    this._router.navigate(['/recuperar']);
+    this.recuperarService.setDataState(this.recuperarData);
+
+    this._router.navigate([route == 'ayuda' ? '/ayuda' : '/recuperar']);
   }
 
 }

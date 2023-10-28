@@ -80,8 +80,20 @@ h1{
   font-family: 'Roboto';
 }
 
-.pLink{
+.pLink,.pLinkDiv{
   cursor: pointer;
   color: #fff;
   text-decoration: underline;
+}
+
+.pLinkDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pLinkDiv p{
+  margin-left: .5rem;
+}
+mat-icon{
+  scale: 1.5;
 }

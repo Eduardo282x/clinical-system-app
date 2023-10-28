@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,7 +14,8 @@ export class HelpUserComponent implements OnInit {
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private _router: Router
+    private _router: Router,
+    private _location: Location
   ){
     this.matIconRegistry.addSvgIcon(
       "whatsapp",
@@ -40,6 +42,6 @@ export class HelpUserComponent implements OnInit {
   }
 
   back(): void{
-    this._router.navigate(['/'])
+    this._location.back();
   }
 }
