@@ -1,14 +1,14 @@
-<div class="background">
+<div class="flex justify-center items-center w-full h-full">
 
-  <div class="content">
-    <h1 class="titleWelcome">!Bienvenido al sistema¡</h1>
+  <div class="block">
+    <h1 class="text-white text-center">!Bienvenido al sistema¡</h1>
     <div class="formClass">
       <div class="logo">
         <div class="img"></div>
-        <div class="text">
-          <p> Laboratorio Clínico </p>
-          <p> Hinestroza Ferrer C.A </p>
-          <p> RIF-J20658349-6</p>
+        <div>
+          <p class="text-center font-bold h-1.5"> Laboratorio Clínico </p>
+          <p class="text-center font-bold h-1.5"> Hinestroza Ferrer C.A </p>
+          <p class="text-center font-bold h-1.5"> RIF-J20658349-6</p>
         </div>
       </div>
 
@@ -35,16 +35,17 @@
         <button mat-raised-button color="primary" (click)="onLoggin()">Ingresar</button>
       </form>
     </div>
-    <div class="password">
-      <p class="pLink" (click)="redirect('contraseña')">Olvidé la contraseña</p>
-      <div class="pLinkDiv" (click)="redirect('ayuda')">
-        <mat-icon>help</mat-icon>
+
+    <div class="flex items-center justify-around w-full mt-4 text-white">
+      <p class="cursor-pointer text-white underline" (click)="redirect('password')">Olvidé la contraseña</p>
+      <div class="flex items-center justify-center cursor-pointer text-white underline gap-3" (click)="redirect('help')">
+          <mat-icon>help</mat-icon>
         <p>Ayuda</p>
       </div>
-      <p class="pLink" (click)="redirect('usuario')">Olvidé el usuario</p>
+      <p class="cursor-pointer text-white underline" (click)="redirect('user')">Olvidé el usuario</p>
     </div>
   </div>
 
-  <app-footer class="app-footer" [footerData]="footerData"></app-footer>
+  <app-footer class="w-full absolute bottom-0" [footerData]="footerData"></app-footer>
 </div>
 
