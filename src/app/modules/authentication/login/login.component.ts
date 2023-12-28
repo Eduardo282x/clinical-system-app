@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Snackbar } from 'src/app/core/interface/snackbar/snackbar';
@@ -15,7 +15,7 @@ import { footerData } from '../../shared/dataShared';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   hidden: boolean = true;
   durationInSeconds = 5;
@@ -94,5 +94,9 @@ export class LoginComponent implements OnInit {
     }
     this.recuperarService.setDataState(this.recuperarData);
     this._router.navigate([route == 'help' ? '/help' : '/recuperar']);
+  }
+
+  ngOnDestroy(): void {
+    this.loginService.clearData();
   }
 }

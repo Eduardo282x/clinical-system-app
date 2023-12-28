@@ -1,20 +1,21 @@
-<div class="banner">
-    <div class="imgContent">
+<div class="w-full flex justify-around items-center text-white mx-auto">
+    <div class="bg-[#c3d4d2] opacity-90 rounded-3xl py-8 px-6">
         <div class="img"></div>
     </div>
 
-    <div class="textContent">
-        <h1>Laboratorio Clínico Hinestroza Ferrer C.A</h1>
+    <div class="flex flex-col justify-center items-center text-center">
+        <h1 class="h-4">Laboratorio Clínico</h1>
+        <h1 class="h-4">Hinestroza Ferrer C.A</h1>
         <p>RIF J-20658349-6</p>
     </div>
 
-    <div class="help" (click)="redirect()">
+    <div class="flex justify-center items-center cursor-pointer" (click)="redirect()">
         <mat-icon>help</mat-icon>
-        <p>Ayuda</p>
+        <p class="helpText">Ayuda</p>
     </div>
 
-    <div class="logout" (click)="logout()">
+    <div class="flex justify-center items-center cursor-pointer" (click)="logout()">
         <mat-icon>logout</mat-icon>
-        <p>Cerrar Sesión</p>
+        <p class="logoutText">Cerrar Sesión</p>
     </div>
 </div>
