@@ -23,6 +23,10 @@ export class LoginService {
       return this.state.getState$();
     }
 
+    clearData(): void{
+      this.state.clearState();
+    }
+
   validateUser(dataUser: Login): void {
     this.http.post<ReponseLogin>(this.ENDPOINT, dataUser)
     .pipe(takeUntil(this.unsubscribe))

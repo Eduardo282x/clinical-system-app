@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { footerData, cardArray } from './home.data';
+import { cardArray } from './home.data';
 import { PayloadService } from 'src/app/core/services/Payload.service';
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { PayloadService } from 'src/app/core/services/Payload.service';
 })
 export class HomeComponent implements OnInit {
 
-  footerData = footerData;
+  footerData: string[] = [];
   cardArray = cardArray;
 
   constructor(
@@ -19,10 +19,12 @@ export class HomeComponent implements OnInit {
     const dataUser = this.payloadService.getDataLocalStorage();
     if(dataUser){
       const date = new Date();
-      this.footerData.push(dataUser.Name.toUpperCase())
-      this.footerData.push(dataUser.Rol)
-      this.footerData.push(`Ultima vez: ${date.toLocaleDateString()}`)
-      this.footerData.push(`${date.getFullYear()} ©Todos los derechos reservados.`)
+      this.footerData = [
+        'Bienvenido de Nuevo',
+        `${dataUser.Name.toUpperCase()}`,
+        `${dataUser.Rol}`,
+        `Ultima vez: ${date.toLocaleDateString()}`,
+        `${date.getFullYear()} ©Todos los derechos reservados.` ]
     }
   }
 }

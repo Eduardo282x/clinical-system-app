@@ -20,7 +20,3 @@ export const cardArray: Card[] = [{
     icon: 'usuario-list',
     redirect: 'resultados'
 }];
-
-export let footerData: string[] = [
-    'Bienvenido de Nuevo',
-]

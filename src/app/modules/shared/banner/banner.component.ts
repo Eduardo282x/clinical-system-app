@@ -19,7 +19,7 @@ export class BannerComponent implements OnInit {
   }
 
   redirect(): void{
-    this._router.navigate(['/ayuda'])
+    this._router.navigate(['/help'])
   }
 
   logout(): void{
