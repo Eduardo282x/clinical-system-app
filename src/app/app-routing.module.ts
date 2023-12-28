@@ -5,6 +5,8 @@ import { RegistroComponent } from './modules/authentication/registro/registro.co
 import { HomeComponent } from './modules/home/components/home.component';
 import { RecuperarComponent } from './modules/authentication/recuperar/recuperar.component';
 import { HelpUserComponent } from './modules/help-user/components/help-user.component';
+import { EmployeesComponent } from './modules/employees/components/employees.component';
+import { ExamsComponent } from './modules/exams/components/exams.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -12,6 +14,8 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'recuperar', component: RecuperarComponent},
   {path: 'help', component: HelpUserComponent},  
+  {path: 'employes', component: EmployeesComponent},  
+  {path: 'examenes', component: ExamsComponent},  
   {path: '**', component: LoginComponent},
 ];
 

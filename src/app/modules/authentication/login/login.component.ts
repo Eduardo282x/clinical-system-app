@@ -8,6 +8,7 @@ import { RecuperarService } from 'src/app/core/services/authentication/recuperar
 import { Recuperar, RecuperarData } from 'src/app/core/interface/recuperar';
 import { Login } from 'src/app/core/interface/login/login';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
+import { footerData } from '../../shared/dataShared';
 
 @Component({
   selector: 'app-login',
@@ -29,14 +30,7 @@ export class LoginComponent implements OnInit {
     data: []
   };
 
-  footerData: string[] = [
-    'Diseñado por ACH Systems "Sistemas a tu medida"',
-    'J-40658132-1 ',
-    '2023 ©Todos los derechos reservados ',
-    '¡Siguenos! @achsystems ',
-    '+58 261-732-1543 ',
-    'Zulia Venezuela',
-  ];
+  footerData: string[] = footerData
 
   constructor (
     private _snackBar: MatSnackBar,

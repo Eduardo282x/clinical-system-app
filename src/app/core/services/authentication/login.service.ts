@@ -43,6 +43,7 @@ export class LoginService {
   }
 
   logout(): void {
+    this.state.clearState();
     localStorage.removeItem('userData');
   }
 }

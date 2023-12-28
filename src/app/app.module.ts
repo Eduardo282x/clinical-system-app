@@ -10,6 +10,8 @@ import { RecuperarComponent } from './modules/authentication/recuperar/recuperar
 import { HomeComponent } from './modules/home/components/home.component';
 import { ResultsComponent } from './modules/results/results.component';
 import { HelpUserComponent } from './modules/help-user/components/help-user.component';
+import { EmployeesComponent } from './modules/employees/components/employees.component';
+import { ExamsComponent } from './modules/exams/components/exams.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { HelpUserComponent } from './modules/help-user/components/help-user.comp
     LoginComponent,
     RegistroComponent,
     HomeComponent,
+    ExamsComponent,
+    EmployeesComponent,
     FooterComponent,
     RecuperarComponent,
     ResultsComponent,

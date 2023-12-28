@@ -3,7 +3,7 @@ import { Card } from "src/app/core/interface/card/card";
 export const cardArray: Card[] = [{
     name: 'Modulo de Empleados',
     icon: 'usuario-check',
-    redirect: 'empleados'
+    redirect: 'employes'
 },
 {
     name: 'Modulo de Facturación',
