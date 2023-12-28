@@ -5,7 +5,7 @@ import { Snackbar } from 'src/app/core/interface/snackbar/snackbar';
 import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { Router } from '@angular/router';
 import { RecuperarService } from 'src/app/core/services/authentication/recuperar.service';
-import { Recuperar } from 'src/app/core/interface/recuperar';
+import { Recuperar, RecuperarData } from 'src/app/core/interface/recuperar';
 import { Login } from 'src/app/core/interface/login/login';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
 
@@ -25,17 +25,9 @@ export class LoginComponent implements OnInit {
 
   recuperarData: Recuperar = {
     title: '',
-    text1: '',
-    text2: '',
-    typeText1: '',
-    typeText2:''
+    typeText: '',
+    data: []
   };
-
-  dataUser:Login[] = [
-    {username:'admin',password:'admin', name:'Admin',rol:'Administrador'},
-    {username:'admin2',password:'admin2',name: 'Aixa', rol:'Directora'},
-    {username:'admin3',password:'admin3',name: 'Eduardo', rol:'Sistemas'},
-  ];
 
   footerData: string[] = [
     'Diseñado por ACH Systems "Sistemas a tu medida"',
@@ -55,7 +47,27 @@ export class LoginComponent implements OnInit {
   {}
 
   ngOnInit(): void {
+    this.loginService.getData$().subscribe({
+      next: (response) => {
+        if(response){
+          const dataSnackbar: Snackbar = {
+            message: response.message,
+            success: response.success
+          }
+      
+          this._snackBar.openFromComponent(SnackBarComponent,{
+            duration: 2000,
+            data: dataSnackbar
+          });
 
+          if(response.success== true){
+            setTimeout(() => {
+              this._router.navigate(['/home']);
+            }, 1500);
+          }
+        }
+      }
+    })
   }
 
   visibility(): void{
@@ -64,58 +76,29 @@ export class LoginComponent implements OnInit {
 
   onLoggin(): void{
     const data: Login = {
-      username: this.formLogin.get('user')?.value,
-      password: this.formLogin.get('password')?.value,
+      Username: this.formLogin.get('user')?.value,
+      Password: this.formLogin.get('password')?.value,
     }
-    const userFind = this.dataUser.find(us => us.username == data.username && us.password == data.password);
-    if(userFind)
-    {
-      const dataSnackbar: Snackbar = {
-        message: "Bienvenido",
-        success: true
-      }
-
-      this._snackBar.openFromComponent(SnackBarComponent,{
-        duration: 2000,
-        data: dataSnackbar
-      });
-      
-      this.loginService.validateUser(userFind);
-
-      this._router.navigate(['/home']);
-    } else {
-      const dataSnackbarError: Snackbar = {
-        message: "Usuario Invalido",
-        success: false
-      }
-      this._snackBar.openFromComponent(SnackBarComponent,{
-        duration: 2000,
-        data: dataSnackbarError
-      });
-    }
+    this.loginService.validateUser(data);
   }
 
   redirect(route: string): void {
-    if(route == 'contraseña'){
-      this.recuperarData = {
-        title: 'Recuperar Contraseña',
-        text1: 'Ingrese la nueva Contraseña',
-        text2: 'Confirma la nueva Contraseña',
-        typeText1: 'password',
-        typeText2: 'password',
+    const data: RecuperarData[] = [ 
+      {
+        text: route == 'user' ? 'Ingrese el nuevo nombre de usuario' : 'Ingrese la nueva Contraseña',
+        formControl: 'new'
+      },
+      {
+        text: route == 'user' ? 'Confirma el nombre de usuario' : 'Confirma la nueva Contraseña',
+        formControl: 'confirm'
       }
+    ]
+    this.recuperarData = {
+      title: route == 'user' ? 'Recuperar Usuario' : 'Recuperar Contraseña',
+      typeText: route == 'user' ? 'text' : 'password',
+      data: data
     }
-    else {
-      this.recuperarData = {
-        title: 'Recuperar Usuario',
-        text1: 'Ingrese el nuevo nombre de usuario',
-        text2: 'Confirma el nombre de usuario',
-        typeText1: 'text',
-        typeText2: 'text',
-      }
-    }  
-    this.recuperarService.setDataState(this.recuperarData)
-    this._router.navigate(['/recuperar']);
+    this.recuperarService.setDataState(this.recuperarData);
+    this._router.navigate([route == 'help' ? '/help' : '/recuperar']);
   }
-
 }

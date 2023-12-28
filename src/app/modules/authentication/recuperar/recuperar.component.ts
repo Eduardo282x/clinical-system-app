@@ -20,7 +20,7 @@ export class RecuperarComponent implements OnInit {
 
   userPassForm: FormGroup = new FormGroup({
     new:     new FormControl('', [Validators.required]),
-    newPass:     new FormControl('', [Validators.required]),
+    confirm:     new FormControl('', [Validators.required]),
   });
 
   passArray: boolean[] = [true, true]
@@ -37,10 +37,8 @@ export class RecuperarComponent implements OnInit {
 
   recuperar: Recuperar = {
     title: 'Recuperar',
-    text1: '',
-    text2: '',
-    typeText1: '',
-    typeText2:''
+    typeText: '',
+    data: []
   };
 
   constructor(
@@ -66,8 +64,7 @@ export class RecuperarComponent implements OnInit {
 
   redirect(): void{
     const valid1 = this.userPassForm.get('new')?.value;
-    const valid2 = this.userPassForm.get('newPass')?.value;
-
+    const valid2 = this.userPassForm.get('confirm')?.value;
 
     if(valid1 == valid2){
       const dataSnackbar: Snackbar = {

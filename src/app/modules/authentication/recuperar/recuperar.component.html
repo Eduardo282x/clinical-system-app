@@ -32,37 +32,24 @@
             <mat-step [stepControl]="userPassForm">
                 <ng-template matStepLabel>Recuperar</ng-template>
                 <form [formGroup]="userPassForm" class="form">
-                    <div class="inputForm">
-                        <mat-form-field appearance="outline" class="inputText">
-                            <input 
-                            matInput formControlName="new" 
-                            type="{{ passArray[0] ? 'password' : 'text' }}"
-                            minlength="8" 
-                            maxlength="15"
-                            />
-                            <mat-icon matPrefix>lock</mat-icon>
-                            <button mat-icon-button matSuffix type="button" (mouseup)="visibility(0)">
-                                <mat-icon>{{ passArray[0] ? "visibility" : "visibility_off" }}</mat-icon>
-                            </button>
-                        </mat-form-field>
-                        
-                        <p>{{ recuperar.text1 }}</p>
-                    </div>
-                    <div class="inputForm">
-                        <mat-form-field appearance="outline" class="inputText">
-                            <input 
-                            matInput formControlName="newPass" 
-                            type="{{ passArray[1] ? 'password' : 'text' }}"
-                            minlength="8" 
-                            maxlength="15"
-                            />
-                            <mat-icon matPrefix>lock</mat-icon>
-                            <button mat-icon-button matSuffix type="button" (mouseup)="visibility(1)">
-                                <mat-icon>{{ passArray[1] ? "visibility" : "visibility_off" }}</mat-icon>
-                            </button>
-                        </mat-form-field>
-                        <p>{{ recuperar.text2 }}</p>
-                    </div>
+                    <ng-container *ngFor="let data of recuperar.data; let index = index">
+                        <div class="inputForm">
+                            <mat-form-field appearance="outline" class="inputText">
+                                <input 
+                                matInput 
+                                formControlName="{{data.formControl}}" 
+                                type="{{ recuperar.typeText == 'text' ? 'text' : passArray[index] ? 'password' : 'text' }}"
+                                minlength="8" 
+                                maxlength="15"
+                                />
+                                <mat-icon matPrefix>{{recuperar.typeText == 'password' ? 'lock' : 'account_circle'}}</mat-icon>
+                                    <button *ngIf="recuperar.typeText == 'password'" mat-icon-button matSuffix type="button" (mouseup)="visibility(index)">
+                                        <mat-icon>{{ passArray[index] ? "visibility" : "visibility_off" }}</mat-icon>
+                                    </button>
+                            </mat-form-field>
+                            <p>{{ data.text }}</p>
+                        </div>
+                    </ng-container>
 
                     <div class="btnStepp">
                         <button mat-button matStepperPrevious>Volver</button>
@@ -78,5 +65,5 @@
             </mat-step>
         </mat-stepper>
     </div>
-    <app-footer class="app-footer" [footerData]="footerData"></app-footer>
+    <app-footer class="absolute bottom-0 w-full" [footerData]="footerData"></app-footer>
 </div>

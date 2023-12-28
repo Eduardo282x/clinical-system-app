@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -13,7 +14,8 @@ export class HelpUserComponent implements OnInit {
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private _router: Router
+    private _router: Router,
+    private _location: Location
   ){
     this.matIconRegistry.addSvgIcon(
       "whatsapp",
@@ -25,12 +27,21 @@ export class HelpUserComponent implements OnInit {
     );
   }
 
+  footerData: string[] = [
+    'Diseñado por ACH Systems "Sistemas a tu medida"',
+    'J-40658132-1 ',
+    '2023 ©Todos los derechos reservados ',
+    '¡Siguenos! @achsystems ',
+    '+58 261-732-1543 ',
+    'Zulia Venezuela',
+  ];
+
 
   ngOnInit(): void {
       
   }
 
   back(): void{
-    this._router.navigate(['/'])
+    this._location.back();
   }
 }
