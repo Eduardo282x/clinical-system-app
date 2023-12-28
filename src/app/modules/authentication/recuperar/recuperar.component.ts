@@ -6,6 +6,7 @@ import { Recuperar } from 'src/app/core/interface/recuperar';
 import { Snackbar } from 'src/app/core/interface/snackbar/snackbar';
 import { RecuperarService } from 'src/app/core/services/authentication/recuperar.service';
 import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
+import { footerData } from '../../shared/dataShared';
 
 @Component({
   selector: 'app-recuperar',
@@ -26,14 +27,7 @@ export class RecuperarComponent implements OnInit {
   passArray: boolean[] = [true, true]
   hidden: boolean = true;
 
-  footerData: string[] = [
-    'Diseñado por ACH Systems "Sistemas a tu medida"',
-    'J-40658132-1 ',
-    '2023 ©Todos los derechos reservados ',
-    '¡Siguenos! @achsystems ',
-    '+58 261-732-1543 ',
-    'Zulia Venezuela',
-  ];
+  footerData: string[] = footerData
 
   recuperar: Recuperar = {
     title: 'Recuperar',

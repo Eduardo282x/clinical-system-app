@@ -3,7 +3,7 @@ import { Login } from '../../interface/login/login';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/env/enviroment';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { BaseResponse, ReponseLogin } from '../../interface/BaseRespnse';
+import { BaseResponse, ReponseLogin } from '../../interface/BaseResponse';
 import { BaseResponseState } from '../../state/base-response';
 
 @Injectable({
@@ -43,6 +43,7 @@ export class LoginService {
   }
 
   logout(): void {
+    this.state.clearState();
     localStorage.removeItem('userData');
   }
 }

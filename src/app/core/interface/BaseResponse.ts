@@ -7,10 +7,10 @@ export interface ReponseLogin extends BaseResponse {
     userData: DataUser;
 }
 
-interface DataUser {
+export interface DataUser {
     Id: number;
     Name: string;
     Lastname: string;
     Username: string;
-    Password: string;
+    Rol: string;
 }
