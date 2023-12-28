@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from 'src/app/core/interface/card/card';
-
+import { footerData, cardArray } from './home.data';
+import { PayloadService } from 'src/app/core/services/Payload.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,35 +8,15 @@ import { Card } from 'src/app/core/interface/card/card';
 })
 export class HomeComponent implements OnInit {
 
-  cardArray: Card[] = [{
-    name:'Modulo de Empleados',
-    icon: 'usuario-check',
-    redirect: 'empleados'
-  },
-  {
-    name: 'Modulo de Facturación',
-    icon: 'usuario-pay',
-    redirect: 'facturacion'
-  },
-  {
-    name: 'Modulo de Exámenes',
-    icon: 'investigate',
-    redirect: 'examenes'
-  },
-  {
-    name: 'Carga de Resultados',
-    icon: 'usuario-list',
-    redirect: 'resultados'
-  }];
+  footerData = footerData;
+  cardArray = cardArray;
 
-  footerData: string[] = [
-    'Bienvenido de Nuevo',
-  ]
-
-  constructor() {}
+  constructor(
+    private payloadService: PayloadService
+  ) {}
 
   ngOnInit(): void {
-    const dataUser = JSON.parse(localStorage.getItem('userData') ?? '{}');
+    const dataUser = this.payloadService.getDataLocalStorage();
     if(dataUser){
       const date = new Date();
       this.footerData.push(dataUser.Name.toUpperCase())
