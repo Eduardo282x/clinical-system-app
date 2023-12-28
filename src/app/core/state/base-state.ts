@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
 @Injectable({
     providedIn: 'root',
 })
@@ -10,21 +9,7 @@ export class BaseState<T> {
     protected state: BehaviorSubject<T | any> = new BehaviorSubject<T | any>(
         null
     );
-    protected stateReport: BehaviorSubject<T | any> = new BehaviorSubject<T | any>(
-        null
-    );
 
-    public getStateReport$(): Observable<T | null> {
-        return this.stateReport.asObservable();
-    }
-
-    public setStateReport(state: T | null): void {
-        this.stateReport.next(state);
-    }
-
-    public clearStateReport(): void {
-        this.stateReport.next(null);
-    }
     public getState$(): Observable<T | null> {
         return this.state.asObservable();
     }

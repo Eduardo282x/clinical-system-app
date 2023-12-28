@@ -37,15 +37,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const dataUser = JSON.parse(localStorage.getItem('userData') ?? '{}');
-    const date = new Date();
-    this.footerData.push(dataUser.name)
-    this.footerData.push(dataUser.rol)
-    this.footerData.push(`Ultima vez: ${date.toLocaleDateString()}`)
-    this.footerData.push(`${date.getFullYear()} ©Todos los derechos reservados.`)
+    if(dataUser){
+      const date = new Date();
+      this.footerData.push(dataUser.Name.toUpperCase())
+      this.footerData.push(dataUser.Rol)
+      this.footerData.push(`Ultima vez: ${date.toLocaleDateString()}`)
+      this.footerData.push(`${date.getFullYear()} ©Todos los derechos reservados.`)
+    }
   }
-
-  redirect(location: string): void{
-    console.log(location);
-  }
-
 }
