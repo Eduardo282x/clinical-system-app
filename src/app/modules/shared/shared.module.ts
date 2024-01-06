@@ -14,10 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
+import { MenuSharedComponent } from './menuShared/menuShared.component';
+
 @NgModule({
   declarations: [
     SnackBarComponent,
-    CardComponent
+    CardComponent,
+    MenuSharedComponent
   ],
   imports: [
     CommonModule,
@@ -37,6 +40,7 @@ import {MatTabsModule} from '@angular/material/tabs';
   ],
   exports: [
     CardComponent,
+    MenuSharedComponent,
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,

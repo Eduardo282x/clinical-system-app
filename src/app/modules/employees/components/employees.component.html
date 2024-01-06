@@ -1,8 +1,11 @@
-<div class="flex items-center justify-center w-full h-full">
-    <button mat-raised-button color="primary" (click)="goBack()">
+<div class="flex items-center justify-center w-full h-full relative">
+    <!-- <button mat-raised-button color="primary" (click)="goBack()">
         <mat-icon aria-hidden="false">arrow_back</mat-icon>
         Volver
     </button>
 
-    <h1 class="text-white">Empleados</h1>
+    <h1 class="text-white">Empleados</h1> -->
+    <div class="fixMenu">
+        <app-menu-shared [optionMenu]="menuOption"></app-menu-shared>
+    </div>
 </div>
