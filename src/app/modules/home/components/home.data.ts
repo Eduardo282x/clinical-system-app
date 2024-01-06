@@ -1,3 +1,4 @@
+import { Banner } from "src/app/core/interface/banner/banner";
 import { Card } from "src/app/core/interface/card/card";
 
 export const cardArray: Card[] = [{
@@ -28,3 +29,8 @@ export const cardArray: Card[] = [{
     userRol: 4,
     colored: '#17a6e7'
 }];
+
+export const bannerData: Banner = {
+    existName: false,
+    nameModule: ''
+}

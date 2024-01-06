@@ -43,6 +43,5 @@ export class CardComponent implements OnInit{
 
   redirect(location: string): void{
     this._router.navigate([location]);
-    console.log(location);
   }
 }

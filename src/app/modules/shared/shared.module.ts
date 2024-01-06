@@ -11,8 +11,9 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CardComponent } from '../home/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [
     SnackBarComponent,
@@ -30,6 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatStepperModule,
     HttpClientModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatTabsModule,
   ],
   exports: [
     CardComponent,
@@ -43,6 +47,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatStepperModule,
     HttpClientModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatTabsModule,
   ],
 })
 export class SharedModule { }
