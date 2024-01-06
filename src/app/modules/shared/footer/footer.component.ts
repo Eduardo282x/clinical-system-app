@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FooterDataState } from 'src/app/core/state/footerData/footerData.state';
 
 @Component({
   selector: 'app-footer',
@@ -6,8 +7,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  @Input() footerData: string[] | any;
+
+  footerData: string[] = [];
+
+  constructor(
+    private footerDataState: FooterDataState
+  ){
+
+  }
 
   ngOnInit(): void {
+    this.footerDataState.getState$().subscribe({
+      next: (footerData: any) => {
+        this.footerData = footerData;
+      }
+    })
   }
 }

@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import { BannerComponent } from './banner/banner.component';
 import { CardComponent } from '../home/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -17,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     SnackBarComponent,
-    BannerComponent,
     CardComponent
   ],
   imports: [
@@ -34,7 +32,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   exports: [
-    BannerComponent,
     CardComponent,
     BrowserAnimationsModule,
     MatInputModule,

@@ -1,9 +1,5 @@
-<app-banner></app-banner>
-
 <div class="flex items-center justify-around w-full my-auto h-3/5">
     <ng-container *ngFor="let card of cardArray">
         <app-card [card]="card"></app-card>
     </ng-container>
 </div>
-
-<app-footer class="absolute bottom-0 w-full" [footerData]="footerData"></app-footer>

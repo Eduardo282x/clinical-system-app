@@ -1,6 +1,8 @@
 <div class="flex justify-around items-center text-white bg-[#000272] h-10 py-5">
-  <ng-container *ngFor="let item of footerData">
-    <p class="textFooter">{{item}}</p>
+  <ng-container *ngIf="footerData">
+    <ng-container *ngFor="let item of footerData">
+      <p class="textFooter">{{item}}</p>
+    </ng-container>
   </ng-container>
 </div>
 

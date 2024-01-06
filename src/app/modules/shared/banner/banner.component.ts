@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
 
@@ -9,13 +9,15 @@ import { LoginService } from 'src/app/core/services/authentication/login.service
 })
 export class BannerComponent implements OnInit {
 
+  @Input() footerData: any;
+
   constructor(
     private loginService: LoginService,
     private _router: Router
   ){}
 
   ngOnInit(): void {
-      
+
   }
 
   redirect(): void{

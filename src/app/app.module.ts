@@ -12,6 +12,7 @@ import { ResultsComponent } from './modules/results/results.component';
 import { HelpUserComponent } from './modules/help-user/components/help-user.component';
 import { EmployeesComponent } from './modules/employees/components/employees.component';
 import { ExamsComponent } from './modules/exams/components/exams.component';
+import { BannerComponent } from './modules/shared/banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ExamsComponent } from './modules/exams/components/exams.component';
     FooterComponent,
     RecuperarComponent,
     ResultsComponent,
-    HelpUserComponent
+    HelpUserComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,
