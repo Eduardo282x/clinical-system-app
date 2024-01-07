@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Route, Router } from '@angular/router';
 import { Banner } from 'src/app/core/interface/banner/banner';
@@ -19,13 +19,15 @@ export class BannerComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private bannerState: BannerState,
-    private _router: Router
+    private _router: Router,
+    private cdr: ChangeDetectorRef,
   ){}
 
   ngOnInit(): void {
+    this.cdr.detectChanges();
+
     this.bannerState.getState$().subscribe({
       next: (banner) => {
-        console.log(banner);
         if(banner){
           this.banner = banner;
         }
@@ -34,7 +36,7 @@ export class BannerComponent implements OnInit {
   }
 
   tabChange(event: MatTabChangeEvent): void {
-    console.log(event.tab.textLabel);
+    // console.log(event.tab.textLabel);
   }
 
   redirect(): void{

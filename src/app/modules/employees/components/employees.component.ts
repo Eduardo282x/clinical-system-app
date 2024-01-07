@@ -14,6 +14,8 @@ export class EmployeesComponent implements OnInit {
 
   menuOption = menuOption;
   bannerData = bannerData;
+  moduleSelect: boolean = true;
+  nameModule: string = 'asistent';
 
   constructor(
     private bannerState: BannerState,
@@ -28,6 +30,11 @@ export class EmployeesComponent implements OnInit {
 
   goBack(): void {
     this._location.back();
+  }
+
+  getNameModule(name: any): void {
+    this.moduleSelect = true;
+    this.nameModule = name;
   }
 
 }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MenuOption } from 'src/app/core/interface/menuOption/MenuOption';
@@ -13,6 +13,7 @@ import { MenuOption } from 'src/app/core/interface/menuOption/MenuOption';
 export class MenuSharedComponent implements OnInit{ 
 
   @Input() optionMenu: MenuOption[] = [];
+  @Output() nameModule = new EventEmitter<string>();
 
   constructor(
     private matIconRegistry: MatIconRegistry,
@@ -34,5 +35,11 @@ export class MenuSharedComponent implements OnInit{
 
   ngOnInit(): void {
       
+  }
+
+  sendModule(module: MenuOption): void{
+    this.optionMenu.map(option => option.selectedModule = false)
+    module.selectedModule = true;
+    this.nameModule.emit(module.module);
   }
 }

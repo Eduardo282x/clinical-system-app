@@ -9,14 +9,20 @@ export const bannerData: Banner = {
 export const menuOption: MenuOption[] = [
     {
         icon: 'asistencia',
-        label: 'Aplicación de Asistencias'
+        label: 'Aplicación de Asistencias',
+        module: 'asistent',
+        selectedModule: false,
     },
     {
         icon: 'impresora',
-        label: 'Ver o Imprimir Asistencias'
+        label: 'Ver o Imprimir Asistencias',
+        module: 'seeAsistent',
+        selectedModule: false,
     },
     {
         icon: 'empleados',
-        label: 'Gestión de Empleados'
+        label: 'Gestión de Empleados',
+        module: 'employe',
+        selectedModule: false,
     },
 ]

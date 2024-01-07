@@ -2,12 +2,7 @@ mat-icon{
   scale: 2;
   filter: invert(100%) sepia(0%) saturate(7484%) hue-rotate(233deg) brightness(103%) contrast(106%);
 }
-.optionClass:hover mat-icon{
+.optionClass:hover mat-icon, .optionClassSelected mat-icon{
   background: #fff;
   filter: invert(0%) sepia(99%) saturate(0%) hue-rotate(207deg) brightness(96%) contrast(100%);
 }
-
-/* .optionClass{
-  filter: invert(100%) sepia(0%) saturate(7484%) hue-rotate(233deg) brightness(103%) contrast(106%);
-
-} */

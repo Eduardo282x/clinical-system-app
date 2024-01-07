@@ -19,13 +19,12 @@ export class LoginService {
     private state: BaseResponseState
   ) { }
 
-    getData$(): Observable<BaseResponse | null>{
-      return this.state.getState$();
-    }
-
-    clearData(): void{
-      this.state.clearState();
-    }
+  getData$(): Observable<BaseResponse | null>{
+    return this.state.getState$();
+  }
+  clearData(): void{
+    this.state.clearState();
+  }
 
   validateUser(dataUser: Login): void {
     this.http.post<ReponseLogin>(this.ENDPOINT, dataUser)

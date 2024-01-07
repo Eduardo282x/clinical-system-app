@@ -15,12 +15,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTabsModule} from '@angular/material/tabs';
 import { MenuSharedComponent } from './menuShared/menuShared.component';
+import { AsistentComponent } from '../employees/asistent/asistent.component';
+import { SeeAsistentComponent } from '../employees/seeAsistent/seeAsistent.component';
+import { EmployeComponent } from '../employees/employe/employe.component';
 
 @NgModule({
   declarations: [
     SnackBarComponent,
     CardComponent,
-    MenuSharedComponent
+    MenuSharedComponent,
+    AsistentComponent,
+    SeeAsistentComponent,
+    EmployeComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +47,10 @@ import { MenuSharedComponent } from './menuShared/menuShared.component';
   exports: [
     CardComponent,
     MenuSharedComponent,
+    AsistentComponent,
+    SeeAsistentComponent,
+    EmployeComponent,
+    
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,

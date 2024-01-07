@@ -1,10 +1,19 @@
 <div class="bg-[#000272] w-64 rounded-2xl pb-4">
-    <h1 class="w-full bg-gray-400 rounded-2xl p-4 text-center">Menu principal</h1>
+    <p class="w-full bg-gray-400 rounded-2xl p-4 text-center font-semibold text-2xl">Menu principal</p>
 
     <ng-container *ngFor="let option of optionMenu">
-        <div class="flex flex-row items-center justify-around border-gray-400 border-4 text-white mx-4 mt-4 px-4 hover:bg-white hover:text-black optionClass">
-            <mat-icon svgIcon="{{option.icon}}"></mat-icon>
-            <p class="cursor-pointer text-xl text-wrap text-center pt-2 w-3/4">{{option.label}}</p>
-        </div>
+        <ng-container *ngIf="!option.selectedModule; else noSelected">
+            <div (click)="sendModule(option)" class="flex flex-row items-center justify-around border-gray-400 border-4 text-white mx-4 mt-4 px-4 hover:bg-white hover:text-black optionClass">
+                <mat-icon svgIcon="{{option.icon}}"></mat-icon>
+                <p class="cursor-pointer text-xl text-wrap text-center pt-2 w-3/4">{{option.label}}</p>
+            </div>
+        </ng-container>
+
+        <ng-template #noSelected>
+            <div (click)="sendModule(option)" class="flex flex-row items-center justify-around border-gray-400 border-4  mx-4 mt-4 px-4 bg-white text-black optionClassSelected">
+                <mat-icon svgIcon="{{option.icon}}"></mat-icon>
+                <p class="cursor-pointer text-xl text-wrap text-center pt-2 w-3/4">{{option.label}}</p>
+            </div>
+        </ng-template>
     </ng-container>
 </div>
