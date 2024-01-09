@@ -1,8 +1,25 @@
-<div class="flex items-center justify-center w-full h-full">
-    <button mat-raised-button color="primary" (click)="goBack()">
+<div class="flex items-start justify-around w-full h-full pt-12 px-8">
+    <!-- <button mat-raised-button color="primary" (click)="goBack()">
         <mat-icon aria-hidden="false">arrow_back</mat-icon>
         Volver
     </button>
 
-    <h1 class="text-white">Empleados</h1>
+    <h1 class="text-white">Empleados</h1> -->
+    <div class="w-1/5 ">
+        <app-menu-shared [optionMenu]="menuOption" (nameModule)="getNameModule($event)"></app-menu-shared>
+    </div>
+
+    <div class="w-4/5">
+        <ng-container *ngIf="moduleSelect">
+            <ng-container *ngIf="nameModule == 'asistent'">
+                <app-asistent class="w-full h-full"></app-asistent>
+            </ng-container>
+            <ng-container *ngIf="nameModule == 'seeAsistent'">
+                <app-see-asistent class="w-full"></app-see-asistent>
+            </ng-container>
+            <ng-container *ngIf="nameModule == 'employe'">
+                <app-employe class="w-full"></app-employe>
+            </ng-container>
+        </ng-container>
+    </div>
 </div>

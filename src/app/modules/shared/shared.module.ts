@@ -9,16 +9,24 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import { BannerComponent } from './banner/banner.component';
 import { CardComponent } from '../home/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MenuSharedComponent } from './menuShared/menuShared.component';
+import { AsistentComponent } from '../employees/asistent/asistent.component';
+import { SeeAsistentComponent } from '../employees/seeAsistent/seeAsistent.component';
+import { EmployeComponent } from '../employees/employe/employe.component';
 
 @NgModule({
   declarations: [
     SnackBarComponent,
-    BannerComponent,
-    CardComponent
+    CardComponent,
+    MenuSharedComponent,
+    AsistentComponent,
+    SeeAsistentComponent,
+    EmployeComponent,
   ],
   imports: [
     CommonModule,
@@ -32,10 +40,17 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatStepperModule,
     HttpClientModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatTabsModule,
   ],
   exports: [
-    BannerComponent,
     CardComponent,
+    MenuSharedComponent,
+    AsistentComponent,
+    SeeAsistentComponent,
+    EmployeComponent,
+    
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
@@ -46,6 +61,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSnackBarModule,
     MatStepperModule,
     HttpClientModule,
+    MatTooltipModule,
+    MatButtonToggleModule,
+    MatTabsModule,
   ],
 })
 export class SharedModule { }

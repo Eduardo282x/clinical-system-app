@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Route, Router } from '@angular/router';
+import { Banner } from 'src/app/core/interface/banner/banner';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
-
+import { BannerState } from 'src/app/core/state/banner/bannes.state';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -9,13 +11,32 @@ import { LoginService } from 'src/app/core/services/authentication/login.service
 })
 export class BannerComponent implements OnInit {
 
+  banner: Banner = {
+    nameModule: '',
+    existName: false,
+  }
+
   constructor(
     private loginService: LoginService,
-    private _router: Router
+    private bannerState: BannerState,
+    private _router: Router,
+    private cdr: ChangeDetectorRef,
   ){}
 
   ngOnInit(): void {
-      
+    this.cdr.detectChanges();
+
+    this.bannerState.getState$().subscribe({
+      next: (banner) => {
+        if(banner){
+          this.banner = banner;
+        }
+      }
+    })
+  }
+
+  tabChange(event: MatTabChangeEvent): void {
+    // console.log(event.tab.textLabel);
   }
 
   redirect(): void{

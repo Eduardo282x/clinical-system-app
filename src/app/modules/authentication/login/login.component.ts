@@ -1,14 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Snackbar } from 'src/app/core/interface/snackbar/snackbar';
-import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
-import { Router } from '@angular/router';
 import { RecuperarService } from 'src/app/core/services/authentication/recuperar.service';
-import { Recuperar, RecuperarData } from 'src/app/core/interface/recuperar';
-import { Login } from 'src/app/core/interface/login/login';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
+import { Recuperar, RecuperarData } from 'src/app/core/interface/recuperar';
+import { Snackbar } from 'src/app/core/interface/snackbar/snackbar';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Login } from 'src/app/core/interface/login/login';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { footerData } from '../../shared/dataShared';
+import { Router } from '@angular/router';
+import { FooterDataState } from 'src/app/core/state/footerData/footerData.state';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _snackBar: MatSnackBar,
     private _router: Router,
     private recuperarService: RecuperarService,
+    private footerDataState: FooterDataState,
     private loginService: LoginService
     )
   {}
@@ -61,7 +63,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           }
         }
       }
-    })
+    });
+
+    this.footerDataState.setState(footerData);
   }
 
   visibility(): void{

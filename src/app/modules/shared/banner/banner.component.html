@@ -3,15 +3,26 @@
         <div class="img"></div>
     </div>
 
-    <div class="flex flex-col justify-center items-center text-center">
-        <h1 class="h-4">Laboratorio Clínico</h1>
-        <h1 class="h-4">Hinestroza Ferrer C.A</h1>
-        <p>RIF J-20658349-6</p>
-    </div>
+    <ng-container *ngIf="banner.existName; else noName">
+        <p class="text-4xl">{{banner.nameModule}}</p>
+    </ng-container>
 
-    <div class="flex justify-center items-center cursor-pointer" (click)="redirect()">
+    <ng-template #noName>
+        <div class="flex flex-col justify-center items-center text-center">
+            <h1 class="h-4">Laboratorio Clínico</h1>
+            <h1 class="h-4">Hinestroza Ferrer C.A</h1>
+            <p>RIF J-20658349-6</p>
+        </div>
+    </ng-template>
+
+    <div 
+        class="flex justify-center items-center cursor-pointer" 
+        (click)="redirect()" 
+        matTooltip="Ayuda"
+        [matTooltipPosition]="'right'"
+        >
         <mat-icon>help</mat-icon>
-        <p class="helpText">Ayuda</p>
+        <!-- <p class="helpText">Ayuda</p> -->
     </div>
 
     <div class="flex justify-center items-center cursor-pointer" (click)="logout()">
@@ -19,3 +30,18 @@
         <p class="logoutText">Cerrar Sesión</p>
     </div>
 </div>
+
+<ng-container *ngIf="banner.existName">
+    <div class="bg-[#3f51b5] rounded-2xl h-12 mx-32 mt-4 flex items-center justify-center px-4">
+        <mat-tab-group [color]="'primary'" [backgroundColor]="'primary'" (selectedTabChange)="tabChange($event)" class="w-full h-full">
+            <mat-tab label="Empleados"></mat-tab>
+            <mat-tab label="Facturación"></mat-tab>
+            <mat-tab label="Exámenes"></mat-tab>
+            <mat-tab label="Resultados"></mat-tab>
+        </mat-tab-group>
+    </div> 
+</ng-container>
+
+<router-outlet></router-outlet>
+
+<app-footer class="absolute bottom-0 w-full"></app-footer>
