@@ -1,5 +1,5 @@
-<div class="w-full flex justify-around items-center text-white mx-auto">
-    <div class="bg-[#c3d4d2] opacity-90 rounded-3xl py-8 px-6">
+<div class="w-full h-20 bg-[#000272] flex justify-around items-center text-white mx-auto">
+    <div class="bg-[#c3d4d2] opacity-90 rounded-3xl p-2">
         <div class="img"></div>
     </div>
 
@@ -31,17 +31,55 @@
     </div>
 </div>
 
-<ng-container *ngIf="banner.existName">
-    <div class="bg-[#3f51b5] rounded-2xl h-12 mx-32 mt-4 flex items-center justify-center px-4">
-        <mat-tab-group [color]="'primary'" [backgroundColor]="'primary'" (selectedTabChange)="tabChange($event)" class="w-full h-full">
-            <mat-tab label="Empleados"></mat-tab>
-            <mat-tab label="Facturación"></mat-tab>
-            <mat-tab label="Exámenes"></mat-tab>
-            <mat-tab label="Resultados"></mat-tab>
-        </mat-tab-group>
-    </div> 
-</ng-container>
+<div class="flex flex-row items-start justify-between">
+    
+    <div class="h-full w-[20rem] bg-[#000272] pt-10">
+        <mat-accordion>
+            <ng-container *ngFor="let option of menu">
+                <ng-container *ngIf="option.children else noAccordion">
+                    <mat-expansion-panel (opened)="panelOpenState = true"
+                                        (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    {{option.title}}
+                                </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <mat-list class="ml-5">
+                            <ng-container *ngFor="let item of option.children">
+                                <mat-list-item >
+                                    <div class="flex items-center justify-start gap-2 cursor-pointer" (click)="navigate(item.redirect)">
+                                        <mat-icon svgIcon="{{item.icon}}"></mat-icon>
+                                        <p>{{item.title}}</p>
+                                    </div>
+                                    <mat-divider></mat-divider>
+                                </mat-list-item>
+                            </ng-container>
+                        </mat-list>
+                    </mat-expansion-panel>
+                </ng-container>
 
-<router-outlet></router-outlet>
+                <ng-template #noAccordion>
+                    <p class="bg-white">{{option.title}}</p>
+                </ng-template>
+            </ng-container>
+        </mat-accordion>
+    </div>
+
+    <!-- <ng-container *ngIf="banner.existName">
+        <div class="bg-[#3f51b5] rounded-2xl h-12 mx-32 mt-4 flex items-center justify-center px-4">
+            <mat-tab-group [color]="'primary'" [backgroundColor]="'primary'" (selectedTabChange)="tabChange($event)" class="w-full h-full">
+                <mat-tab label="Empleados"></mat-tab>
+                <mat-tab label="Facturación"></mat-tab>
+                <mat-tab label="Exámenes"></mat-tab>
+                <mat-tab label="Resultados"></mat-tab>
+            </mat-tab-group>
+        </div> 
+    </ng-container> -->
+
+    <div class="hola">
+        <p>holsadsdas</p>
+        <router-outlet></router-outlet>
+    </div>
+</div>
 
 <app-footer class="absolute bottom-0 w-full"></app-footer>

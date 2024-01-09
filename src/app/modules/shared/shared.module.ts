@@ -18,6 +18,9 @@ import { MenuSharedComponent } from './menuShared/menuShared.component';
 import { AsistentComponent } from '../employees/asistent/asistent.component';
 import { SeeAsistentComponent } from '../employees/seeAsistent/seeAsistent.component';
 import { EmployeComponent } from '../employees/employe/employe.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatListModule} from '@angular/material/list';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { EmployeComponent } from '../employees/employe/employe.component';
     MatTooltipModule,
     MatButtonToggleModule,
     MatTabsModule,
+    MatExpansionModule,
+    MatListModule,
+    MatDividerModule,
   ],
   exports: [
     CardComponent,
@@ -64,6 +70,9 @@ import { EmployeComponent } from '../employees/employe/employe.component';
     MatTooltipModule,
     MatButtonToggleModule,
     MatTabsModule,
+    MatExpansionModule,
+    MatListModule,
+    MatDividerModule,
   ],
 })
 export class SharedModule { }
