@@ -3,3 +3,7 @@ export interface Employe {
     Identify: string;
     Rol: string;
 }
+export interface SortEmploye {
+    Id: number;
+    NameFull: string;
+}

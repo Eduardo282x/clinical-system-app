@@ -11,6 +11,7 @@ import { BannerComponent } from './modules/shared/banner/banner.component';
 import { EmployeComponent } from './modules/employees/employe/employe.component';
 import { AsistentComponent } from './modules/employees/asistent/asistent.component';
 import { SeeAsistentComponent } from './modules/employees/seeAsistent/seeAsistent.component';
+import { RegisterEmployeComponent } from './modules/employees/register-employe/register-employe.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -30,6 +31,12 @@ const routes: Routes = [
           {
             path: 'employe', 
             component: EmployeComponent,
+            children: [
+              {
+                path: 'register', 
+                component: RegisterEmployeComponent,
+              }
+            ]
           },
           {
             path: 'asistent', 

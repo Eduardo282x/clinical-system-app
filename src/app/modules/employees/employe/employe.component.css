@@ -1,3 +1,16 @@
-:host {
-  display: block;
+.choiceOption{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+  border: 4px solid #000376;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+mat-icon{
+  width: 80%;
+  height: 80%;
 }

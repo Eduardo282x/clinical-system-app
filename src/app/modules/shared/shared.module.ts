@@ -22,7 +22,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { SidebarComponent } from './sidebar/sidebar.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
+import { RegisterEmployeComponent } from '../employees/register-employe/register-employe.component';
+import { ShowEmployesComponent } from '../employees/showEmployes/showEmployes.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 @NgModule({
   declarations: [
     SnackBarComponent,
@@ -32,6 +38,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SeeAsistentComponent,
     EmployeComponent,
     SidebarComponent,
+    RegisterEmployeComponent,
+    ShowEmployesComponent
   ],
   imports: [
     CommonModule,
@@ -51,6 +59,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatExpansionModule,
     MatListModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   exports: [
     CardComponent,
@@ -59,6 +72,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SeeAsistentComponent,
     EmployeComponent,
     SidebarComponent,
+    RegisterEmployeComponent,
+    ShowEmployesComponent,
 
     BrowserAnimationsModule,
     MatInputModule,
@@ -76,6 +91,15 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MatExpansionModule,
     MatListModule,
     MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
+
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es'}
+  ]
 })
 export class SharedModule { }

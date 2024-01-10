@@ -45,7 +45,7 @@ export class AsistentComponent implements OnInit {
       SecurityKey: this.formAssistent.get('securityKey')?.value
     }
 
-    this.employesService.getOneEmployedApi(asistent)
+    this.employesService.getSecurityKeyEmployedApi(asistent)
   }
 
 }

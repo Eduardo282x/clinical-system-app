@@ -3,7 +3,7 @@ import { EmployeState } from '../../state/employes/employe.state';
 import { environment } from 'src/env/enviroment';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Employe } from '../../interface/employes/employe';
+import { Employe, SortEmploye } from '../../interface/employes/employe';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ import { Employe } from '../../interface/employes/employe';
 export class EmployesService {
 
   private ENDPOINT = `${environment.url}employes`;
-  private ASISTENT = `${this.ENDPOINT}/employe`;
+  private ASISTENT = `${this.ENDPOINT}/security`;
+
   private unsubscribe = new Subject<void>;
   
   constructor(
@@ -26,7 +27,23 @@ export class EmployesService {
     this.state.clearState();
   }
 
-  getOneEmployedApi(securityKey: any): void {
+  getEmployes(): void {
+    this.http.get<SortEmploye>(this.ENDPOINT)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        this.state.setState(response);
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete() {
+          // console.log('Complete');
+      },
+    })
+  }
+
+  getSecurityKeyEmployedApi(securityKey: any): void {
     this.http.post<Employe>(this.ASISTENT, securityKey)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({

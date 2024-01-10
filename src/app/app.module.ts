@@ -13,6 +13,7 @@ import { HelpUserComponent } from './modules/help-user/components/help-user.comp
 import { EmployeesComponent } from './modules/employees/components/employees.component';
 import { ExamsComponent } from './modules/exams/components/exams.component';
 import { BannerComponent } from './modules/shared/banner/banner.component';
+import { RegisterEmployeComponent } from './modules/employees/register-employe/register-employe.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BannerComponent } from './modules/shared/banner/banner.component';
     ResultsComponent,
     HelpUserComponent,
     BannerComponent,
+    // RegisterEmployeComponent
   ],
   imports: [
     BrowserModule,
