@@ -12,15 +12,16 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CardComponent } from '../home/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MenuSharedComponent } from './menuShared/menuShared.component';
 import { AsistentComponent } from '../employees/asistent/asistent.component';
 import { SeeAsistentComponent } from '../employees/seeAsistent/seeAsistent.component';
 import { EmployeComponent } from '../employees/employe/employe.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatListModule} from '@angular/material/list';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatDividerModule} from '@angular/material/divider';
     AsistentComponent,
     SeeAsistentComponent,
     EmployeComponent,
+    SidebarComponent,
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ import {MatDividerModule} from '@angular/material/divider';
     AsistentComponent,
     SeeAsistentComponent,
     EmployeComponent,
-    
+    SidebarComponent,
+
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,

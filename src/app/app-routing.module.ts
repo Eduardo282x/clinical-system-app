@@ -8,6 +8,9 @@ import { HelpUserComponent } from './modules/help-user/components/help-user.comp
 import { EmployeesComponent } from './modules/employees/components/employees.component';
 import { ExamsComponent } from './modules/exams/components/exams.component';
 import { BannerComponent } from './modules/shared/banner/banner.component';
+import { EmployeComponent } from './modules/employees/employe/employe.component';
+import { AsistentComponent } from './modules/employees/asistent/asistent.component';
+import { SeeAsistentComponent } from './modules/employees/seeAsistent/seeAsistent.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -20,7 +23,24 @@ const routes: Routes = [
     component: BannerComponent,
     children: [
       {path: '', component: HomeComponent},
-      {path: 'employes', component: EmployeesComponent},  
+      {
+        path: 'employes', 
+        component: EmployeesComponent,
+        children: [
+          {
+            path: 'employe', 
+            component: EmployeComponent,
+          },
+          {
+            path: 'asistent', 
+            component: AsistentComponent,
+          },
+          {
+            path: 'seeAsistent', 
+            component: SeeAsistentComponent,
+          },
+        ]
+      },  
       {path: 'examenes', component: ExamsComponent},  
     ]
   },

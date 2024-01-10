@@ -7,6 +7,7 @@ import { Banner } from 'src/app/core/interface/banner/banner';
 import { Menu } from 'src/app/core/interface/menuOption/MenuOption';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
 import { BannerState } from 'src/app/core/state/banner/bannes.state';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -14,69 +15,20 @@ import { BannerState } from 'src/app/core/state/banner/bannes.state';
 })
 export class BannerComponent implements OnInit {
 
+  widthMenuChild: string = 'closeSidebar';
+  openMenu: boolean = true;
+
   banner: Banner = {
     nameModule: '',
     existName: false,
   }
-
-  panelOpenState: boolean = false;
-
-  menu: Menu[] = [ 
-    {
-      title: 'Modulo de Empleados',
-      icon: '',
-      children: [
-        {
-          title: 'Asistencia',
-          icon:'empleados',
-          redirect: '/home/employes/asistent'
-        },
-        {
-          title: 'Imprimir',
-          icon:'impresora',
-          redirect: '/home/employes/seeAsistent'
-        },
-        {
-          title: 'Gestión',
-          icon:'asistencia',
-          redirect: '/home/employes/employe'
-        },
-      ]
-    },
-    {
-      title:'Modulo de Facturación',
-      icon: ''
-    },
-    {
-      title:'Modulo de Exámenes',
-      icon: ''
-    },
-    {
-      title:'Carga de Resultados',
-      icon: ''
-    },
-  ]
 
   constructor(
     private loginService: LoginService,
     private bannerState: BannerState,
     private _router: Router,
     private cdr: ChangeDetectorRef,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer,
   ){
-    this.matIconRegistry.addSvgIcon(
-      "empleados",
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/SVGs/Empleados.svg')
-    );
-    this.matIconRegistry.addSvgIcon(
-      "impresora",
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/SVGs/Impresora.svg')
-    );
-    this.matIconRegistry.addSvgIcon(
-      "asistencia",
-      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/SVGs/Asistencia.svg')
-    );
   }
 
   ngOnInit(): void {
@@ -95,14 +47,13 @@ export class BannerComponent implements OnInit {
     // console.log(event.tab.textLabel);
   }
 
-  redirect(): void{
-    this._router.navigate(['/help'])
+  handleMenu(): void {
+    this.openMenu = !this.openMenu;
+    this.widthMenuChild = this.openMenu ? 'closeSidebar' : ''
   }
 
-  navigate(route: string): void {
-    console.log(route);
-    
-    this._router.navigate([route])
+  redirect(): void{
+    this._router.navigate(['/help'])
   }
 
   logout(): void{

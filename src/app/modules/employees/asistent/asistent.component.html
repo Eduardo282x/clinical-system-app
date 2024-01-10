@@ -1,13 +1,13 @@
-<div class="w-full flex flex-row items-center justify-center bg-[#000272] rounded-2xl h-[23.5rem]">
+<div class="w-[60rem] flex flex-row items-center justify-center bg-[#000272] rounded-2xl h-[23.5rem]">
 
     <div class="inputEmployed">
         <form [formGroup]="formAssistent" (submit)="sendSecurityKey()" class="flex flex-col items-center justify-center">
 
             <p class="text-white text-2xl">Ingresa tu clave</p>
-            <mat-form-field appearance="outline" class="customInput" >
-                <input matInput formControlName="securityKey" type="number">
+            <mat-form-field appearance="outline">
+                <input matInput formControlName="securityKey" class="customInput" type="number">
             </mat-form-field>
-            <button mat-raised-button type="submit" [disabled]="formAssistent.valid">Aceptar</button>
+            <button mat-raised-button type="submit" [disabled]="false">Aceptar</button>
             <!-- <button mat-raised-button color="primary">Primary</button> -->
         </form>
     </div>
@@ -16,7 +16,7 @@
     </div>
     <div class="dataEmployed">
         <ng-container *ngIf="existAssistent">
-            <div class="flex flex-col items-center justify-center gap-5 text-white">
+            <div class="flex flex-col items-center justify-center gap-5 text-white h-full">
                 <p class="">{{employeAssistent.NameFull}}</p>
                 <p class="">{{employeAssistent.Identify}}</p>
                 <p class="">{{employeAssistent.Rol}}</p>

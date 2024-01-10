@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 import { Employe } from 'src/app/core/interface/employes/employe';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
 
@@ -11,9 +12,9 @@ import { EmployesService } from 'src/app/core/services/employes/employes.service
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsistentComponent implements OnInit {
-
+  
   formAssistent: FormGroup = new FormGroup({
-    securityKey: new FormControl('', [Validators.pattern(/^\d{1,11}$/)])
+    securityKey: new FormControl('')
   })
 
   employeAssistent: Employe = {NameFull: 'asd', Identify: '', Rol:''};
