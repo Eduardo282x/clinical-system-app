@@ -24,11 +24,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
-import { RegisterEmployeComponent } from '../employees/register-employe/register-employe.component';
-import { ShowEmployesComponent } from '../employees/showEmployes/showEmployes.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { TablaComponent } from './Tabla/Tabla.component';
+
 @NgModule({
   declarations: [
     SnackBarComponent,
@@ -38,8 +38,7 @@ import {MatSortModule} from '@angular/material/sort';
     SeeAsistentComponent,
     EmployeComponent,
     SidebarComponent,
-    RegisterEmployeComponent,
-    ShowEmployesComponent
+    TablaComponent
   ],
   imports: [
     CommonModule,
@@ -72,8 +71,7 @@ import {MatSortModule} from '@angular/material/sort';
     SeeAsistentComponent,
     EmployeComponent,
     SidebarComponent,
-    RegisterEmployeComponent,
-    ShowEmployesComponent,
+    TablaComponent,
 
     BrowserAnimationsModule,
     MatInputModule,

@@ -14,7 +14,7 @@
             <ng-container *ngIf="mainOption.children">
                 <div class="childContent {{myClass}}">
                     <ng-container *ngFor="let option of mainOption.children">
-                        <li class="flex items-center justify-start h-[50px] gap-2 ml-16 cursor-pointer hover:bg-blue-800 transitionChild" (click)="navigate(option.redirect)">
+                        <li class="flex items-center justify-start h-[50px] gap-2 ml-16 cursor-pointer hover:bg-black transitionChild" (click)="navigate(option.redirect)">
                             <mat-icon svgIcon="{{option.icon}}" class="white-icon-second"></mat-icon>
                             <span class="text-white pt-1">{{option.title}}</span>
                         </li>
@@ -25,7 +25,7 @@
         </ng-container>
     </ul>
 
-    <div class="flex flex-col justify-center items-center text-white absolute bottom-0 {{widthMenu != '' ? 'hidden' : 'flex'}} customLine">
+    <div class="flex flex-col justify-center items-center text-white  bottom-0 {{widthMenu != '' ? 'hidden' : 'flex'}} customLine">
         <ng-container *ngIf="footerData">
             <ng-container *ngFor="let item of footerData">
                 <p class="textFooter">{{item}}</p>

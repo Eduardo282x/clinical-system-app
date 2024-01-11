@@ -1,10 +1,12 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { SortEmploye } from 'src/app/core/interface/employes/employe';
+import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
+import { FilterState } from 'src/app/core/state/tabla/filter.state';
 
 @Component({
   selector: 'app-show-employes',
@@ -12,16 +14,49 @@ import { EmployesService } from 'src/app/core/services/employes/employes.service
   styleUrls: ['./showEmployes.component.css'],
 })
 export class ShowEmployesComponent implements OnInit{
-  @Output() goBack = new EventEmitter<boolean>();
 
-  displayedColumns: string[] = ['Id', 'NameFull'];
-  dataSource: MatTableDataSource<SortEmploye> = new MatTableDataSource<SortEmploye>();
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+  displayedColumns: string[] = ['Id', 'NameFull','Show','Edit','Delete'];
+  columns: ColumnDef[] = [
+    {
+      column: 'Id',
+      header: 'Id',
+      type: 'text',
+    },
+    {
+      column: 'NameFull',
+      header: 'Nombre completo',
+      type: 'text',
+      class: 'maxWidth',
+    },
+    {
+      column: 'Show',
+      header: 'Ver',
+      icon: 'visibility',
+      color: 'primary',
+      isIcon: true,
+    },
+    {
+      column: 'Edit',
+      header: 'Editar',
+      icon: 'edit',
+      color: 'primary',
+      isIcon: true,
+    },
+    {
+      column: 'Delete',
+      header: 'Borrar',
+      icon: 'delete',
+      color: 'warn',
+      isIcon: true,
+    }
+  ];
+  filter: string = '';
+  dataSource: any;
   
   constructor(
-    private employesService: EmployesService
+    private employesService: EmployesService,
+    private location:Location,
+    private filterState: FilterState
   ){}
 
     ngOnInit(): void {
@@ -30,29 +65,20 @@ export class ShowEmployesComponent implements OnInit{
       this.employesService.getData$()
       .subscribe({
         next: (users: any) => {
-          console.log(users);
           if(users){
-            this.dataSource= new MatTableDataSource(users);
+            this.dataSource = users;
           }
         }
       })
     }
 
-    ngAfterViewInit() {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
 
     applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-  
-      if (this.dataSource.paginator) {
-        this.dataSource.paginator.firstPage();
-      }
+      this.filter = (event.target as HTMLInputElement).value;
+      this.filterState.setState(this.filter);
     }
 
-    goBackEmploye(): void {
-      this.goBack.emit(true);
+    goBack(): void {
+      this.location.back();
     }
 }

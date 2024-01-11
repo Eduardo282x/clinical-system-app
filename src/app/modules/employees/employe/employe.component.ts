@@ -42,7 +42,7 @@ export class EmployeComponent implements OnInit {
   navigate(moduleString: string): void{
     this.seletedModule = false;
     this.moduleString = moduleString;
-    // this._router.navigate(['/home/employes/employe/register'])
+    this._router.navigate([moduleString])
   }
 
 }

@@ -45,7 +45,24 @@ export class SidebarComponent implements OnInit{
     },
     {
       title:'Modulo de Facturación',
-      icon: 'usuario-pay'
+      icon: 'usuario-pay',
+      children: [
+        {
+          title: 'Facturas',
+          icon: 'facturas',
+          redirect: ''
+        },
+        {
+          title: 'Presupuesto',
+          icon: 'presupuesto',
+          redirect: ''
+        },
+        {
+          title: 'Configuración',
+          icon: 'configuracion',
+          redirect: ''
+        },
+      ]
     },
     {
       title:'Modulo de Exámenes',
@@ -92,6 +109,19 @@ export class SidebarComponent implements OnInit{
       "usuario-list",
       this.domSanitizer.bypassSecurityTrustResourceUrl('assets/SVGs/UsuarioList.svg')
     );
+
+    this.matIconRegistry.addSvgIcon(
+      "facturas",
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/SVGs/factura.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      "presupuesto",
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/SVGs/presupuesto.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      "configuracion",
+      this.domSanitizer.bypassSecurityTrustResourceUrl('assets/SVGs/configuracion.svg')
+    );
   }
 
   ngOnInit(): void {
@@ -116,8 +146,9 @@ export class SidebarComponent implements OnInit{
 
   navigate(route: string): void {
     console.log(route);
-    
-    this._router.navigate([route])
+    if(route != ''){
+      this._router.navigate([route])
+    }
   }
 
   changeClass(): void {

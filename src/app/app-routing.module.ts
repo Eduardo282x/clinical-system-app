@@ -12,6 +12,13 @@ import { EmployeComponent } from './modules/employees/employe/employe.component'
 import { AsistentComponent } from './modules/employees/asistent/asistent.component';
 import { SeeAsistentComponent } from './modules/employees/seeAsistent/seeAsistent.component';
 import { RegisterEmployeComponent } from './modules/employees/register-employe/register-employe.component';
+import { ShowEmployesComponent } from './modules/employees/showEmployes/showEmployes.component';
+import { FacturesComponent } from './modules/factures/factures/factures.component';
+import { ClientsComponent } from './modules/factures/clients/clients.component';
+import { AnulationComponent } from './modules/factures/anulation/anulation.component';
+import { FactureComponent } from './modules/factures/facture/facture.component';
+import { PruebasComponent } from './modules/factures/pruebas/pruebas.component';
+import { BudgetComponent } from './modules/factures/budget/budget.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -31,12 +38,6 @@ const routes: Routes = [
           {
             path: 'employe', 
             component: EmployeComponent,
-            children: [
-              {
-                path: 'register', 
-                component: RegisterEmployeComponent,
-              }
-            ]
           },
           {
             path: 'asistent', 
@@ -46,6 +47,44 @@ const routes: Routes = [
             path: 'seeAsistent', 
             component: SeeAsistentComponent,
           },
+          {
+            path: 'register', 
+            component: RegisterEmployeComponent,
+          },
+          {
+            path: 'show', 
+            component: ShowEmployesComponent,
+          }
+        ]
+      },  
+      {
+        path: 'factures', 
+        component: EmployeesComponent,
+        children: [
+          {
+            path: 'facture', 
+            component: FactureComponent,
+          },
+          {
+            path: 'anulation', 
+            component: AnulationComponent,
+          },
+          {
+            path: 'choose-facture', 
+            component: FacturesComponent,
+          },
+          {
+            path: 'budget', 
+            component: BudgetComponent,
+          },
+          {
+            path: 'clients', 
+            component: ClientsComponent,
+          },
+          {
+            path: 'pruebas', 
+            component: PruebasComponent,
+          }
         ]
       },  
       {path: 'examenes', component: ExamsComponent},  

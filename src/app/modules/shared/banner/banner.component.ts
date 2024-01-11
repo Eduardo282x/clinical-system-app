@@ -7,6 +7,7 @@ import { Banner } from 'src/app/core/interface/banner/banner';
 import { Menu } from 'src/app/core/interface/menuOption/MenuOption';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
 import { BannerState } from 'src/app/core/state/banner/bannes.state';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-banner',
@@ -57,7 +58,21 @@ export class BannerComponent implements OnInit {
   }
 
   logout(): void{
-    this.loginService.logout();
-    this._router.navigate(['/'])
+
+    Swal.fire({
+      title: "Estas seguro de cerrar sesión?",
+      showDenyButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: `No`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.loginService.logout();
+        this._router.navigate(['/'])
+      }
+    })
+  
+    
+    
   }
 }

@@ -1,22 +1,12 @@
 <div class="bg-white w-[60rem] h-[30rem] rounded-2xl py-12 flex items-center justify-around">
-    <ng-container *ngIf="seletedModule">
-        <div class="choiceOption" (click)="navigate('registro')">
+        <div class="choiceOption" (click)="navigate('home/employes/register')">
             <div class="imgOption"></div>
             <mat-icon svgIcon="lupa"></mat-icon>
             <p>Registrar nuevo empleado</p>
         </div>
-        <div class="choiceOption" (click)="navigate('show')">
+        <div class="choiceOption" (click)="navigate('home/employes/show')">
             <div class="imgOption"></div>
             <mat-icon svgIcon="folder"></mat-icon>
             <p>Ver empleados actuales</p>
         </div>
-    </ng-container>
-
-    <ng-container *ngIf="moduleString == 'registro'">
-        <app-register-employe (goBack)="changeView(true)"></app-register-employe>
-    </ng-container>
-
-    <ng-container *ngIf="moduleString == 'show'">
-        <app-show-employes (goBack)="changeView(true)"></app-show-employes>
-    </ng-container>
 </div>

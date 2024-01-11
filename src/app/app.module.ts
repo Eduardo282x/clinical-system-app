@@ -14,6 +14,8 @@ import { EmployeesComponent } from './modules/employees/components/employees.com
 import { ExamsComponent } from './modules/exams/components/exams.component';
 import { BannerComponent } from './modules/shared/banner/banner.component';
 import { RegisterEmployeComponent } from './modules/employees/register-employe/register-employe.component';
+import { ShowEmployesComponent } from './modules/employees/showEmployes/showEmployes.component';
+import { FormRegisterComponent } from './modules/shared/formRegister/formRegister.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { RegisterEmployeComponent } from './modules/employees/register-employe/r
     ResultsComponent,
     HelpUserComponent,
     BannerComponent,
-    // RegisterEmployeComponent
+    RegisterEmployeComponent,
+    ShowEmployesComponent,
+    FormRegisterComponent
   ],
   imports: [
     BrowserModule,

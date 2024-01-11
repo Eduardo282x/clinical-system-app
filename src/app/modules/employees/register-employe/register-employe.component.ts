@@ -9,12 +9,11 @@ import { Router } from '@angular/router';
 })
 export class RegisterEmployeComponent { 
 
-  @Output() goBack = new EventEmitter<boolean>();
+  constructor(
+    private location: Location
+  ){}
 
-  constructor(){}
-
-    
-  goBackEmploye(): void {
-    this.goBack.emit(true);
+  goBack(): void {
+    this.location.back()
   }
 }
