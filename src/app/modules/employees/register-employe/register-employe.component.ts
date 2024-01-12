@@ -1,6 +1,5 @@
-import { CommonModule, Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-register-employe',

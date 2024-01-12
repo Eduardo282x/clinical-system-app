@@ -3,6 +3,8 @@
   width: 100%;
   padding: 1rem;
   border-radius: 1.5rem;
+  height: 20rem;
+  overflow-y: auto;
   border: 2px solid #000;
 }
 
@@ -10,6 +12,17 @@
   width: 35rem;
 }
 
+.minWidth{
+  width: 20rem;
+}
+
 .centerTextTitle{
   text-align: center !important;
+}
+
+.closeRed{
+  color: red;
+}
+.checkGreen{
+  color: green;
 }

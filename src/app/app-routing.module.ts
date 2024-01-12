@@ -19,6 +19,8 @@ import { AnulationComponent } from './modules/factures/anulation/anulation.compo
 import { FactureComponent } from './modules/factures/facture/facture.component';
 import { PruebasComponent } from './modules/factures/pruebas/pruebas.component';
 import { BudgetComponent } from './modules/factures/budget/budget.component';
+import { BaseFacturesComponent } from './modules/factures/baseFactures/baseFactures.component';
+import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -59,7 +61,7 @@ const routes: Routes = [
       },  
       {
         path: 'factures', 
-        component: EmployeesComponent,
+        component: BaseFacturesComponent,
         children: [
           {
             path: 'facture', 
@@ -72,6 +74,10 @@ const routes: Routes = [
           {
             path: 'choose-facture', 
             component: FacturesComponent,
+          },
+          {
+            path: 'choose-configuration', 
+            component: ConfigurationComponent,
           },
           {
             path: 'budget', 

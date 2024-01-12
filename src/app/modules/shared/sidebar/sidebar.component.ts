@@ -50,17 +50,17 @@ export class SidebarComponent implements OnInit{
         {
           title: 'Facturas',
           icon: 'facturas',
-          redirect: ''
+          redirect: '/home/factures/choose-facture'
         },
         {
           title: 'Presupuesto',
           icon: 'presupuesto',
-          redirect: ''
+          redirect: '/home/factures/budget'
         },
         {
           title: 'Configuración',
           icon: 'configuracion',
-          redirect: ''
+          redirect: '/home/factures/choose-configuration'
         },
       ]
     },

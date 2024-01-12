@@ -25,7 +25,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { TablaComponent } from './Tabla/Tabla.component';
 
@@ -97,7 +97,8 @@ import { TablaComponent } from './Tabla/Tabla.component';
   ],
 
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'es'}
+    {provide: MAT_DATE_LOCALE, useValue: 'es'},
+    {provide: MatPaginatorIntl}
   ]
 })
 export class SharedModule { }

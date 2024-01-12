@@ -1,9 +1,101 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Clients } from 'src/app/core/interface/clients/clients';
+import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
+import { EmitAction } from 'src/app/core/interface/tabla/emitAction';
+import { ClientsService } from 'src/app/core/services/clients/clients.service';
+import { EmployesService } from 'src/app/core/services/employes/employes.service';
+import { FilterState } from 'src/app/core/state/tabla/filter.state';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css'],
 })
-export class ClientsComponent { }
+export class ClientsComponent implements OnInit{
+
+  displayedColumns: string[] = ['NameFull','Identify','Edit','Delete'];
+  columns: ColumnDef[] = [
+    // {
+    //   column: 'Id',
+    //   header: 'IdClients',
+    //   type: 'text',
+    // },
+    {
+      column: 'NameFull',
+      header: 'Nombre completo',
+      type: 'text',
+      class: 'maxWidth',
+    },
+    {
+      column: 'Identify',
+      header: 'Cedula',
+      type: 'text',
+      class: 'minWidth',
+    },
+    {
+      column: 'Edit',
+      header: 'Editar',
+      icon: 'edit',
+      color: 'primary',
+      isIcon: true,
+    },
+    {
+      column: 'Delete',
+      header: 'Borrar',
+      icon: 'delete',
+      color: 'warn',
+      isIcon: true,
+    }
+  ];
+  filter: string = '';
+  dataSource: any;
+  
+  constructor(
+    private clientService: ClientsService,
+    private location:Location,
+    private filterState: FilterState
+  ){}
+  ngOnInit(): void {
+    this.clientService.getEmployes();
+
+    this.clientService.getData$()
+    .subscribe({
+      next: (users: Clients[] | any) => {
+        if(users){
+          this.dataSource = users;
+        }
+      }
+    })
+  }
+
+  applyFilter(event: Event) {
+    this.filter = (event.target as HTMLInputElement).value;
+    this.filterState.setState(this.filter);
+  }
+
+  getActionTable(getAction: EmitAction): void {
+    console.log(getAction);
+    this.deleteClient(getAction.data)
+  }
+
+  deleteClient(data: Clients): void {
+    Swal.fire({
+      title: "Estas seguro que deseas eliminar el cliente?",
+      showDenyButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: `No`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        console.log('cliente eliminada', data.IdClients);
+        
+      }
+    })
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+}
