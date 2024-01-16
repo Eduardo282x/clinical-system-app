@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Menu } from 'src/app/core/interface/menuOption/MenuOption';
 import { PayloadService } from 'src/app/core/services/Payload.service';
 import { FooterDataState } from 'src/app/core/state/footerData/footerData.state';
+import { menu } from './sidebatr.data';
 
 @Component({
   selector: 'app-sidebar',
@@ -21,62 +22,7 @@ export class SidebarComponent implements OnInit{
   titleClass: string = 'titleArrow';
   closed: boolean = true;
 
-  menu: Menu[] = [ 
-    {
-      title: 'Modulo de Empleados',
-      icon: 'usuario-check',
-      deploy: false,
-      children: [
-        {
-          title: 'Asistencia',
-          icon:'empleados',
-          redirect: '/home/employes/asistent'
-        },
-        {
-          title: 'Imprimir',
-          icon:'impresora',
-          redirect: '/home/employes/seeAsistent'
-        },
-        {
-          title: 'Gestión',
-          icon:'asistencia',
-          redirect: '/home/employes/employe'
-        },
-      ]
-    },
-    {
-      title:'Modulo de Facturación',
-      icon: 'usuario-pay',
-      deploy: false,
-      children: [
-        {
-          title: 'Facturas',
-          icon: 'facturas',
-          redirect: '/home/factures/choose-facture'
-        },
-        {
-          title: 'Presupuesto',
-          icon: 'presupuesto',
-          redirect: '/home/factures/budget'
-        },
-        {
-          title: 'Configuración',
-          icon: 'configuracion',
-          redirect: '/home/factures/choose-configuration'
-        },
-      ]
-    },
-    {
-      title:'Modulo de Exámenes',
-      icon: 'investigate',
-      deploy: false
-    },
-    {
-      title:'Carga de Resultados',
-      icon: 'usuario-list',
-      deploy: false
-    },
-  ]
+  menu: Menu[] = menu
 
   constructor(
     private matIconRegistry: MatIconRegistry,
@@ -155,10 +101,14 @@ export class SidebarComponent implements OnInit{
     }
   }
 
-  changeClass(deploy: any): void {
-    const newArray = this.menu.find(title => title.title == deploy.title);
-    if(newArray){
-      newArray.deploy = !newArray.deploy ;
+  changeClass(deploy: Menu): void {
+    const newMenu = this.menu.find(title => title.title == deploy.title);
+    const oldMenu = this.menu.filter(title => title.title !== deploy.title);
+    if(oldMenu){
+      oldMenu.map(option => option.deploy = false);    
+    }
+    if(newMenu){
+      newMenu.deploy = !newMenu.deploy;
     }
   }
 }

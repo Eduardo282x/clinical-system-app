@@ -6,6 +6,7 @@
   position: fixed;
   top: 11%;
   left: 0;
+  z-index: 1000;
   height: 89%;
   width: 280px;
   transition: .5s;
@@ -86,12 +87,12 @@ mat-icon{
   height: 0px;
   visibility: hidden;
   opacity: 0;
-  transition: 1s;
+  transition: .3s;
 }
 
 .childContent.closed{
-  animation: openMenu .5s linear;
-  transition: .5s;
+  animation: openMenu .3s linear;
+  transition: .3s;
   height: 30%;
   opacity: 1;
   visibility: visible;
