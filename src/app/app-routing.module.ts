@@ -21,6 +21,7 @@ import { PruebasComponent } from './modules/factures/pruebas/pruebas.component';
 import { BudgetComponent } from './modules/factures/budget/budget.component';
 import { BaseFacturesComponent } from './modules/factures/baseFactures/baseFactures.component';
 import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
+import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -88,6 +89,10 @@ const routes: Routes = [
             component: ClientsComponent,
           },
           {
+            path: 'clients-register', 
+            component: RegisterClientsComponent,
+          },
+          {
             path: 'pruebas', 
             component: PruebasComponent,
           }
@@ -96,9 +101,6 @@ const routes: Routes = [
       {path: 'examenes', component: ExamsComponent},  
     ]
   },
-  
-  
-
   
   {path: '**', component: LoginComponent},
 ];

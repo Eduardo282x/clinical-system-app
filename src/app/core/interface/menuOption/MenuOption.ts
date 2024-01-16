@@ -8,6 +8,7 @@ export interface MenuOption {
 export interface Menu{
     title: string;
     icon: string;
+    deploy?: boolean;
     redirect?: string;
     children?: MenuChild[]
 }

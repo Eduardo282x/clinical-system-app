@@ -28,6 +28,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { TablaComponent } from './Tabla/Tabla.component';
+import { RegisterCompletedComponent } from './register-completed/register-completed.component';
+import { FormGeneratorSharedComponent } from './form-generator-shared/form-generator-shared.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,9 @@ import { TablaComponent } from './Tabla/Tabla.component';
     SeeAsistentComponent,
     EmployeComponent,
     SidebarComponent,
-    TablaComponent
+    TablaComponent,
+    RegisterCompletedComponent,
+    FormGeneratorSharedComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +68,7 @@ import { TablaComponent } from './Tabla/Tabla.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule,
   ],
   exports: [
     CardComponent,
@@ -72,6 +78,8 @@ import { TablaComponent } from './Tabla/Tabla.component';
     EmployeComponent,
     SidebarComponent,
     TablaComponent,
+    RegisterCompletedComponent,
+    FormGeneratorSharedComponent,
 
     BrowserAnimationsModule,
     MatInputModule,
@@ -94,6 +102,7 @@ import { TablaComponent } from './Tabla/Tabla.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule,
   ],
 
   providers: [

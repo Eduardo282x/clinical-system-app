@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Clients } from 'src/app/core/interface/clients/clients';
 import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
 import { EmitAction } from 'src/app/core/interface/tabla/emitAction';
@@ -55,10 +56,11 @@ export class ClientsComponent implements OnInit{
   constructor(
     private clientService: ClientsService,
     private location:Location,
+    private _router: Router,
     private filterState: FilterState
   ){}
   ngOnInit(): void {
-    this.clientService.getEmployes();
+    this.clientService.getClient();
 
     this.clientService.getData$()
     .subscribe({
@@ -77,7 +79,13 @@ export class ClientsComponent implements OnInit{
 
   getActionTable(getAction: EmitAction): void {
     console.log(getAction);
-    this.deleteClient(getAction.data)
+    if(getAction.action == 'Delete'){
+      this.deleteClient(getAction.data)
+    }
+
+    if(getAction.action == 'Edit'){
+      this._router.navigate(['/home/factures/clients-register'])
+    }
   }
 
   deleteClient(data: Clients): void {

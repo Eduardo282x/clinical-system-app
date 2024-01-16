@@ -1,7 +1,7 @@
 <div class="sidebar {{widthMenu}}">
     <ul class="nav-list">
         <ng-container *ngFor="let mainOption of menu">
-            <li class="flex flex-row items-center justify-start h-[50px] ml-2 px-2 gap-2 cursor-pointer hover:bg-blue-800  listHovered" (click)="changeClass()">
+            <li class="flex flex-row items-center justify-start h-[50px] ml-2 px-2 gap-2 cursor-pointer hover:bg-blue-800  listHovered" (click)="changeClass(mainOption)">
                 <div class="absolute left-0 flex items-center justify-center">
                     <mat-icon svgIcon="{{mainOption.icon}}" class="white-icon"></mat-icon>
                     <div class="titleArrow">
@@ -12,7 +12,7 @@
             </li>
             <div class="bg-white w-full h-[1px] mt-2"></div>
             <ng-container *ngIf="mainOption.children">
-                <div class="childContent {{myClass}}">
+                <div class="childContent {{!mainOption.deploy ? '' : 'closed'}}">
                     <ng-container *ngFor="let option of mainOption.children">
                         <li class="flex items-center justify-start h-[50px] gap-2 ml-16 cursor-pointer hover:bg-black transitionChild" (click)="navigate(option.redirect)">
                             <mat-icon svgIcon="{{option.icon}}" class="white-icon-second"></mat-icon>

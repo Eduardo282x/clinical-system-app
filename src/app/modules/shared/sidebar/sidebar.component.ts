@@ -25,6 +25,7 @@ export class SidebarComponent implements OnInit{
     {
       title: 'Modulo de Empleados',
       icon: 'usuario-check',
+      deploy: false,
       children: [
         {
           title: 'Asistencia',
@@ -46,6 +47,7 @@ export class SidebarComponent implements OnInit{
     {
       title:'Modulo de Facturación',
       icon: 'usuario-pay',
+      deploy: false,
       children: [
         {
           title: 'Facturas',
@@ -66,11 +68,13 @@ export class SidebarComponent implements OnInit{
     },
     {
       title:'Modulo de Exámenes',
-      icon: 'investigate'
+      icon: 'investigate',
+      deploy: false
     },
     {
       title:'Carga de Resultados',
-      icon: 'usuario-list'
+      icon: 'usuario-list',
+      deploy: false
     },
   ]
 
@@ -151,8 +155,10 @@ export class SidebarComponent implements OnInit{
     }
   }
 
-  changeClass(): void {
-    this.closed = !this.closed;
-    this.myClass = this.closed ? '' : 'closed';
+  changeClass(deploy: any): void {
+    const newArray = this.menu.find(title => title.title == deploy.title);
+    if(newArray){
+      newArray.deploy = !newArray.deploy ;
+    }
   }
 }
