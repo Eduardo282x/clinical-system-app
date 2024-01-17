@@ -32,7 +32,7 @@ import { RegisterCompletedComponent } from './register-completed/register-comple
 import { FormGeneratorSharedComponent } from './form-generator-shared/form-generator-shared.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
-import { ClientDialogComponent } from '../factures/ClientDialog/ClientDialog.component';
+import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/clientDialog.component';
 
 @NgModule({
   declarations: [

@@ -21,15 +21,17 @@ export class RegisterClientsComponent implements OnInit {
     this.clientService.getData$().subscribe({
       next: (response: any) => {
         console.log(response);
-        const dataSnackbar: Snackbar = {
-          message: response.message,
-          success: response.success
+        if(response){
+          const dataSnackbar: Snackbar = {
+            message: response.message,
+            success: response.success
+          }
+      
+          this._snackBar.openFromComponent(SnackBarComponent,{
+            duration: 2000,
+            data: dataSnackbar
+          });
         }
-    
-        this._snackBar.openFromComponent(SnackBarComponent,{
-          duration: 2000,
-          data: dataSnackbar
-        });
       }
     })
   }
