@@ -3,6 +3,9 @@ export interface Clients {
     FullName: string;
     Identify: string;
 }
+export interface OneClient { 
+    Identify: string;
+}
 
 export interface BaseClient {
     IdClients: string;
