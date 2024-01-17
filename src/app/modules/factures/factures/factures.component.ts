@@ -1,8 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ResponseClient } from 'src/app/core/interface/BaseResponse';
 import { ClientsService } from 'src/app/core/services/clients/clients.service';
+import { ClientDialogComponent } from '../ClientDialog/ClientDialog.component';
+
 
 @Component({
   selector: 'app-factures',
@@ -12,19 +14,30 @@ import { ClientsService } from 'src/app/core/services/clients/clients.service';
 export class FacturesComponent implements OnInit {
 
   formClient: FormGroup = new FormGroup({
-    clientIdentify: new FormControl('28391325',[Validators.required])
+    clientIdentify: new FormControl('',[Validators.required])
   })
 
   constructor(
-    private clientService: ClientsService
+    private clientService: ClientsService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
       this.clientService.getData$().subscribe({
         next: (response: ResponseClient | any) => {
-          console.log(response);
           if(response.success){
             localStorage.setItem('client', JSON.stringify(response.client))
+          }
+          else {
+            this.dialog.open(ClientDialogComponent,{
+              data: response,
+              width: '40rem',
+              height: '15rem'
+            })
+
+            setTimeout(() => {
+              this.dialog.closeAll();
+            }, 1500);
           }
         }
       })

@@ -1,5 +1,5 @@
 <div class="w-[60rem] flex flex-col items-center justify-center bg-white rounded-2xl px-10 h-[23.5rem]">
-    <p class="text-[#4758b8] font-bold text-[20px]">CEDULA</p>
+    <p class="text-[#4758b8] text-left w-2/6 font-bold text-[20px]">CEDULA</p>
 
     <form [formGroup]="formClient" (submit)="onSubmitClient()" class="flex justify-center items-center w-full">
         <mat-form-field appearance="outline" class="inputCustom">
@@ -10,8 +10,8 @@
         </button>
     </form>
 
-    <div class="message mt-10">
-        <p>Si el cliente no existe puedes</p>
-        <p>REGISTRAR UN NUEVO CLIENTE</p>
+    <div class="flex flex-col items-center justify-center  mt-10">
+        <p class="text-[20px]">Si el cliente no existe puedes</p>
+        <p class="text-[20px] text-blue-600 underline cursor-pointer">REGISTRAR UN NUEVO CLIENTE</p>
     </div>
 </div>

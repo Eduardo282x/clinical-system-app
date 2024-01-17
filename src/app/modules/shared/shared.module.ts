@@ -31,6 +31,8 @@ import { TablaComponent } from './Tabla/Tabla.component';
 import { RegisterCompletedComponent } from './register-completed/register-completed.component';
 import { FormGeneratorSharedComponent } from './form-generator-shared/form-generator-shared.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ClientDialogComponent } from '../factures/ClientDialog/ClientDialog.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import {MatSelectModule} from '@angular/material/select';
     TablaComponent,
     RegisterCompletedComponent,
     FormGeneratorSharedComponent,
+    ClientDialogComponent
   ],
   imports: [
     CommonModule,
@@ -69,6 +72,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
+    MatDialogModule,
   ],
   exports: [
     CardComponent,
@@ -80,6 +84,7 @@ import {MatSelectModule} from '@angular/material/select';
     TablaComponent,
     RegisterCompletedComponent,
     FormGeneratorSharedComponent,
+    ClientDialogComponent,
 
     BrowserAnimationsModule,
     MatInputModule,
@@ -103,6 +108,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
+    MatDialogModule,
   ],
 
   providers: [
