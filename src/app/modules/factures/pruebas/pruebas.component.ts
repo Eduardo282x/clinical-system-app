@@ -70,7 +70,7 @@ export class PruebasComponent {
     private filterState: FilterState
   ){}
   ngOnInit(): void {
-    this.servicesService.getEmployes();
+    this.servicesService.getServices();
 
     this.servicesService.getData$()
     .subscribe({

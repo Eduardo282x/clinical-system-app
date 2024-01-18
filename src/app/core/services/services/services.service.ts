@@ -13,6 +13,7 @@ import { Services } from '../../interface/services/services';
 export class ServicesService {
 
   private ENDPOINT = `${environment.url}services`;
+  private AVALIBLE = `${this.ENDPOINT}/avalibles`;
   private unsubscribe = new Subject<void>;
   
   constructor(
@@ -20,15 +21,33 @@ export class ServicesService {
     private http: HttpClient,
   ) { }
 
-  getData$(): Observable<Services | null>{
+  getData$(): Observable<Services | any>{
     return this.state.getState$();
   }
   clearData(): void{
     this.state.clearState();
   }
 
-  getEmployes(): void {
+  getServices(): void {
     this.http.get<Services>(this.ENDPOINT)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        console.log(response);
+        
+        this.state.setState(response);
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete() {
+          // console.log('Complete');
+      },
+    })
+  }
+
+  getServicesAvalibles(): void {
+    this.http.get<Services>(this.AVALIBLE)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {

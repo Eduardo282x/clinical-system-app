@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { ResponseClient } from 'src/app/core/interface/BaseResponse';
-import { ClientsService } from 'src/app/core/services/clients/clients.service';
 import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/clientDialog.component';
+import { ClientsService } from 'src/app/core/services/clients/clients.service';
+import { ResponseClient } from 'src/app/core/interface/BaseResponse';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BaseComponent } from '../../base/base.component';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
-import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-factures',
@@ -33,7 +33,10 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
       .subscribe({
         next: (response: ResponseClient | any) => {
           if(response.success){
-            localStorage.setItem('client', JSON.stringify(response.client))
+            localStorage.setItem('client', JSON.stringify(response.client));
+            setTimeout(() => {
+              this._router.navigate(['home/factures/facture'])
+            }, 1500);
           }
 
           this.dialog.open(ClientDialogComponent,{
@@ -60,5 +63,4 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
   ngOnDestroy(): void {
     this.clientService.clearData();
   }
-
 }

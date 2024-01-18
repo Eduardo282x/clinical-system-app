@@ -1,7 +1,8 @@
 export interface ColumnDef { 
     column: string;
-    type?: string;
     header: string;
+    
+    type?: string;
     class?: string;
     icon?: string;
     isIcon?: boolean;

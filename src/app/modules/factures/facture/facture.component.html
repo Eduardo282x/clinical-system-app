@@ -1,3 +1,34 @@
-<div class="w-[60rem] flex flex-row items-center justify-center bg-white rounded-2xl px-10 h-[23.5rem]">
+<div class="w-[60rem] flex flex-col items-center justify-center bg-white rounded-2xl px-10 h-[35rem] upContet">
+    <div class="flex  flex-col items-center justify-center w-full">
+        <div class="flex items-center justify-around w-full">
+            <p class="text-[24px] text-[#5666be]">{{client.NameFull}}</p>
+            <p class="text-[24px]">Orden: #{{order}}</p>
+        </div>
+        <div class="flex items-center justify-end w-full">
+            <p class="text-[18px] separeText">Buscar por código o producto</p>
+            <form class="formService">
+                <mat-form-field class="w-full" appearance="outline">
+                    <input type="text" matInput [formControl]="myControl"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.Description" (click)="addServices(option)">
+                            {{option.CodService}} - {{option.Description}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
+    <div class="flex items-center justify-center w-full">
+        <ng-container *ngIf="existData">
+            <app-tabla
+            [displayedColumns]="displayedColumns"
+            [columns]="columns"
+            [dataTable]="dataSource"
+            />
+        </ng-container>
+    </div>
+    <div class="flex items-center justify-center w-full">
 
+    </div>
 </div>

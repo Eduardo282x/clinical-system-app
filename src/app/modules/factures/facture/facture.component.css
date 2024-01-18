@@ -1,3 +1,11 @@
-:host {
-  display: block;
+.formService{
+  width: 20rem;
+}
+
+.upContet{
+  margin-top: -5rem;
+}
+
+.separeText{
+  margin-right: 2rem;
 }

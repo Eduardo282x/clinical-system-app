@@ -33,6 +33,7 @@ import { FormGeneratorSharedComponent } from './form-generator-shared/form-gener
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/clientDialog.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/cli
     MatSortModule,
     MatSelectModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
   exports: [
     CardComponent,
@@ -109,6 +111,7 @@ import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/cli
     MatSortModule,
     MatSelectModule,
     MatDialogModule,
+    MatAutocompleteModule,
   ],
 
   providers: [
