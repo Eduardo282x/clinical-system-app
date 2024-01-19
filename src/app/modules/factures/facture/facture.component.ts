@@ -11,6 +11,8 @@ import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
 import { columns, displayedColumns } from './facture.data';
 import { FactureService } from 'src/app/core/services/factures/facture.service';
 import { NewTempFacture, TempFacture } from 'src/app/core/interface/facture/tempFacture';
+import { DataUser } from 'src/app/core/interface/BaseResponse';
+import { EmitAction } from 'src/app/core/interface/tabla/emitAction';
 
 @Component({
   selector: 'app-facture',
@@ -20,6 +22,7 @@ import { NewTempFacture, TempFacture } from 'src/app/core/interface/facture/temp
 export class FactureComponent extends BaseComponent implements OnInit, AfterViewInit{ 
 
   client: Clients | any;
+  user: DataUser | any;
   order: string ='000002';
 
   displayedColumns: string[] = displayedColumns;
@@ -41,7 +44,9 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
 
   ngOnInit(): void {
       this.servicesService.getServicesAvalibles();
-      this.factureService.getTempFacture(2);
+      this.client = this.payloadService.getClietnDataLocalStorage();
+      this.user = this.payloadService.getDataLocalStorage();
+      this.factureService.getTempFacture(this.user.Id);
 
       this.factureService.getData$()
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -51,7 +56,6 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
             this.dataSource = tempfacture;
             this.existData = true;
             console.log(this.dataSource);
-            
           }
         }
       })
@@ -66,7 +70,8 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
         }
       })
 
-      this.client = this.payloadService.getClietnDataLocalStorage();
+      console.log(this.client);
+      
   }
 
   ngAfterViewInit(): void {
@@ -82,9 +87,27 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
     return this.options.filter(option => option.Description.toLowerCase().includes(filterValue) || option.CodService.toLowerCase().includes(filterValue));
   }
 
+  getActionTable(dateGet: EmitAction): void {
+    console.log(dateGet);
+    if(dateGet.action == 'Delete'){
+      this.deleteTemp(dateGet.data);
+    }
+  }
+
+  deleteTemp(temp: any): void {
+    const row: NewTempFacture = {
+      IdUser: this.user.Id,
+      IdServices: temp.IdServices,
+      Amount: 0
+    };
+    
+    this.factureService.deleteTempFacture(row)
+    console.log(temp);
+  }
+
   addServices(service: Services): void {
     const newService: NewTempFacture= {
-      IdUser: 2,
+      IdUser: this.user.Id,
       IdServices: service.IdService,
       Amount: 1
     }

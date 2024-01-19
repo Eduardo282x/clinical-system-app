@@ -1,7 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
 import { Employe } from 'src/app/core/interface/employes/employe';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
 
@@ -9,7 +7,6 @@ import { EmployesService } from 'src/app/core/services/employes/employes.service
   selector: 'app-asistent',
   templateUrl: './asistent.component.html',
   styleUrls: ['./asistent.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsistentComponent implements OnInit {
   

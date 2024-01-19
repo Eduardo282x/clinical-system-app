@@ -13,6 +13,8 @@ export class FactureService {
   private ENDPOINT = `${environment.url}facture`;
   private TEMP = `${this.ENDPOINT}/temp`;
   private ADDTEMP = `${this.ENDPOINT}/addtemp`;
+  private EDITTEMP = `${this.ENDPOINT}/update`;
+  private DELETETEMP = `${this.ENDPOINT}/delete`;
   private unsubscribe = new Subject<void>;
 
   constructor(
@@ -52,7 +54,42 @@ export class FactureService {
       error(err) {
           console.log(err);
       },
-      complete() {
+      complete: () => {
+        this.getTempFacture(newService.IdUser);
+          // console.log('Complete');
+      },
+    })
+  }
+  updateTempFacture(newService: NewTempFacture): void {
+    this.http.post<any>(this.EDITTEMP, newService)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete: () => {
+        this.getTempFacture(newService.IdUser);
+          // console.log('Complete');
+      },
+    })
+  }
+  deleteTempFacture(newService: NewTempFacture): void {
+    this.http.post<any>(this.DELETETEMP, newService)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete:() => {
+        console.log(newService);
+        
+        this.getTempFacture(newService.IdUser);
           // console.log('Complete');
       },
     })

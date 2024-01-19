@@ -6,6 +6,7 @@
         </div>
         <div class="flex items-center justify-end w-full">
             <p class="text-[18px] separeText">Buscar por código o producto</p>
+            
             <form class="formService">
                 <mat-form-field class="w-full" appearance="outline">
                     <input type="text" matInput [formControl]="myControl"
@@ -25,6 +26,7 @@
             [displayedColumns]="displayedColumns"
             [columns]="columns"
             [dataTable]="dataSource"
+            (actionTable)="getActionTable($event)"
             />
         </ng-container>
     </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -12,7 +12,7 @@ import { FilterState } from 'src/app/core/state/tabla/filter.state';
   templateUrl: './Tabla.component.html',
   styleUrls: ['./Tabla.component.css'],
 })
-export class TablaComponent implements OnInit, AfterViewInit {
+export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
 
   @Input() displayedColumns: string[] = [];
   @Input() columns: ColumnDef[] = [];
@@ -27,12 +27,14 @@ export class TablaComponent implements OnInit, AfterViewInit {
 
   constructor(
     private filterState: FilterState,
-    private labelPaginator: MatPaginatorIntl
+    private labelPaginator: MatPaginatorIntl,
+    private cdr: ChangeDetectorRef,
   ) {
 
   }
 
   ngOnInit(): void {
+    this.cdr.detectChanges();
     this.labelPaginator.itemsPerPageLabel = 'Registros por pagina'
     if (this.dataTable != null) {
       this.dataSource = new MatTableDataSource<any>(this.dataTable);
@@ -52,7 +54,17 @@ export class TablaComponent implements OnInit, AfterViewInit {
     })
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['dataTable']?.currentValue){
+      this.dataSource = new MatTableDataSource<any>(this.dataTable);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+  }
+
   ngAfterViewInit(): void {
+    this.cdr.detectChanges();
+    this.dataSource = new MatTableDataSource<any>(this.dataTable);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
