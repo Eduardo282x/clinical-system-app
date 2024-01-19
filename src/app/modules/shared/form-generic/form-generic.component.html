@@ -1,0 +1,15 @@
+<div class="flex flex-col items-center justify-center h-full w-full gap-5 px-10 py-5">
+    <p class="text-[24px]">{{data.title}}</p>
+    <form [formGroup]="formGeneric" (submit)="sendDataForm()" class="flex flex-col items-center justify-center w-full">
+        <ng-container *ngFor="let item of data.dataForm">
+            <ng-container *ngIf="item.type == 'input'">
+                <mat-form-field appearance="outline">
+                    <mat-label>{{item.label}}</mat-label>
+                    <input matInput formControlName="{{item.formControlName}}">
+                </mat-form-field>
+            </ng-container>
+        </ng-container>
+
+        <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="formGeneric.value" >Enviar</button>
+    </form>
+</div>

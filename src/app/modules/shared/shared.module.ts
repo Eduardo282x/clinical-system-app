@@ -34,6 +34,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/clientDialog.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FormGenericComponent } from './form-generic/form-generic.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     TablaComponent,
     RegisterCompletedComponent,
     FormGeneratorSharedComponent,
-    ClientDialogComponent
+    ClientDialogComponent,
+    FormGenericComponent
   ],
   imports: [
     CommonModule,

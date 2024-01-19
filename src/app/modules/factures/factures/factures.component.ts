@@ -32,22 +32,24 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
         next: (response: ResponseClient | any) => {
-          if(response.success){
-            localStorage.setItem('client', JSON.stringify(response.client));
+          if(response){
+            if(response.success){
+              localStorage.setItem('client', JSON.stringify(response.client));
+              setTimeout(() => {
+                this._router.navigate(['home/factures/facture'])
+              }, 1500);
+            }
+  
+            this.dialog.open(ClientDialogComponent,{
+              data: response,
+              width: '40rem',
+              height: '15rem'
+            })
+  
             setTimeout(() => {
-              this._router.navigate(['home/factures/facture'])
+              this.dialog.closeAll();
             }, 1500);
           }
-
-          this.dialog.open(ClientDialogComponent,{
-            data: response,
-            width: '40rem',
-            height: '15rem'
-          })
-
-          setTimeout(() => {
-            this.dialog.closeAll();
-          }, 1500);
         }
       })
   }

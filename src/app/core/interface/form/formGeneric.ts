@@ -2,6 +2,7 @@ export interface FormGeneric {
     label: string;
     formControlName: string;
     type: string;
+    value?: any;
     class?: string;
 }
 

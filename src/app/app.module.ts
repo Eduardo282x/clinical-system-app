@@ -26,6 +26,7 @@ import { PruebasComponent } from './modules/factures/pruebas/pruebas.component';
 import { BudgetComponent } from './modules/factures/budget/budget.component';
 import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
 import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
+import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +52,7 @@ import { RegisterClientsComponent } from './modules/factures/register-clients/re
     BudgetComponent,
     ConfigurationComponent,
     RegisterClientsComponent,
+    ChooseFactureComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { FormDialog } from "src/app/core/interface/form-generic/form-genereic";
 import { ColumnDef } from "src/app/core/interface/shared/columnDef";
 
 export const displayedColumns: string[] = ['CodService','Description','Amount','Cost','Total','Edit',
@@ -45,3 +46,15 @@ export const columns: ColumnDef[] = [
         isIcon: true,
     }
 ];
+
+export const dataform: FormDialog = {
+    title: 'Editar cantidad',
+    dataForm: [
+        {
+            label: 'Cantidad',
+            type: 'input',
+            value: '',
+            formControlName: 'IdServices'
+        }
+    ]
+}

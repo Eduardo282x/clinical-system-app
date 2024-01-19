@@ -8,11 +8,14 @@ import { ServicesService } from 'src/app/core/services/services/services.service
 import { BaseComponent } from '../../base/base.component';
 import { Services } from 'src/app/core/interface/services/services';
 import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
-import { columns, displayedColumns } from './facture.data';
+import { columns, dataform, displayedColumns } from './facture.data';
 import { FactureService } from 'src/app/core/services/factures/facture.service';
 import { NewTempFacture, TempFacture } from 'src/app/core/interface/facture/tempFacture';
 import { DataUser } from 'src/app/core/interface/BaseResponse';
 import { EmitAction } from 'src/app/core/interface/tabla/emitAction';
+import { MatDialog } from '@angular/material/dialog';
+import { FormGenericComponent } from '../../shared/form-generic/form-generic.component';
+import { FormDialog } from 'src/app/core/interface/form-generic/form-genereic';
 
 @Component({
   selector: 'app-facture',
@@ -26,6 +29,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
   order: string ='000002';
 
   displayedColumns: string[] = displayedColumns;
+  dataFormGeneric: FormDialog = dataform;
   columns: ColumnDef[] = columns;
   dataSource: TempFacture[] = [];
   existData: boolean = false;
@@ -37,7 +41,8 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
   constructor(
     private payloadService: PayloadService,
     private servicesService: ServicesService,
-    private factureService: FactureService
+    private factureService: FactureService,
+    private dialog: MatDialog
   ) {
     super()
   }
@@ -71,7 +76,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       })
 
       console.log(this.client);
-      
+
   }
 
   ngAfterViewInit(): void {
@@ -92,6 +97,9 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
     if(dateGet.action == 'Delete'){
       this.deleteTemp(dateGet.data);
     }
+    if(dateGet.action == 'Edit'){
+      this.editTemp(dateGet.data);
+    }
   }
 
   deleteTemp(temp: any): void {
@@ -103,6 +111,19 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
     
     this.factureService.deleteTempFacture(row)
     console.log(temp);
+  }
+
+  editTemp(temp: any): void{
+    this.dataFormGeneric.dataForm[0].value = temp.Amount;
+    const diagloRef = this.dialog.open(FormGenericComponent,{
+      data: this.dataFormGeneric,
+      width: '30rem',
+      height: '20rem'
+    });
+
+    diagloRef.afterClosed().subscribe(result => {
+      console.log('Result form: ',result);
+    })
   }
 
   addServices(service: Services): void {

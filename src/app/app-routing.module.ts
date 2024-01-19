@@ -22,6 +22,7 @@ import { BudgetComponent } from './modules/factures/budget/budget.component';
 import { BaseFacturesComponent } from './modules/factures/baseFactures/baseFactures.component';
 import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
 import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
+import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -74,6 +75,10 @@ const routes: Routes = [
           },
           {
             path: 'choose-facture', 
+            component: ChooseFactureComponent,
+          },
+          {
+            path: 'get-facture', 
             component: FacturesComponent,
           },
           {
