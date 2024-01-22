@@ -98,7 +98,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       this.deleteTemp(dateGet.data);
     }
     if(dateGet.action == 'Edit'){
-      this.editTemp(dateGet.data);
+      this.openEditTemp(dateGet.data);
     }
   }
 
@@ -113,8 +113,10 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
     console.log(temp);
   }
 
-  editTemp(temp: any): void{
+  openEditTemp(temp: any): void{
     this.dataFormGeneric.dataForm[0].value = temp.Amount;
+    this.dataFormGeneric.dataForm[1].value = temp.IdServices;
+
     const diagloRef = this.dialog.open(FormGenericComponent,{
       data: this.dataFormGeneric,
       width: '30rem',
@@ -123,7 +125,17 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
 
     diagloRef.afterClosed().subscribe(result => {
       console.log('Result form: ',result);
+      const updateTempFacture: NewTempFacture = {
+        Amount: result.Amount,
+        IdServices: result.IdService,
+        IdUser: this.user.Id,
+      }
+      this.editTemp(updateTempFacture)
     })
+  }
+
+  editTemp(updateFacture: NewTempFacture): void {
+    this.factureService.updateTempFacture(updateFacture);
   }
 
   addServices(service: Services): void {

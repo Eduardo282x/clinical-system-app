@@ -27,6 +27,5 @@ export class FormGenericComponent implements OnInit{
 
   sendDataForm(): void {
     
-    console.log(this.formGeneric.value);
   }
 }

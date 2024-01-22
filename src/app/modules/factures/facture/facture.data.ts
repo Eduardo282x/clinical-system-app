@@ -54,6 +54,12 @@ export const dataform: FormDialog = {
             label: 'Cantidad',
             type: 'input',
             value: '',
+            formControlName: 'Amount'
+        },
+        {
+            label: '',
+            type: '',
+            value: '',
             formControlName: 'IdServices'
         }
     ]
