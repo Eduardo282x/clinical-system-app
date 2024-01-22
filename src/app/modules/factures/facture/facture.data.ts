@@ -24,12 +24,12 @@ export const columns: ColumnDef[] = [
     {
         header: 'Precio',
         column: 'Cost',
-        type: 'text'
+        type: 'price'
     },
     {
         header: 'Total',
         column: 'Total',
-        type: 'text'
+        type: 'price'
     },
     {
         column: 'Edit',

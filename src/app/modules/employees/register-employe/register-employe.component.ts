@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-register-employe',
@@ -8,7 +9,15 @@ import { Component } from '@angular/core';
 })
 export class RegisterEmployeComponent { 
 
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: [''],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: [''],
+  });
+
   constructor(
+    private _formBuilder: FormBuilder,
     private location: Location
   ){}
 

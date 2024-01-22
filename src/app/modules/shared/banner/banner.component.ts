@@ -1,12 +1,9 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Route, Router } from '@angular/router';
-import { Banner } from 'src/app/core/interface/banner/banner';
-import { Menu } from 'src/app/core/interface/menuOption/MenuOption';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
 import { BannerState } from 'src/app/core/state/banner/bannes.state';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { Banner } from 'src/app/core/interface/banner/banner';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class BannerComponent implements OnInit {
 
+  @ViewChild(SidebarComponent) sidebar!: SidebarComponent;
   widthMenuChild: string = 'closeSidebar';
   openMenu: boolean = true;
 
@@ -44,13 +42,14 @@ export class BannerComponent implements OnInit {
     })
   }
 
-  tabChange(event: MatTabChangeEvent): void {
-    // console.log(event.tab.textLabel);
+  closeMenu():void {
+    this.widthMenuChild = 'closeSidebar';
+    this.sidebar.closeAllMenu();
   }
 
   handleMenu(): void {
     this.openMenu = !this.openMenu;
-    this.widthMenuChild = this.openMenu ? 'closeSidebar' : ''
+    this.widthMenuChild = this.openMenu ? 'closeSidebar' : '';
   }
 
   redirect(): void{
@@ -58,7 +57,6 @@ export class BannerComponent implements OnInit {
   }
 
   logout(): void{
-
     Swal.fire({
       title: "Estas seguro de cerrar sesión?",
       showDenyButton: true,
@@ -71,8 +69,5 @@ export class BannerComponent implements OnInit {
         this._router.navigate(['/'])
       }
     })
-  
-    
-    
   }
 }

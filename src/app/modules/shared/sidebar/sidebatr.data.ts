@@ -50,9 +50,9 @@ export const menu: Menu[] = [
         icon: 'investigate',
         deploy: false
     },
-    {
-        title: 'Carga de Resultados',
-        icon: 'usuario-list',
-        deploy: false
-    },
+    // {
+    //     title: 'Carga de Resultados',
+    //     icon: 'usuario-list',
+    //     deploy: false
+    // },
 ]

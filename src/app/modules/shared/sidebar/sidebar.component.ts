@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { FooterDataState } from 'src/app/core/state/footerData/footerData.state';
+import { PayloadService } from 'src/app/core/services/Payload.service';
+import { Menu } from 'src/app/core/interface/menuOption/MenuOption';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Menu } from 'src/app/core/interface/menuOption/MenuOption';
-import { PayloadService } from 'src/app/core/services/Payload.service';
-import { FooterDataState } from 'src/app/core/state/footerData/footerData.state';
 import { menu } from './sidebatr.data';
 
 @Component({
@@ -16,6 +15,7 @@ import { menu } from './sidebatr.data';
 export class SidebarComponent implements OnInit{ 
 
   @Input() widthMenu: string = '';
+  sidebar: any = []; 
   footerData: string[] = [];
   
   myClass: string = '';
@@ -99,6 +99,12 @@ export class SidebarComponent implements OnInit{
     if(route != ''){
       this._router.navigate([route])
     }
+  }
+
+  closeAllMenu(): void{
+    const menu2 = this.sidebar;
+    const menu = this.menu;
+    menu.map(items=> items.deploy = false);
   }
 
   changeClass(deploy: Menu): void {
