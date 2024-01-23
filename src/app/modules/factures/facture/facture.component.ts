@@ -127,7 +127,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       console.log('Result form: ',result);
       const updateTempFacture: NewTempFacture = {
         Amount: result.Amount,
-        IdServices: result.IdService,
+        IdServices: result.IdServices,
         IdUser: this.user.Id,
       }
       this.editTemp(updateTempFacture)
@@ -136,6 +136,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
 
   editTemp(updateFacture: NewTempFacture): void {
     this.factureService.updateTempFacture(updateFacture);
+    this.factureService.getTempFacture(this.user.Id);
   }
 
   addServices(service: Services): void {
