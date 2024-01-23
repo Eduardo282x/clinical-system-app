@@ -35,6 +35,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/clientDialog.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormGenericComponent } from './form-generic/form-generic.component';
+import { FormEmployerPartTwoComponent } from '../employees/form-employer-part-two/form-employer-part-two.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { FormGenericComponent } from './form-generic/form-generic.component';
     RegisterCompletedComponent,
     FormGeneratorSharedComponent,
     ClientDialogComponent,
-    FormGenericComponent
+    FormGenericComponent,
+    FormEmployerPartTwoComponent
   ],
   imports: [
     CommonModule,
@@ -89,6 +91,7 @@ import { FormGenericComponent } from './form-generic/form-generic.component';
     RegisterCompletedComponent,
     FormGeneratorSharedComponent,
     ClientDialogComponent,
+    FormEmployerPartTwoComponent,
 
     BrowserAnimationsModule,
     MatInputModule,
