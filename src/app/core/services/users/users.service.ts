@@ -29,39 +29,18 @@ export class UsersService {
   }
 
   getRoles(): void {
-
-    const dataRolesLocal: Roles[] = [
-      // {
-      //   Id_Rol: 1,
-      //   RolDes: 'Dueña'
-      // },
-      {
-        Id_Rol: 2,
-        RolDes: 'Administrador'
+    this.http.get<Roles>(this.ROLES)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        this.stateRoles.setState(response.response);
       },
-      {
-        Id_Rol: 3,
-        RolDes: 'Bioanalista'
+      error(err) {
+          console.log(err);
       },
-      {
-        Id_Rol: 4,
-        RolDes: 'Sistema'
+      complete() {
+          // console.log('Complete');
       },
-    ]
-    this.stateRoles.setState(dataRolesLocal);
-
-    // this.http.get<Roles>(this.ROLES)
-    // .pipe(takeUntil(this.unsubscribe))
-    // .subscribe({
-    //   next: (response: any) => {
-    //     this.stateRoles.setState(response);
-    //   },
-    //   error(err) {
-    //       console.log(err);
-    //   },
-    //   complete() {
-    //       // console.log('Complete');
-    //   },
-    // })
+    })
   }
 }

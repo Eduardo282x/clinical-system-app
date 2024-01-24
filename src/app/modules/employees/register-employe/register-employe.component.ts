@@ -118,7 +118,7 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
       PhoneSecundary: this.formOneLocal.get('PhoneSecundary')?.value,
       Email: this.formOneLocal.get('Email')?.value,
       Address: this.formOneLocal.get('Address')?.value,
-      Birthdate: this.formTwoLocal.get('Birhdate')?.value,
+      Birthdate: this.formOneLocal.get('Birhdate')?.value,
 
       MedicalData: this.formTwoLocal.get('medicData')?.value,
       Username: this.formTwoLocal.get('user')?.value,
