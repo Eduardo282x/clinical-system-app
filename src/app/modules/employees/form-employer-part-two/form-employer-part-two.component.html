@@ -9,6 +9,7 @@
                 <mat-form-field appearance="outline" class="w-[50rem]">
                     <mat-label>Datos Médicos Relevantes</mat-label>
                     <input matInput formControlName="medicData" />
+                    <mat-error *ngIf="formEmployePartTwo.get('medicData')?.hasError('required')">Este campo es requerido</mat-error>
                 </mat-form-field>
             </div>
         </div>
@@ -26,6 +27,7 @@
                                 <mat-option value="{{rol.Id_Rol}}">{{rol.RolDes}}</mat-option>
                             </ng-container>
                         </mat-select>
+                        <mat-error *ngIf="formEmployePartTwo.get('rol')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -35,6 +37,7 @@
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Clave de Seguridad</mat-label>
                         <input matInput formControlName="securityKey" />
+                        <mat-error *ngIf="formEmployePartTwo.get('securityKey')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -45,6 +48,7 @@
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Usuario</mat-label>
                         <input matInput formControlName="user" />
+                        <mat-error *ngIf="formEmployePartTwo.get('user')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -53,13 +57,12 @@
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Contraseña</mat-label>
                         <input matInput formControlName="password" />
+                        <mat-error *ngIf="formEmployePartTwo.get('password')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
                 </div>
             </div>
-
-
         </div>
 
-        <button mat-raised-button type="submit" color="primary">Guardar</button>
+        <button mat-raised-button type="submit" class="btnHidden" color="primary">Guardar</button>
     </form>
 </div>

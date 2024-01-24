@@ -13,10 +13,10 @@
             <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Paso 1</ng-template>
 
-                <app-register-completed/>
+                <app-register-completed [includePicture]="true" (dataForm)="getOneForm($event)" />
 
-                <div class="w-full flex items-center justify-end">
-                    <button mat-button matStepperNext>Next</button>
+                <div class="w-full flex items-center justify-center">
+                    <button mat-raised-button color="primary" (click)="goTwoStepper(stepper)">Siguiente</button>
                 </div>
             </form>
         </mat-step>
@@ -24,24 +24,35 @@
             <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Paso 2</ng-template>
 
-                <app-form-employer-part-two></app-form-employer-part-two>
-                <mat-form-field appearance="fill">
-                    <mat-label>Address</mat-label>
-                    <input matInput formControlName="secondCtrl">
-                </mat-form-field>
+                <app-form-employer-part-two (formValid)="validSecondForm($event)"></app-form-employer-part-two>
 
-                <div class="w-full flex items-center justify-between">
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
+                <div class="w-full flex items-center justify-center">
+                    <button mat-raised-button color="primary" (click)="goStepperFinal(stepper)">Guardar</button>
                 </div>
             </form>
         </mat-step>
         <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>You are now done.</p>
-            <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button (click)="stepper.reset()">Reset</button>
+            <ng-template matStepLabel>Finalizar</ng-template>
+
+            <p class="text-[28px] text-[#4758b8] text-center">Generar Carnet Empresarial</p>
+
+            <div class="flex items-center justify-around w-full">
+                <div class="imageCarnet"></div>
+                <div class="flex flex-col items-start justify-center gap-10 w-96 h-full personalInfo">
+                    <p class="text-[16px]">{{preview.NameFull}}</p>
+                    <p class="text-[16px]">{{preview.Idenfity}}</p>
+                    <p class="text-[16px]">{{preview.Rol}}</p>
+                    <p class="text-[16px]">Fecha de Ingreso: {{parseShortDate(preview.DateInit)}}</p>
+                </div>
+                <div class="securityKey">
+                    <p class="text-[16px]">Clave de seguridad: </p>
+                    <p class="text-[16px] text-center">{{preview.SecutiryKey}}</p>
+                </div>
+            </div>
+
+
+            <div class="w-full flex items-center justify-center">
+                <button mat-raised-button color="primary" (click)="sendCompleteData()">Imprimir</button>
             </div>
         </mat-step>
     </mat-stepper>

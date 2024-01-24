@@ -5,21 +5,25 @@ export const menu: Menu[] = [
         title: 'Modulo de Empleados',
         icon: 'usuario-check',
         deploy: false,
+        permisses: ['Dueño'],
         children: [
             {
                 title: 'Asistencia',
                 icon: 'empleados',
-                redirect: '/home/employes/asistent'
+                redirect: '/home/employes/asistent',
+                permisses: ['Dueño','Administrador','Bioanalista'],
             },
             {
                 title: 'Imprimir',
                 icon: 'impresora',
-                redirect: '/home/employes/seeAsistent'
+                redirect: '/home/employes/seeAsistent',
+                permisses: ['Dueño','Administrador','Bioanalista'],
             },
             {
                 title: 'Gestión',
                 icon: 'asistencia',
-                redirect: '/home/employes/employe'
+                redirect: '/home/employes/employe',
+                permisses: ['Dueño','Administrador','Bioanalista'],
             },
         ]
     },
@@ -27,28 +31,33 @@ export const menu: Menu[] = [
         title: 'Modulo de Facturación',
         icon: 'usuario-pay',
         deploy: false,
+        permisses: ['Dueño','Administrador'],
         children: [
             {
                 title: 'Facturas',
                 icon: 'facturas',
-                redirect: '/home/factures/choose-facture'
+                redirect: '/home/factures/choose-facture',
+                permisses: ['Dueño','Administrador','Bioanalista'],
             },
             {
                 title: 'Presupuesto',
                 icon: 'presupuesto',
-                redirect: '/home/factures/budget'
+                redirect: '/home/factures/budget',
+                permisses: ['Dueño','Administrador','Bioanalista'],
             },
             {
                 title: 'Configuración',
                 icon: 'configuracion',
-                redirect: '/home/factures/choose-configuration'
+                redirect: '/home/factures/choose-configuration',
+                permisses: ['Dueño','Administrador','Bioanalista'],
             },
         ]
     },
     {
         title: 'Modulo de Exámenes',
         icon: 'investigate',
-        deploy: false
+        deploy: false,
+        permisses: ['Dueño','Bioanalista'],
     },
     // {
     //     title: 'Carga de Resultados',

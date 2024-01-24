@@ -5,5 +5,5 @@ import { Roles } from "../../interface/users/users";
 @Injectable({
     providedIn: 'root'
 })
-export class RolesState extends BaseState<Roles> {
+export class RolesState extends BaseState<Roles[]> {
 }  

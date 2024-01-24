@@ -1,4 +1,4 @@
-<div class="bg-white w-[68rem] h-[32rem] rounded-2xl px-10 flex flex-col items-center justify-center">
+<div class="w-full h-full px-10 flex flex-col items-center justify-center">
     <div class="flex flex-row items-center justify-between w-full">
         <div class="flex items-center justify-center">
             <button mat-raised-button color="primary" (click)="goBack()">
@@ -10,98 +10,113 @@
         </div>
     </div>
     
-    <form [formGroup]="registerGeneric" (submit)="sendDataForm()" class="flex flex-col items-center justify-center">
-        <div class="flex items-center justify-start w-full px-10">
-            <div class="flex items-center justify-start">
-                <span class="pb-5 mx-2 text-[15px]">Nombre completo</span>
-                <mat-form-field appearance="outline" class="w-[40rem]">
-                    <mat-label>Nombre completo</mat-label>
-                    <input matInput formControlName="NameFull">
-                </mat-form-field>
+    <div class="flex items-center justify-between w-full">
+        <form [formGroup]="registerGeneric" (submit)="sendDataForm()" class="flex flex-col items-center justify-center">
+            <div class="flex items-center justify-start w-full px-10">
+                <div class="flex items-center justify-start">
+                    <span class="pb-5 mx-2 text-[15px]">Nombre completo</span>
+                    <mat-form-field appearance="outline" class="w-[40rem]">
+                        <mat-label>Nombre completo</mat-label>
+                        <input matInput formControlName="NameFull">
+                    </mat-form-field>
+                </div>
             </div>
-        </div>
-        <div class="flex items-center justify-around w-full px-10">
-            <div class="flex items-center justify-center">
-                <span class="pb-5 mx-2 text-[15px]">Cedula</span>
-                <mat-form-field appearance="outline" class="w-[5rem]">
-                    <mat-select formControlName="Prefix">
-                        <mat-option value="V">V</mat-option>
-                        <mat-option value="E">E</mat-option>
-                        <mat-option value="J">J</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="w-[8rem]">
-                    <mat-label>Cedula</mat-label>
-                    <input matInput type="number" formControlName="Identify">
-                </mat-form-field>
+            <div class="flex items-center justify-around w-full px-10">
+                <div class="flex items-center justify-center">
+                    <span class="pb-5 mx-2 text-[15px]">Cedula</span>
+                    <mat-form-field appearance="outline" class="w-[5rem]">
+                        <mat-select formControlName="Prefix">
+                            <mat-option value="V">V</mat-option>
+                            <mat-option value="E">E</mat-option>
+                            <mat-option value="J">J</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="w-[8rem]">
+                        <mat-label>Cedula</mat-label>
+                        <input matInput type="number" formControlName="Identify">
+                    </mat-form-field>
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <span class="pb-5 mx-2 text-[15px]">Fecha de Nacimiento</span>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Fecha de Nacimiento</mat-label>
+                        <input matInput [matDatepicker]="picker" readonly="" formControlName="Birhdate">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <span class="pb-5 mx-2 text-[15px]">Sexo</span>
+                    <mat-form-field appearance="outline" class="w-[10rem]">
+                        <mat-label>Sexo</mat-label>
+                        <mat-select formControlName="Sex">
+                            <mat-option value="Masculino">Masculino</mat-option>
+                            <mat-option value="Femenino">Femenino</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="flex items-center justify-around w-full px-10">
+                <div class="flex items-center justify-center">
+                    <span class="pb-5 mx-2 text-[15px]">Télefono Principal</span>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Télefono Principal</mat-label>
+                        <input matInput type="number"  formControlName="PhonePrimary">
+                    </mat-form-field>
+                </div>
+
+                <div class="flex items-center justify-center">
+                    <span class="pb-5 mx-2 text-[15px]">Télefono Alterno</span>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Télefono Alterno</mat-label>
+                        <input matInput type="number" maxlength="12" formControlName="PhoneSecundary">
+                    </mat-form-field>
+                </div>
+                    
+                <div class="flex items-center justify-center">
+                    <span class="pb-5 mx-2 text-[15px]">Edad</span>
+                    <mat-form-field appearance="outline" class="w-[5rem]">
+                        <input matInput type="number"  formControlName="Age">
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="flex items-center justify-start w-full px-10">
+                <div class="flex items-center justify-start">
+                    <span class="pb-5 mx-2 text-[15px]">E-mail</span>
+                    <mat-form-field appearance="outline" class="w-[40rem] px-6">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="Email" type="email">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="flex items-center justify-start w-full px-10">
+                <div class="flex items-center justify-start">
+                    <span class="pb-5 mx-2 text-[15px]">Dirección</span>
+                    <mat-form-field appearance="outline" class="w-[40rem]">
+                        <mat-label>Dirección</mat-label>
+                        <input matInput formControlName="Address">
+                    </mat-form-field>
+                </div>
+            </div>
+            
+            <ng-container *ngIf="includePicture == null">
+                <button mat-raised-button type="submit" [disabled]="registerGeneric.invalid" color="primary">Enviar</button>
+            </ng-container>
+        </form>
+
+        <ng-container *ngIf="includePicture">
+            <div class="picture">
+                <div class="flex items-center justify-center loadPicture">
+                    <mat-icon>add</mat-icon>
+                </div>
+                <p class="text-center text-[18px]">Agregar una foto</p>
             </div>
 
-            <div class="flex items-center justify-center">
-                <span class="pb-5 mx-2 text-[15px]">Fecha de Nacimiento</span>
-                <mat-form-field appearance="outline">
-                    <mat-label>Fecha de Nacimiento</mat-label>
-                    <input matInput [matDatepicker]="picker" readonly="" formControlName="Birhdate">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </div>
-
-            <div class="flex items-center justify-center">
-                <span class="pb-5 mx-2 text-[15px]">Sexo</span>
-                <mat-form-field appearance="outline" class="w-[10rem]">
-                    <mat-label>Sexo</mat-label>
-                    <mat-select formControlName="Sex">
-                        <mat-option value="Masculino">Masculino</mat-option>
-                        <mat-option value="Femenino">Femenino</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="flex items-center justify-around w-full px-10">
-            <div class="flex items-center justify-center">
-                <span class="pb-5 mx-2 text-[15px]">Télefono Principal</span>
-                <mat-form-field appearance="outline">
-                    <mat-label>Télefono Principal</mat-label>
-                    <input matInput type="number"  formControlName="PhonePrimary">
-                </mat-form-field>
-            </div>
-
-            <div class="flex items-center justify-center">
-                <span class="pb-5 mx-2 text-[15px]">Télefono Alterno</span>
-                <mat-form-field appearance="outline">
-                    <mat-label>Télefono Alterno</mat-label>
-                    <input matInput type="number" maxlength="12" formControlName="PhoneSecundary">
-                </mat-form-field>
-            </div>
-                
-            <div class="flex items-center justify-center">
-                <span class="pb-5 mx-2 text-[15px]">Edad</span>
-                <mat-form-field appearance="outline" class="w-[5rem]">
-                    <input matInput type="number"  formControlName="Age">
-                </mat-form-field>
-            </div>
-
-        </div>
-        <div class="flex items-center justify-start w-full px-10">
-            <div class="flex items-center justify-start">
-                <span class="pb-5 mx-2 text-[15px]">E-mail</span>
-                <mat-form-field appearance="outline" class="w-[40rem] px-6">
-                    <mat-label>E-mail</mat-label>
-                    <input matInput formControlName="Email" type="email">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="flex items-center justify-start w-full px-10">
-            <div class="flex items-center justify-start">
-                <span class="pb-5 mx-2 text-[15px]">Dirección</span>
-                <mat-form-field appearance="outline" class="w-[40rem]">
-                    <mat-label>Dirección</mat-label>
-                    <input matInput formControlName="Address">
-                </mat-form-field>
-            </div>
-        </div>
+        </ng-container>
         
-        <button mat-raised-button type="submit" [disabled]="registerGeneric.invalid" color="primary">Enviar</button>
-    </form>
+    </div>
 
 </div>

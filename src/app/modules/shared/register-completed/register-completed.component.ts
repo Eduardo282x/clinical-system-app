@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormGeneric, registerGeneric } from 'src/app/core/interface/form/formGeneric';
+import { FormGeneric, registerGeneric } from 'src/app/core/interface/form-generic/formGeneric';
 
 @Component({
   selector: 'app-register-completed',
@@ -10,7 +10,8 @@ import { FormGeneric, registerGeneric } from 'src/app/core/interface/form/formGe
 })
 export class RegisterCompletedComponent implements OnInit{ 
   
-  @Output() dataForm = new EventEmitter<registerGeneric>();
+  @Input() includePicture: any;
+  @Output() dataForm = new EventEmitter<FormGroup>();
 
   registerGeneric: FormGroup = new FormGroup({
     NameFull: new FormControl('', [Validators.required]),
@@ -46,7 +47,7 @@ export class RegisterCompletedComponent implements OnInit{
       Address: this.registerGeneric.get('Address')?.value,
       Sex: this.registerGeneric.get('Sex')?.value,
     }
-    this.dataForm.emit(dataClient);
+    this.dataForm.emit(this.registerGeneric);
   }
   
   goBack(): void {

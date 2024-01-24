@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { BaseComponent } from '../../base/base.component';
 import { UsersService } from 'src/app/core/services/users/users.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +11,7 @@ import { Roles } from 'src/app/core/interface/users/users';
 })
 export class FormEmployerPartTwoComponent extends BaseComponent implements OnInit {
 
+  @Output() formValid: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
 
   formEmployePartTwo: FormGroup = new FormGroup({
     rol: new FormControl('',Validators.required),
@@ -34,15 +35,14 @@ export class FormEmployerPartTwoComponent extends BaseComponent implements OnIni
       this.usersService.getData$().subscribe({
         next: (response: any) => {
           if(response){
-            this.roles = response.response;
+            this.roles = response;
           }
         }
       })
   }
 
   sendFormDate(): void{
-    console.log(this.formEmployePartTwo.value);
-    
+    this.formValid.emit(this.formEmployePartTwo);
   }
 
 }

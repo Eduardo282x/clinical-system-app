@@ -21,7 +21,7 @@ export class UsersService {
     private http: HttpClient,
   ) { }
 
-  getData$(): Observable<Roles | null>{
+  getData$(): Observable<Roles[] | any>{
     return this.stateRoles.getState$();
   }
   clearData(): void{
@@ -29,18 +29,39 @@ export class UsersService {
   }
 
   getRoles(): void {
-    this.http.get<Roles>(this.ROLES)
-    .pipe(takeUntil(this.unsubscribe))
-    .subscribe({
-      next: (response: any) => {
-        this.stateRoles.setState(response);
+
+    const dataRolesLocal: Roles[] = [
+      // {
+      //   Id_Rol: 1,
+      //   RolDes: 'Dueña'
+      // },
+      {
+        Id_Rol: 2,
+        RolDes: 'Administrador'
       },
-      error(err) {
-          console.log(err);
+      {
+        Id_Rol: 3,
+        RolDes: 'Bioanalista'
       },
-      complete() {
-          // console.log('Complete');
+      {
+        Id_Rol: 4,
+        RolDes: 'Sistema'
       },
-    })
+    ]
+    this.stateRoles.setState(dataRolesLocal);
+
+    // this.http.get<Roles>(this.ROLES)
+    // .pipe(takeUntil(this.unsubscribe))
+    // .subscribe({
+    //   next: (response: any) => {
+    //     this.stateRoles.setState(response);
+    //   },
+    //   error(err) {
+    //       console.log(err);
+    //   },
+    //   complete() {
+    //       // console.log('Complete');
+    //   },
+    // })
   }
 }

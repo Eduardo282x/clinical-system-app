@@ -13,4 +13,16 @@ export interface ReponseLogin extends BaseResponse {
     userData: DataUser;
 }
 
+export interface RegisterBase {
+    NameFull:       string;
+    Identify:       string;
+    Age:            number;
+    Sex:            string;
+    PhonePrimary:   number;
+    PhoneSecundary: number;
+    Email:          string;
+    Address:        string;
+}
+
+
 export { DataUser };

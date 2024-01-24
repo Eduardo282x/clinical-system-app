@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormDialog } from 'src/app/core/interface/form-generic/form-genereic';
+import { FormDialog } from 'src/app/core/interface/form-dialog/form-dialog';
 
 @Component({
   selector: 'app-form-generic',

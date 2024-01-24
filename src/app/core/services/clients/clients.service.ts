@@ -4,7 +4,7 @@ import { Subject, Observable, takeUntil } from 'rxjs';
 import { environment } from 'src/env/enviroment';
 import { ClientsState } from '../../state/clients/clients.state';
 import { Clients, OneClient } from '../../interface/clients/clients';
-import { registerGeneric } from '../../interface/form/formGeneric';
+import { registerGeneric } from '../../interface/form-generic/formGeneric';
 
 @Injectable({
   providedIn: 'root'

@@ -15,7 +15,7 @@ import { DataUser } from 'src/app/core/interface/BaseResponse';
 import { EmitAction } from 'src/app/core/interface/tabla/emitAction';
 import { MatDialog } from '@angular/material/dialog';
 import { FormGenericComponent } from '../../shared/form-generic/form-generic.component';
-import { FormDialog } from 'src/app/core/interface/form-generic/form-genereic';
+import { FormDialog } from 'src/app/core/interface/form-dialog/form-dialog';
 
 @Component({
   selector: 'app-facture',

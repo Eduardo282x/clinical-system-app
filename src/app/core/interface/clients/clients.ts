@@ -1,3 +1,5 @@
+import { RegisterBase } from "../BaseResponse";
+
 export interface Clients { 
     IdClients: number;
     FullName: string;
@@ -7,15 +9,7 @@ export interface OneClient {
     Identify: string;
 }
 
-export interface BaseClient {
+export interface ClientsCompleted extends RegisterBase{
     IdClients: string;
-    FullName: string;
-    Identify: string;
-    Birhdate: string;
-    Age: number;
-    PhonePrimary: string;
-    PhoneSecundary: string;
-    Email: string;
-    Address: string;
-    Sex: string;
 }
+

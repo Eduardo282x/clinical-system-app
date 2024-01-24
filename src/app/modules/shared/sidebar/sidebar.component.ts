@@ -76,7 +76,11 @@ export class SidebarComponent implements OnInit{
 
   ngOnInit(): void {
     const dataUser = this.payloadService.getDataLocalStorage();
-
+    
+    if(dataUser){
+      this.menu = this.menu.filter(rol => rol.permisses.includes(dataUser.Rol));
+    }
+      
     this.footerDataState.getState$().subscribe({
       next: (footerData: any) => {
         this.footerData = footerData;
@@ -108,6 +112,7 @@ export class SidebarComponent implements OnInit{
   }
 
   changeClass(deploy: Menu): void {
+    this.widthMenu = '';
     const newMenu = this.menu.find(title => title.title == deploy.title);
     const oldMenu = this.menu.filter(title => title.title !== deploy.title);
     if(oldMenu){
