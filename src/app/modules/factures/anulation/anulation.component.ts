@@ -60,17 +60,16 @@ export class AnulationComponent implements OnInit{
     }
   }
 
-  deleteClient(data: Clients): void {
+  deleteClient(data: Factures): void {   
     Swal.fire({
-      title: "Estas seguro que deseas eliminar el cliente?",
+      title: "Estas seguro que deseas anular la factura?",
       showDenyButton: true,
       confirmButtonText: "Si",
       denyButtonText: `No`
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        console.log('cliente eliminada', data.IdClients);
-        const client = {Id: data.IdClients}
+        console.log('cliente eliminada', data.IdFacture);
         // this.clientService.deleteClient(client);
       }
     })

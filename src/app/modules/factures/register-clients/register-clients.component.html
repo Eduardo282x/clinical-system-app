@@ -1,8 +1,17 @@
 <div class="w-full upContent">
-    <div class="bg-white rounded-3xl px-12 py-5">
-        <h1 class="text-white mb-5">Formulario Cliente</h1>
-        <app-register-completed
-        (dataForm)="addClient($event)"
-        ></app-register-completed>
+    <div class="bg-white flex flex-col justify-center items-center rounded-3xl px-12 py-5">
+        <div class="flex items-center justify-start w-full my-2">
+            <button mat-raised-button color="primary" (click)="goBack()">
+                <mat-icon>
+                    arrow_back
+                </mat-icon>
+            </button>
+            <h1 class="text-black">Formulario Cliente</h1>
+        </div>
+        <div class="w-full">
+            <app-register-completed
+            (dataForm)="addClient($event)"
+            ></app-register-completed>
+        </div>
     </div>
 </div>

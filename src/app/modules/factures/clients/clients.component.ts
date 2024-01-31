@@ -53,6 +53,8 @@ export class ClientsComponent implements OnInit{
     }
 
     if(getAction.action == 'Edit'){
+      const client = {IdClients: getAction.data.IdClients};
+      this.clientService.getAllOneClient(client);
       this._router.navigate(['/home/factures/clients-register'])
     }
   }

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { registerGeneric } from 'src/app/core/interface/form-generic/formGeneric';
 import { Snackbar } from 'src/app/core/interface/snackbar/snackbar';
 import { ClientsService } from 'src/app/core/services/clients/clients.service';
 import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup } from '@angular/forms';
+import { Location } from '@angular/common';
+import { ClientsCompleted } from 'src/app/core/interface/clients/clients';
+import { BaseResponse } from 'src/app/core/interface/BaseResponse';
 
 @Component({
   selector: 'app-register-clients',
@@ -15,13 +17,13 @@ export class RegisterClientsComponent implements OnInit {
   
   constructor(
     private clientService: ClientsService,
+    private location: Location,
     private _snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
     this.clientService.getData$().subscribe({
-      next: (response: any) => {
-        console.log(response);
+      next: (response: BaseResponse | any) => {
         if(response){
           const dataSnackbar: Snackbar = {
             message: response.message,
@@ -35,6 +37,10 @@ export class RegisterClientsComponent implements OnInit {
         }
       }
     })
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   addClient(client: FormGroup): void {

@@ -1,7 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ClientsCompleted } from 'src/app/core/interface/clients/clients';
+import { EmployesComplete } from 'src/app/core/interface/employes/employe';
 import { FormGeneric, registerGeneric } from 'src/app/core/interface/form-generic/formGeneric';
+import { ClientsService } from 'src/app/core/services/clients/clients.service';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
 
 @Component({
@@ -30,12 +33,30 @@ export class RegisterCompletedComponent implements OnInit{
 
   constructor(
     private location : Location,
-    private employeService: EmployesService
+    private employeService: EmployesService,
+    private clientService: ClientsService
   ){}
 
   ngOnInit(): void {
+      this.clientService.getData$().subscribe({
+        next: (response: ClientsCompleted) => {
+          if(response){
+            this.registerGeneric.controls['NameFull'].setValue(response.NameFull)
+            this.registerGeneric.controls['Prefix'].setValue(response.Identify.charAt(0))
+            this.registerGeneric.controls['Identify'].setValue(response.Identify.substring(1))
+            this.registerGeneric.controls['Birhdate'].setValue(response.Birhdate)
+            this.registerGeneric.controls['Age'].setValue(response.Age)
+            this.registerGeneric.controls['PhonePrimary'].setValue(response.PhonePrimary)
+            this.registerGeneric.controls['PhoneSecundary'].setValue(response.PhoneSecundary)
+            this.registerGeneric.controls['Email'].setValue(response.Email)
+            this.registerGeneric.controls['Address'].setValue(response.Address)
+            this.registerGeneric.controls['Sex'].setValue(response.Sex)
+          }
+        }
+      })
+
       this.employeService.getDataEmploye$().subscribe({
-        next: (response : any) => {
+        next: (response : EmployesComplete) => {
           console.log(response);
           if(response){
             this.disableInput = true;

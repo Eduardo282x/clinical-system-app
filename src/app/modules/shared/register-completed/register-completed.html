@@ -1,15 +1,4 @@
 <div class="w-full h-full px-10 flex flex-col items-center justify-center">
-    <div class="flex flex-row items-center justify-between w-full">
-        <div class="flex items-center justify-center">
-            <button mat-raised-button color="primary" (click)="goBack()">
-                <mat-icon>
-                    arrow_back
-                </mat-icon>
-            </button>
-            <p class="fixTextTitle">Formulario</p>
-        </div>
-    </div>
-    
     <div class="flex items-center justify-between w-full">
         <form [formGroup]="registerGeneric" (submit)="sendDataForm()" class="flex flex-col items-center justify-center">
             <div class="flex items-center justify-start w-full px-10">
