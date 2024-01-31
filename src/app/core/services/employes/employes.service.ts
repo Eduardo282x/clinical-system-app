@@ -29,7 +29,7 @@ export class EmployesService {
     private http: HttpClient,
   ) { }
 
-  getData$(): Observable<Employe | null>{
+  getData$(): Observable<Employe | any>{
     return this.state.getState$();
   }
   getDataEmploye$(): Observable<EmployesComplete | any>{

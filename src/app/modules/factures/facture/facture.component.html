@@ -1,4 +1,13 @@
-<div class="w-[60rem] flex flex-col items-center justify-center bg-white rounded-2xl px-10 py-5 h-auto upContet">
+<div class="w-[60rem] flex relative flex-col items-center justify-center bg-white rounded-2xl px-10 py-5 h-auto upContet">
+
+    <div class="fixBtn">
+        <button mat-raised-button color="primary" (click)="goBack()">
+            <mat-icon>
+                arrow_back
+            </mat-icon>
+        </button>
+    </div>
+
     <div class="flex  flex-col items-center justify-center w-full">
         <div class="flex items-center justify-around w-full mb-5">
             <p class="text-[24px] text-[#5666be]">{{client.NameFull}}</p>
@@ -7,21 +16,23 @@
         <mat-stepper [linear]="false" #stepper>
             <mat-step class="helloStepper">
                 <div class="flex items-center justify-between w-full">
-                    <button mat-raised-button color="primary" (click)="nextStepper(stepper)">Procesar</button>
-                    <div class="flex items-center justify-center">
-                        <p class="text-[18px] separeText">Buscar por código o producto</p>
-                        <form class="formService">
-                            <mat-form-field class="w-full" appearance="outline">
-                                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                                <mat-autocomplete #auto="matAutocomplete">
-                                    <mat-option *ngFor="let option of filteredOptions | async"
-                                        [value]="option.Description" (click)="addServices(option)">
-                                        {{option.CodService}} - {{option.Description}}
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
-                        </form>
-                    </div>
+                    <button mat-raised-button color="primary" class="mb-5" (click)="nextStepper(stepper)">Procesar</button>
+                    <ng-container *ngIf="!onlyShow">
+                        <div class="flex items-center justify-center">
+                            <p class="text-[18px] separeText">Buscar por código o producto</p>
+                            <form class="formService">
+                                <mat-form-field class="w-full" appearance="outline">
+                                    <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                    <mat-autocomplete #auto="matAutocomplete">
+                                        <mat-option *ngFor="let option of filteredOptions | async"
+                                            [value]="option.Description" (click)="addServices(option)">
+                                            {{option.CodService}} - {{option.Description}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </div>
+                    </ng-container>
                 </div>
                 <div class="flex items-center justify-center w-full">
                     <ng-container *ngIf="existData">
@@ -82,7 +93,7 @@
                 <div class="flex items-center justify-between w-full">
                     <div class="nothing"></div>
 
-                    <button mat-raised-button type="submit" [disabled]="!dataTransferForm.valid" (click)="sendFacture()" color="primary">Facturar</button>
+                    <button mat-raised-button type="submit" [disabled]="!dataTransferForm.valid" (click)="sendFacture()" color="primary">{{!onlyShow ? 'Facturar': 'Anular'}} </button>
 
                     <div class="flex flex-col items-end justify-center">
                         <p>Subtotal: {{totalTransfer.Subtotal}}$</p>

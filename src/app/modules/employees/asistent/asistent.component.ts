@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BaseResponse } from 'src/app/core/interface/BaseResponse';
 import { Employe } from 'src/app/core/interface/employes/employe';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
+import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-asistent',
@@ -18,12 +21,22 @@ export class AsistentComponent implements OnInit {
   existAssistent: boolean = true;
 
   constructor(
+    private _snackBar: MatSnackBar,
     private employesService: EmployesService
   ){}
 
   ngOnInit(): void {
       this.employesService.getData$().subscribe({
-        next: (asistent: Employe| any) => {
+        next: (asistent: Employe | any) => {
+          console.log(asistent);
+
+          if(asistent.success){
+            this._snackBar.openFromComponent(SnackBarComponent,{
+              duration: 2000,
+              data: asistent
+            });
+          }
+          
           if(asistent){
             this.existAssistent = true;
             this.employeAssistent = asistent;

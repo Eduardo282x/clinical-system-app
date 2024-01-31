@@ -4,6 +4,7 @@ export interface Clients {
     IdClients: number;
     FullName: string;
     Identify: string;
+    onlyShow: boolean;
 }
 export interface OneClient { 
     Identify: string;

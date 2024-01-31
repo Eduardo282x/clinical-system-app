@@ -26,3 +26,9 @@
   grid-template-rows: repeat(2, 100px); 
   grid-gap: 10px;
 }
+
+.fixBtn{
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}

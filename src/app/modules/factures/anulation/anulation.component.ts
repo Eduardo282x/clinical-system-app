@@ -9,6 +9,8 @@ import { FilterState } from 'src/app/core/state/tabla/filter.state';
 import Swal from 'sweetalert2';
 import { columns, displayedColumns } from './anulation.data';
 import { Factures } from 'src/app/core/interface/facture/facture';
+import { PayloadService } from 'src/app/core/services/Payload.service';
+import { DataUser } from 'src/app/core/interface/BaseResponse';
 
 @Component({
   selector: 'app-anulation',
@@ -21,18 +23,23 @@ export class AnulationComponent implements OnInit{
   columns: ColumnDef[] = columns;
   filter: string = '';
   dataSource: any;
+  client!: Clients;
+  user!: DataUser;
   
   constructor(
     private location: Location,
     private _router: Router,
     private filterState: FilterState,
-    private factureService: FactureService
+    private factureService: FactureService,
+    private payloadServce: PayloadService
   ){
 
   }
 
   ngOnInit(): void {
     this.factureService.getFactures();
+    this.client = this.payloadServce.getClietnDataLocalStorage();
+    this.user = this.payloadServce.getDataLocalStorage();
 
     this.factureService.getFactureData$()
     .subscribe({
@@ -55,8 +62,16 @@ export class AnulationComponent implements OnInit{
       this.deleteClient(getAction.data)
     }
 
-    if(getAction.action == 'Edit'){
-      this._router.navigate(['/home/factures/clients-register'])
+    if(getAction.action == 'Show'){
+      const setClient = {
+        IdClients: getAction.data.IdClients,
+        IdFacture: getAction.data.IdFacture,
+        FullName: getAction.data.NameFull,
+        Identify:  getAction.data.Identify,
+        onlyShow: true
+      };
+      localStorage.setItem('client', JSON.stringify(setClient));
+      this._router.navigate(['/home/factures/facture'])
     }
   }
 
@@ -69,8 +84,13 @@ export class AnulationComponent implements OnInit{
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        console.log('cliente eliminada', data.IdFacture);
-        // this.clientService.deleteClient(client);
+        const facture = {IdFacture: data.IdFacture} 
+        console.log('cliente eliminada', facture);
+        const getFacture = {
+          IdUser: this.user.Id,
+          IdClient: this.client.IdClients,
+        }
+        this.factureService.deleteFacture(facture, getFacture);
       }
     })
   }

@@ -29,20 +29,22 @@ export class LoginService {
   validateUser(dataUser: Login): void {
     this.http.post<ReponseLogin>(this.ENDPOINT, dataUser)
     .pipe(takeUntil(this.unsubscribe))
+
     .subscribe({
       next: (response: ReponseLogin) => {
-        if(response.success){
-          localStorage.setItem('userData',JSON.stringify(response.userData));
+        if (response.success) {
+          localStorage.setItem('userData', JSON.stringify(response.userData));
         }
-        this.state.setState(response)
+        this.state.setState(response);
       },
       error(err) {
-          console.log(err);
+        console.log(err);
       },
       complete() {
-          console.log('Complete');
+        console.log('Complete');
       },
     })
+    
   }
 
   logout(): void {

@@ -7,6 +7,7 @@ import { NewTempFacture, TempFacture } from '../../interface/facture/tempFacture
 import { BanksState } from '../../state/facture/banks.state';
 import { PaymentsState } from '../../state/facture/payment.state';
 import { FacturesState } from '../../state/facture/facture.state';
+import { BodyFacture } from '../../interface/facture/facture';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,14 @@ import { FacturesState } from '../../state/facture/facture.state';
 export class FactureService {
 
   private ENDPOINT = `${environment.url}facture`;
+  private ADD = `${this.ENDPOINT}/add`;
   private TEMP = `${this.ENDPOINT}/temp`;
   private BANKS = `${this.ENDPOINT}/banks`;
   private PAYMENTS = `${this.ENDPOINT}/payment`;
   private ADDTEMP = `${this.ENDPOINT}/addtemp`;
   private EDITTEMP = `${this.ENDPOINT}/update`;
   private DELETETEMP = `${this.ENDPOINT}/delete`;
+  private DELETEFACTURE = `${this.ENDPOINT}/deleteFacture`;
   private unsubscribe = new Subject<void>;
 
   constructor(
@@ -60,9 +63,28 @@ export class FactureService {
           // console.log('Complete');
       },
     })
+  };
+
+  postAddFacture(newFacture: BodyFacture): void {
+    this.http.post<any>(this.ADD,newFacture)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        if(response){
+          console.log(response);
+        }
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete() {
+          // console.log('Complete');
+      },
+    })
   }
-  getTempFacture(IdUser: number,IdClients: number): void {
-    this.http.get<TempFacture>(`${this.TEMP}?IdUser=${IdUser}&IdClient=${IdClients}`)
+
+  getTempFacture(IdUser: number, IdClients: number, IdFacture?: number): void {
+    this.http.get<TempFacture>(IdFacture ? `${this.TEMP}?IdUser=${IdUser}&IdClient=${IdClients}&IdFacture=${IdFacture}` : `${this.TEMP}?IdUser=${IdUser}&IdClient=${IdClients}`)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
@@ -75,7 +97,8 @@ export class FactureService {
           // console.log('Complete');
       },
     })
-  }
+  };
+
   getBanks(): void {
     this.http.get<any>(this.BANKS)
     .pipe(takeUntil(this.unsubscribe))
@@ -90,7 +113,8 @@ export class FactureService {
           // console.log('Complete');
       },
     })
-  }
+  };
+
   getPayments(): void {
     this.http.get<TempFacture>(this.PAYMENTS)
     .pipe(takeUntil(this.unsubscribe))
@@ -105,7 +129,8 @@ export class FactureService {
           // console.log('Complete');
       },
     })
-  }
+  };
+
   postAddTempFacture(newService: NewTempFacture, IdClient: number): void {
     this.http.post<any>(this.ADDTEMP, newService)
     .pipe(takeUntil(this.unsubscribe))
@@ -121,7 +146,8 @@ export class FactureService {
           // console.log('Complete');
       },
     })
-  }
+  };
+
   updateTempFacture(newService: NewTempFacture, IdClient: number): void {
     this.http.post<any>(this.EDITTEMP, newService)
     .pipe(takeUntil(this.unsubscribe))
@@ -137,7 +163,8 @@ export class FactureService {
           // console.log('Complete');
       },
     })
-  }
+  };
+
   deleteTempFacture(newService: NewTempFacture, IdClient: number): void {
     this.http.post<any>(this.DELETETEMP, newService)
     .pipe(takeUntil(this.unsubscribe))
@@ -155,5 +182,24 @@ export class FactureService {
           // console.log('Complete');
       },
     })
-  }
+  };
+
+  deleteFacture(facture: any, userClient: any): void {
+    this.http.post<any>(this.DELETEFACTURE, facture)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        console.log(response);
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete:() => {
+        setTimeout(() => {
+          this.getTempFacture(userClient.IdUser, userClient.IdClient);
+        }, 1500);
+          // console.log('Complete');
+      },
+    })
+  };
 }

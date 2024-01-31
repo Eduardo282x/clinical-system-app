@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, map, startWith, takeUntil } from 'rxjs';
@@ -18,6 +18,8 @@ import { FormGenericComponent } from '../../shared/form-generic/form-generic.com
 import { FormDialog } from 'src/app/core/interface/form-dialog/form-dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { Banks, Payments } from 'src/app/core/interface/facture/bank';
+import { BodyFacture } from 'src/app/core/interface/facture/facture';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-facture',
@@ -54,6 +56,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
   columns: ColumnDef[] = columns;
   dataSource: TempFacture[] = [];
   existData: boolean = false;
+  onlyShow: boolean = false;
 
   myControl = new FormControl('');
   options: Services[] = [];
@@ -63,7 +66,9 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
     private payloadService: PayloadService,
     private servicesService: ServicesService,
     private factureService: FactureService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private location: Location,
+    private _router: Router
   ) {
     super()
   }
@@ -74,7 +79,13 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       this.factureService.getPayments();
       this.client = this.payloadService.getClietnDataLocalStorage();
       this.user = this.payloadService.getDataLocalStorage();
-      this.factureService.getTempFacture(this.user.Id, this.client.IdClients);
+      this.onlyShow = this.client.onlyShow;
+      this.factureService.getTempFacture(this.user.Id, this.client.IdClients, this.onlyShow ? this.client.IdFacture : null);
+      
+      if(this.onlyShow){
+        this.displayedColumns = this.displayedColumns.filter(item => item != 'Edit' && item != 'Delete')
+        this.columns = this.columns.filter(item => item.column != 'Edit' && item.column != 'Delete')
+      }
 
       this.factureService.getData$()
       .pipe(takeUntil(this.ngUnsubscribe))
@@ -151,6 +162,10 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
     }
   }
 
+  goBack(): void {
+    this.location.back();
+  }
+
   deleteTemp(temp: any): void {
     const row: NewTempFacture = {
       IdUser: this.user.Id,
@@ -216,7 +231,18 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
   }
 
   sendFacture(): void {
-    console.log(this.dataTransferForm.value);
-    
+    const addFacture: BodyFacture = {
+      IdUser: this.user.Id,
+      IdClient: this.client.IdClients,
+      SubTotal: this.totalTransfer.Subtotal,
+      BankClient: this.dataTransferForm.get('Bank')?.value,
+      Total: this.totalTransfer.Total,
+      Phone: this.dataTransferForm.get('Phone')?.value,
+      Identity: this.dataTransferForm.get('Identity')?.value,
+      IdPayment: this.dataTransferForm.get('PayMent')?.value,
+      Ref: this.dataTransferForm.get('Ref')?.value,
+    };
+    this.factureService.postAddFacture(addFacture);
+    this._router.navigate(['home/factures/choose-facture'])
   }
 }
