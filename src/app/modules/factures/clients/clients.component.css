@@ -1,0 +1,23 @@
+.fixTextTitle{
+  margin: 1rem;
+  font-size: 20px;
+}
+
+.widthInputFilter{
+  width: 20rem;
+}
+
+.tableBorder{
+  width: 100%;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  border: 2px solid #000;
+}
+
+.maxWidth{
+  width: 35rem;
+}
+
+.centerTextTitle{
+  text-align: center !important;
+}

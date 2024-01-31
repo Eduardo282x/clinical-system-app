@@ -1,0 +1,24 @@
+.fixTextTitle{
+  margin: 1rem;
+  font-size: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+
+.loadPicture{
+  width: 12rem;
+  height: 20rem;
+  border-radius: .5rem;
+  margin-bottom: 2rem;
+  border: 2px dashed #ccc;
+}
+
+.disableInputColor {
+  color: #ccc !important; 
+}

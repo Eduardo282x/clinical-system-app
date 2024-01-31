@@ -15,3 +15,8 @@ export interface DataUser {
     Rol: string;
     Id_Rol: number;
 }
+
+export interface Roles { 
+    Id_Rol: number;
+    RolDes: string,
+}

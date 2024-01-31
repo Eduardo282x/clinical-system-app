@@ -1,0 +1,37 @@
+<div class="sidebar {{widthMenu}}">
+    <ul class="nav-list">
+        <ng-container *ngFor="let mainOption of menu">
+            <li class="flex flex-row items-center justify-start h-[50px] ml-2 px-2 gap-2 cursor-pointer hover:bg-blue-800  listHovered" (click)="changeClass(mainOption)">
+                <div class="absolute left-0 flex items-center justify-center">
+                    <mat-icon svgIcon="{{mainOption.icon}}" class="white-icon"></mat-icon>
+                    <div class="titleArrow">
+                        <span class="text-white pt-4">{{mainOption.title}}</span>
+                        <mat-icon class="pt-2">{{mainOption.children ? 'expand_more' : ''}}</mat-icon>
+                    </div>
+                </div>
+            </li>
+            <div class="bg-white w-full h-[1px] mt-2"></div>
+            <ng-container *ngIf="mainOption.children">
+                <div class="childContent {{!mainOption.deploy ? '' : 'closed'}}">
+                    <ng-container *ngFor="let option of mainOption.children">
+                        <li class="flex items-center justify-start h-[50px] gap-2 ml-16 cursor-pointer hover:bg-black transitionChild" (click)="navigate(option.redirect)">
+                            <mat-icon svgIcon="{{option.icon}}" class="white-icon-second"></mat-icon>
+                            <span class="text-white pt-1">{{option.title}}</span>
+                        </li>
+                        <div class="bg-white ml-16 w-[70%] h-[1px]"></div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ul>
+
+    <div class="flex flex-col justify-center items-center text-white  bottom-0 {{widthMenu != '' ? 'hidden' : 'flex'}} customLine">
+        <ng-container *ngIf="footerData">
+            <ng-container *ngFor="let item of footerData">
+                <p class="textFooter">{{item}}</p>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+

@@ -1,5 +1,5 @@
-<div class="w-full flex justify-around items-center text-white mx-auto">
-    <div class="bg-[#c3d4d2] opacity-90 rounded-3xl py-8 px-6">
+<div class="w-full h-20 bg-[#4758b8] flex justify-around items-center text-white mx-auto">
+    <div class="bg-[#c3d4d2] opacity-90 rounded-3xl p-2" (click)="handleMenu()">
         <div class="img"></div>
     </div>
 
@@ -31,17 +31,11 @@
     </div>
 </div>
 
-<ng-container *ngIf="banner.existName">
-    <div class="bg-[#3f51b5] rounded-2xl h-12 mx-32 mt-4 flex items-center justify-center px-4">
-        <mat-tab-group [color]="'primary'" [backgroundColor]="'primary'" (selectedTabChange)="tabChange($event)" class="w-full h-full">
-            <mat-tab label="Empleados"></mat-tab>
-            <mat-tab label="Facturación"></mat-tab>
-            <mat-tab label="Exámenes"></mat-tab>
-            <mat-tab label="Resultados"></mat-tab>
-        </mat-tab-group>
-    </div> 
-</ng-container>
+<div class="flex flex-row items-center justify-between h-full">
+    <app-sidebar [widthMenu]="widthMenuChild"></app-sidebar>
+    <div class="flex items-center justify-center w-full h-full" (click)="closeMenu()">
+        <router-outlet></router-outlet>
+    </div>
+</div>
 
-<router-outlet></router-outlet>
-
-<app-footer class="absolute bottom-0 w-full"></app-footer>
+<!-- <app-footer class="absolute bottom-0 w-full"></app-footer> -->

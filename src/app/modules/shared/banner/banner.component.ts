@@ -1,15 +1,21 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { MatTabChangeEvent } from '@angular/material/tabs';
-import { Route, Router } from '@angular/router';
-import { Banner } from 'src/app/core/interface/banner/banner';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/core/services/authentication/login.service';
 import { BannerState } from 'src/app/core/state/banner/bannes.state';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { Banner } from 'src/app/core/interface/banner/banner';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
+
+  @ViewChild(SidebarComponent) sidebar!: SidebarComponent;
+  widthMenuChild: string = 'closeSidebar';
+  openMenu: boolean = true;
 
   banner: Banner = {
     nameModule: '',
@@ -21,7 +27,8 @@ export class BannerComponent implements OnInit {
     private bannerState: BannerState,
     private _router: Router,
     private cdr: ChangeDetectorRef,
-  ){}
+  ){
+  }
 
   ngOnInit(): void {
     this.cdr.detectChanges();
@@ -35,8 +42,14 @@ export class BannerComponent implements OnInit {
     })
   }
 
-  tabChange(event: MatTabChangeEvent): void {
-    // console.log(event.tab.textLabel);
+  closeMenu():void {
+    this.widthMenuChild = 'closeSidebar';
+    this.sidebar.closeAllMenu();
+  }
+
+  handleMenu(): void {
+    this.openMenu = !this.openMenu;
+    this.widthMenuChild = this.openMenu ? 'closeSidebar' : '';
   }
 
   redirect(): void{
@@ -44,7 +57,17 @@ export class BannerComponent implements OnInit {
   }
 
   logout(): void{
-    this.loginService.logout();
-    this._router.navigate(['/'])
+    Swal.fire({
+      title: "Estas seguro de cerrar sesión?",
+      showDenyButton: true,
+      confirmButtonText: "Si",
+      denyButtonText: `No`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.loginService.logout();
+        this._router.navigate(['/'])
+      }
+    })
   }
 }

@@ -1,1 +1,12 @@
-<h1 class="text-white">Empleado</h1>
+<div class="bg-white w-[60rem] h-[30rem] rounded-2xl py-12 flex items-center justify-around">
+        <div class="choiceOption" (click)="navigate('home/employes/register')">
+            <div class="imgOption"></div>
+            <mat-icon svgIcon="lupa"></mat-icon>
+            <p>Registrar nuevo empleado</p>
+        </div>
+        <div class="choiceOption" (click)="navigate('home/employes/show')">
+            <div class="imgOption"></div>
+            <mat-icon svgIcon="folder"></mat-icon>
+            <p>Ver empleados actuales</p>
+        </div>
+</div>

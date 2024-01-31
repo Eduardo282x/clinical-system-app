@@ -1,20 +1,43 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { BaseState } from '../state/base-state';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/env/enviroment';
+import { RecursiveAstVisitor } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
 })
-export class BaseService<T> {
+export class BaseService<T, D extends BaseState<T>> {
+  // private ENDPOINT_BASE_URL = `${environment.url}`;
+  // private ENDPOINT_URL = `${environment.url}${this.route}`;
+  // private unsubscribe = new Subject<void>;
+  
+  // constructor(
+  //   private httpClient: HttpClient,
+  //   private state: D,
+  //   private route: string
+  // ) { }
 
-  protected state: any;
-  constructor() { }
+  // getDataApi(): void {
+  //   this.httpClient.get(this.ENDPOINT_URL)
+  //   .pipe(takeUntil(this.unsubscribe))
+  //   .subscribe({
+  //     next: (response: any){
+  //       console.log(response);
+  //     }
+  //   })
+  // }
 
-  getData$(): Observable<T | null>{
-    return this.state.getState$();
-  }
+  // public getLoader$(): Observable<boolean> {
+  //   return this.state.getLoading$();
+  // }
 
-  clearData(): void{
-    this.state.clearState();
-  }
+  // getData$(): Observable<T | null>{
+  //   return this.state.getState$();
+  // }
+
+  // clearData(): void{
+  //   this.state.clearState();
+  // }
 }

@@ -13,7 +13,20 @@ import { HelpUserComponent } from './modules/help-user/components/help-user.comp
 import { EmployeesComponent } from './modules/employees/components/employees.component';
 import { ExamsComponent } from './modules/exams/components/exams.component';
 import { BannerComponent } from './modules/shared/banner/banner.component';
+import { RegisterEmployeComponent } from './modules/employees/register-employe/register-employe.component';
+import { ShowEmployesComponent } from './modules/employees/showEmployes/showEmployes.component';
+import { FormRegisterComponent } from './modules/shared/formRegister/formRegister.component';
+import { BaseFacturesComponent } from './modules/factures/baseFactures/baseFactures.component';
 
+import { FacturesComponent } from './modules/factures/factures/factures.component';
+import { ClientsComponent } from './modules/factures/clients/clients.component';
+import { AnulationComponent } from './modules/factures/anulation/anulation.component';
+import { FactureComponent } from './modules/factures/facture/facture.component';
+import { PruebasComponent } from './modules/factures/pruebas/pruebas.component';
+import { BudgetComponent } from './modules/factures/budget/budget.component';
+import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
+import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
+import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +40,19 @@ import { BannerComponent } from './modules/shared/banner/banner.component';
     ResultsComponent,
     HelpUserComponent,
     BannerComponent,
+    RegisterEmployeComponent,
+    ShowEmployesComponent,
+    FormRegisterComponent,
+    BaseFacturesComponent,
+    FacturesComponent,
+    ClientsComponent,
+    AnulationComponent,
+    FactureComponent,
+    PruebasComponent,
+    BudgetComponent,
+    ConfigurationComponent,
+    RegisterClientsComponent,
+    ChooseFactureComponent
   ],
   imports: [
     BrowserModule,

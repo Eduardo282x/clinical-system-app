@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employe } from 'src/app/core/interface/employes/employe';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
@@ -8,12 +7,11 @@ import { EmployesService } from 'src/app/core/services/employes/employes.service
   selector: 'app-asistent',
   templateUrl: './asistent.component.html',
   styleUrls: ['./asistent.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AsistentComponent implements OnInit {
-
+  
   formAssistent: FormGroup = new FormGroup({
-    securityKey: new FormControl('', [Validators.pattern(/^\d{1,11}$/)])
+    securityKey: new FormControl('')
   })
 
   employeAssistent: Employe = {NameFull: 'asd', Identify: '', Rol:''};
@@ -44,7 +42,7 @@ export class AsistentComponent implements OnInit {
       SecurityKey: this.formAssistent.get('securityKey')?.value
     }
 
-    this.employesService.getOneEmployedApi(asistent)
+    this.employesService.getSecurityKeyEmployedApi(asistent)
   }
 
 }

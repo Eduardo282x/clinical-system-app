@@ -1,0 +1,117 @@
+:host {
+  display: block;
+}
+
+.sidebar{
+  position: fixed;
+  top: 11%;
+  left: 0;
+  z-index: 1000;
+  height: 89%;
+  width: 280px;
+  transition: .5s;
+  background: #4758b8;
+}
+
+.sidebar.closeSidebar{
+  width: 60px;
+}
+
+mat-icon{
+  color: #fff;
+}
+
+.white-icon{
+  height: 50px;
+  width: 50px;
+  font-size: 50px;
+  filter: invert(100%) sepia(0%) saturate(7460%) hue-rotate(270deg) brightness(95%) contrast(102%);
+}
+
+.white-icon-second{
+  height: 30px;
+  width: 30px;
+  font-size: 30px;
+  filter: invert(100%) sepia(0%) saturate(7460%) hue-rotate(270deg) brightness(95%) contrast(102%);
+}
+
+.listHovered{
+  position: relative;
+  display: block;
+  width: 100%;
+  left: 0;
+  transition: all .4s ease;
+}
+
+.sidebar .nav-list{
+  height: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 40rem;
+}
+
+.sidebar.closeSidebar .nav-list .listHovered .titleArrow{
+  position: relative;
+  padding: 0 15px;
+  /* color: #333; */
+  display: flex;
+  align-items: center;
+  /* height: 60px; */
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.sidebar .nav-list .listHovered .titleArrow{
+  opacity: 1;
+  visibility: visible;
+}
+
+.sidebar .nav-list{
+  /* background: red; */
+  height: 100%;
+  /* padding-top: 30px; */
+  padding-left: 10px;
+}
+
+.sidebar .nav-list li{
+  position: relative;
+  margin-top: 15px;
+  /* list-style: none; */
+}
+
+
+.childContent{
+  margin-top: -.5rem;
+  display: block;
+  height: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: .3s;
+}
+
+.childContent.closed{
+  animation: openMenu .3s linear;
+  transition: .3s;
+  height: 30%;
+  opacity: 1;
+  visibility: visible;
+  display: block;
+}
+
+@keyframes openMenu {
+  0%{
+    height: 0px;
+  }
+  100%{
+    height: 30%;
+  }
+}
+
+.transitionChild{
+  transition: .5s;
+}
+
+.customLine{
+  line-height: 12px;
+}

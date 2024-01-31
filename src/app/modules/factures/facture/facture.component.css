@@ -1,0 +1,28 @@
+.formService{
+  width: 20rem;
+}
+
+.upContet{
+  margin-top: -5rem;
+}
+
+.separeText{
+  margin-right: 2rem;
+}
+
+.mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+.helloStepper{
+  display: none !important;
+  background: blue !important;
+}
+
+.dataTransfer{
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  grid-template-rows: repeat(2, 100px); 
+  grid-gap: 10px;
+}

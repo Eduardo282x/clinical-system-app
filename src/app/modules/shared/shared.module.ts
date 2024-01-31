@@ -12,12 +12,30 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { CardComponent } from '../home/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MenuSharedComponent } from './menuShared/menuShared.component';
 import { AsistentComponent } from '../employees/asistent/asistent.component';
 import { SeeAsistentComponent } from '../employees/seeAsistent/seeAsistent.component';
 import { EmployeComponent } from '../employees/employe/employe.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import { TablaComponent } from './Tabla/Tabla.component';
+import { RegisterCompletedComponent } from './register-completed/register-completed.component';
+import { FormGeneratorSharedComponent } from './form-generator-shared/form-generator-shared.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/clientDialog.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { FormGenericComponent } from './form-generic/form-generic.component';
+import { FormEmployerPartTwoComponent } from '../employees/form-employer-part-two/form-employer-part-two.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +45,13 @@ import { EmployeComponent } from '../employees/employe/employe.component';
     AsistentComponent,
     SeeAsistentComponent,
     EmployeComponent,
+    SidebarComponent,
+    TablaComponent,
+    RegisterCompletedComponent,
+    FormGeneratorSharedComponent,
+    ClientDialogComponent,
+    FormGenericComponent,
+    FormEmployerPartTwoComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +68,17 @@ import { EmployeComponent } from '../employees/employe/employe.component';
     MatTooltipModule,
     MatButtonToggleModule,
     MatTabsModule,
+    MatExpansionModule,
+    MatListModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatAutocompleteModule,
   ],
   exports: [
     CardComponent,
@@ -50,7 +86,13 @@ import { EmployeComponent } from '../employees/employe/employe.component';
     AsistentComponent,
     SeeAsistentComponent,
     EmployeComponent,
-    
+    SidebarComponent,
+    TablaComponent,
+    RegisterCompletedComponent,
+    FormGeneratorSharedComponent,
+    ClientDialogComponent,
+    FormEmployerPartTwoComponent,
+
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
@@ -64,6 +106,22 @@ import { EmployeComponent } from '../employees/employe/employe.component';
     MatTooltipModule,
     MatButtonToggleModule,
     MatTabsModule,
+    MatExpansionModule,
+    MatListModule,
+    MatDividerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatAutocompleteModule,
   ],
+
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es'},
+    {provide: MatPaginatorIntl}
+  ]
 })
 export class SharedModule { }
