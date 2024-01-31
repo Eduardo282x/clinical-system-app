@@ -8,6 +8,7 @@ import { ClientsService } from 'src/app/core/services/clients/clients.service';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
 import { FilterState } from 'src/app/core/state/tabla/filter.state';
 import Swal from 'sweetalert2';
+import { columns, displayedColumns } from './clients.data';
 
 @Component({
   selector: 'app-clients',
@@ -16,40 +17,8 @@ import Swal from 'sweetalert2';
 })
 export class ClientsComponent implements OnInit{
 
-  displayedColumns: string[] = ['NameFull','Identify','Edit','Delete'];
-  columns: ColumnDef[] = [
-    // {
-    //   column: 'Id',
-    //   header: 'IdClients',
-    //   type: 'text',
-    // },
-    {
-      column: 'NameFull',
-      header: 'Nombre completo',
-      type: 'text',
-      class: 'maxWidth',
-    },
-    {
-      column: 'Identify',
-      header: 'Cedula',
-      type: 'text',
-      class: 'minWidth',
-    },
-    {
-      column: 'Edit',
-      header: 'Editar',
-      icon: 'edit',
-      color: 'primary',
-      isIcon: true,
-    },
-    {
-      column: 'Delete',
-      header: 'Borrar',
-      icon: 'delete',
-      color: 'warn',
-      isIcon: true,
-    }
-  ];
+  displayedColumns: string[] = displayedColumns;
+  columns: ColumnDef[] = columns;
   filter: string = '';
   dataSource: any;
   
@@ -98,7 +67,8 @@ export class ClientsComponent implements OnInit{
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         console.log('cliente eliminada', data.IdClients);
-        
+        const client = {Id: data.IdClients}
+        this.clientService.deleteClient(client);
       }
     })
   }

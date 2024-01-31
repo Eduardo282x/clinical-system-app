@@ -1,5 +1,5 @@
 <div class="bg-white w-[60rem] h-[30rem] rounded-2xl py-12">
-    <div class="flex flex-col items-center justify- w-full gap-5">
+    <form [formGroup]="assistentForm" (submit)="getAssistent()" class="flex flex-col items-center justify- w-full gap-5">
         <span class="text-[#4758b8] font-semibold text-[20px]">SELECCIONE UN RANGO:</span>
 
         <div class="flex items-center justify-between w-[20rem]">
@@ -7,7 +7,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Fecha de inicio</mat-label>
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerInitial">
+                <input matInput formControlName="DateStart" [min]="minDate" [max]="maxDate" [matDatepicker]="pickerInitial">
                 <mat-datepicker-toggle matIconSuffix [for]="pickerInitial"></mat-datepicker-toggle>
                 <mat-datepicker #pickerInitial></mat-datepicker>
             </mat-form-field>
@@ -17,12 +17,12 @@
             <p class="font-semibold">Hasta</p>
             <mat-form-field appearance="fill">
                 <mat-label>Fecha de fin</mat-label>
-                <input matInput [max]="maxDate" [matDatepicker]="pickerEnd">
+                <input matInput formControlName="DateEnd" [max]="maxDate" [matDatepicker]="pickerEnd">
                 <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
                 <mat-datepicker #pickerEnd></mat-datepicker>
             </mat-form-field>
         </div>
 
         <button mat-raised-button type="submit" color="primary" [disabled]="false">Aceptar</button>
-    </div>
+    </form>
 </div>

@@ -5,7 +5,7 @@
             <ng-container *ngIf="item.type == 'input'">
                 <mat-form-field appearance="outline">
                     <mat-label>{{item.label}}</mat-label>
-                    <input matInput formControlName="{{item.formControlName}}">
+                    <input matInput type="number" (input)="validateMax($event, 30, item.formControlName)" formControlName="{{item.formControlName}}">
                 </mat-form-field>
             </ng-container>
         </ng-container>

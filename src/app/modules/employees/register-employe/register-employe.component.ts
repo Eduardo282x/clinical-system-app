@@ -10,6 +10,8 @@ import { RegisterCompletedComponent } from '../../shared/register-completed/regi
 import { Roles } from 'src/app/core/interface/users/users';
 import { UsersService } from 'src/app/core/services/users/users.service';
 import { takeUntil } from 'rxjs';
+import { EmployesService } from 'src/app/core/services/employes/employes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-employe',
@@ -28,6 +30,8 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
     secondCtrl: [''],
   });
 
+  actionEmploye: string = 'add';
+  idEmploye: number = 0;
   validFirst: boolean = false;
   validSecond: boolean = false;
 
@@ -47,7 +51,9 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private location: Location,
-    private userService: UsersService
+    private _router: Router,
+    private userService: UsersService,
+    private employeService: EmployesService
   ){
     super();
   }
@@ -61,9 +67,14 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
       next: (response: Roles[] | any) => {
         if(response){
           this.roles = response;
-          console.log(this.roles);
-          
         }
+      }
+    });
+
+    this.employeService.getDataEmploye$().subscribe({
+      next: (response : any) => {
+        this.idEmploye = response.Id;
+        this.actionEmploye = response ? 'edit' : 'add';
       }
     })
   }
@@ -81,8 +92,6 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
           DateInit: new Date(),
           SecutiryKey: this.formTwoLocal.get('securityKey')?.value ,
         };
-      console.log(this.formTwoLocal.value);
-      
       stepper.next()
     }
   }
@@ -111,7 +120,7 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
   sendCompleteData(): void {
     const employeRegister: EmployesComplete = {
       NameFull: this.formOneLocal.get('NameFull')?.value,
-      Identify: this.formOneLocal.get('Identify')?.value,
+      Identify: `${this.formOneLocal.get('Prefix')?.value}${this.formOneLocal.get('Identify')?.value}`,
       Age: this.formOneLocal.get('Age')?.value,
       Sex: this.formOneLocal.get('Sex')?.value,
       PhonePrimary: this.formOneLocal.get('PhonePrimary')?.value,
@@ -126,9 +135,12 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
       SecurityKey: this.formTwoLocal.get('securityKey')?.value,
       Rol: this.formTwoLocal.get('rol')?.value,
     }
+    if(this.idEmploye){
+      employeRegister.Id = this.idEmploye;
+    }
 
-    console.log(employeRegister);
-    
+    this.employeService.addNewEmploye(employeRegister);
+    this._router.navigate(['/home/employes/employe']);
   }
 
   goBack(): void {

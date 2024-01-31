@@ -1,4 +1,9 @@
 export interface EmitAction {
     action: string;
-    data: any
+    data: RowsEmit | any;
+}
+
+export interface RowsEmit {
+    Id: number,
+    NameFull: string;
 }

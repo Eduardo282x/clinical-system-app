@@ -73,4 +73,17 @@ export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
     const dataEmit: EmitAction = { action: columnData, data: data};
     this.actionTable.emit(dataEmit)
   }
+
+  parseFacture(facture: number): string {
+    return String(facture).padStart(7,'0');
+  }
+
+  parseDate(fechaISO: Date | any): string {
+    const fecha = new Date(fechaISO);
+    const dia = fecha.getUTCDate();
+    const mes = fecha.getUTCMonth() + 1;
+    const año = fecha.getUTCFullYear();
+  
+    return `${dia < 10 ? '0' + dia : dia}/${mes < 10 ? '0' + mes : mes}/${año}`;
+  }
 }

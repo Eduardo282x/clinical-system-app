@@ -1,3 +1,28 @@
-<div class="bg-white w-[60rem] h-[30rem] rounded-2xl py-12 flex items-center justify-around">
+<div class="bg-white w-[60rem] h-[30rem] rounded-2xl py-12 px-10 flex flex-col items-center justify-center">
+    <div class="flex flex-row items-center justify-between w-full">
+        <div class="flex items-center justify-center">
+            <button mat-raised-button color="primary" (click)="goBack()">
+                <mat-icon>
+                    arrow_back
+                </mat-icon>
+            </button>
+            <p class="fixTextTitle">Facturas</p>
+        </div>
 
+        <div class="widthInputFilter">
+            <mat-form-field class="w-full" appearance="outline">
+                <mat-label>Buscar</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <ng-container *ngIf="dataSource != null">
+        <app-tabla 
+        [displayedColumns]="displayedColumns" 
+        [columns]="columns" 
+        [dataTable]="dataSource"
+        (actionTable)="getActionTable($event)"
+        ></app-tabla>
+    </ng-container>
 </div>

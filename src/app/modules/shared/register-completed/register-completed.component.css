@@ -18,3 +18,7 @@ input[type=number] { -moz-appearance:textfield; }
   margin-bottom: 2rem;
   border: 2px dashed #ccc;
 }
+
+.disableInputColor {
+  color: #ccc !important; 
+}

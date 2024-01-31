@@ -22,6 +22,7 @@
         [displayedColumns]="displayedColumns" 
         [columns]="columns" 
         [dataTable]="dataSource"
+        (actionTable)="getDataEmploye($event)"
         ></app-tabla>
     </ng-container>
 </div>

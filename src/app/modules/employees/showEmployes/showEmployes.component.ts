@@ -3,8 +3,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewC
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { SortEmploye } from 'src/app/core/interface/employes/employe';
 import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
+import { EmitAction } from 'src/app/core/interface/tabla/emitAction';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
 import { FilterState } from 'src/app/core/state/tabla/filter.state';
 
@@ -56,11 +58,19 @@ export class ShowEmployesComponent implements OnInit{
   constructor(
     private employesService: EmployesService,
     private location:Location,
+    private route: Router,
     private filterState: FilterState
   ){}
 
     ngOnInit(): void {
       this.employesService.getEmployes();
+
+      this.employesService.getDataEmploye$().subscribe({
+        next: (response: any) => {
+          console.log(response);
+          
+        }
+      })
 
       this.employesService.getData$()
       .subscribe({
@@ -72,6 +82,20 @@ export class ShowEmployesComponent implements OnInit{
       })
     }
 
+    getDataEmploye(data: EmitAction): void {
+      const employe = {Id: data.data.Id}
+      if(data.action == 'Delete'){
+        this.employesService.deleteEmploye(employe);
+      }
+      if(data.action == 'Show'){
+        this.employesService.getAllDataEmploye(employe);
+        this.route.navigate(['home/employes/register'])
+      }
+      if(data.action == 'Edit'){
+        this.employesService.getAllDataEmploye(employe);
+        this.route.navigate(['home/employes/register'])
+      }
+    }
 
     applyFilter(event: Event) {
       this.filter = (event.target as HTMLInputElement).value;

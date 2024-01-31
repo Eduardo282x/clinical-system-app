@@ -3,15 +3,15 @@
     <form [formGroup]="formEmployePartTwo" (submit)="sendFormDate()" class="flex flex-col items-center justify-center">
         <div class="flex flex-col items-center justify-center w-full px-10">
             <h1 class="text-[#4758b8]">DATOS PERSONALES</h1>
-            <div class="flex items-center justify-start">
+            <fieldset [disabled]="disableInput" class="flex items-center justify-start">
                 <span class="pb-5 mx-2 text-[15px]">Datos Médicos
                     Relevantes</span>
                 <mat-form-field appearance="outline" class="w-[50rem]">
                     <mat-label>Datos Médicos Relevantes</mat-label>
-                    <input matInput formControlName="medicData" />
+                    <input matInput formControlName="medicData" class="{{disableInput ? 'disableInputColor' : ''}}"/>
                     <mat-error *ngIf="formEmployePartTwo.get('medicData')?.hasError('required')">Este campo es requerido</mat-error>
                 </mat-form-field>
-            </div>
+            </fieldset>
         </div>
 
         <div class="flex flex-col items-center justify-center w-full px-10">
@@ -31,35 +31,41 @@
                     </mat-form-field>
                 </div>
 
-                <div class="security">
+                <fieldset [disabled]="disableInput" class="flex items-center justify-center">
                     <span class="pb-5 mx-2 text-[15px]">Clave de Seguridad</span>
 
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Clave de Seguridad</mat-label>
-                        <input matInput formControlName="securityKey" />
+                        <input matInput formControlName="securityKey" readonly class="{{disableInput ? 'disableInputColor' : ''}}">
                         <mat-error *ngIf="formEmployePartTwo.get('securityKey')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
-                </div>
+                    
+                    <ng-container *ngIf="!disableInput">
+                        <button mat-raised-button color="primary" (click)="generateSecutiryKey()">
+                            <mat-icon>key</mat-icon>
+                        </button>
+                    </ng-container>
+                </fieldset>
             </div>
 
             <div class="flex items-center justify-between w-full">
-                <div class="user">
+                <fieldset [disabled]="disableInput" class="user">
                     <span class="pb-5 mx-2 text-[15px]">Usuario</span>
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Usuario</mat-label>
-                        <input matInput formControlName="user" />
+                        <input matInput formControlName="user" class="{{disableInput ? 'disableInputColor' : ''}}"/>
                         <mat-error *ngIf="formEmployePartTwo.get('user')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
-                </div>
+                </fieldset>
 
-                <div class="password">
+                <fieldset [disabled]="disableInput" class="password">
                     <span class="pb-5 mx-2 text-[15px]">Contraseña</span>
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Contraseña</mat-label>
-                        <input matInput formControlName="password" />
+                        <input matInput formControlName="password" class="{{disableInput ? 'disableInputColor' : ''}}"/>
                         <mat-error *ngIf="formEmployePartTwo.get('password')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
-                </div>
+                </fieldset>
             </div>
         </div>
 

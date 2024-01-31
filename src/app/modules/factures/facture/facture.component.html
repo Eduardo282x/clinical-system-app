@@ -1,36 +1,97 @@
-<div class="w-[60rem] flex flex-col items-center justify-center bg-white rounded-2xl px-10 h-[35rem] upContet">
+<div class="w-[60rem] flex flex-col items-center justify-center bg-white rounded-2xl px-10 py-5 h-auto upContet">
     <div class="flex  flex-col items-center justify-center w-full">
-        <div class="flex items-center justify-around w-full">
+        <div class="flex items-center justify-around w-full mb-5">
             <p class="text-[24px] text-[#5666be]">{{client.NameFull}}</p>
             <p class="text-[24px]">Orden: #{{order}}</p>
         </div>
-        <div class="flex items-center justify-end w-full">
-            <p class="text-[18px] separeText">Buscar por código o producto</p>
-            
-            <form class="formService">
-                <mat-form-field class="w-full" appearance="outline">
-                    <input type="text" matInput [formControl]="myControl"
-                        [matAutocomplete]="auto">
-                    <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.Description" (click)="addServices(option)">
-                            {{option.CodService}} - {{option.Description}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
-            </form>
-        </div>
-    </div>
-    <div class="flex items-center justify-center w-full">
-        <ng-container *ngIf="existData">
-            <app-tabla
-            [displayedColumns]="displayedColumns"
-            [columns]="columns"
-            [dataTable]="dataSource"
-            (actionTable)="getActionTable($event)"
-            />
-        </ng-container>
-    </div>
-    <div class="flex items-center justify-center w-full">
+        <mat-stepper [linear]="false" #stepper>
+            <mat-step class="helloStepper">
+                <div class="flex items-center justify-between w-full">
+                    <button mat-raised-button color="primary" (click)="nextStepper(stepper)">Procesar</button>
+                    <div class="flex items-center justify-center">
+                        <p class="text-[18px] separeText">Buscar por código o producto</p>
+                        <form class="formService">
+                            <mat-form-field class="w-full" appearance="outline">
+                                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete">
+                                    <mat-option *ngFor="let option of filteredOptions | async"
+                                        [value]="option.Description" (click)="addServices(option)">
+                                        {{option.CodService}} - {{option.Description}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </form>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center w-full">
+                    <ng-container *ngIf="existData">
+                        <app-tabla [displayedColumns]="displayedColumns" [columns]="columns" [dataTable]="dataSource"
+                            (actionTable)="getActionTable($event)" />
+                    </ng-container>
+                </div>
+            </mat-step>
+            <mat-step>
+                <button mat-raised-button color="primary" (click)="backStepper(stepper)">Atras</button>
+                <form [formGroup]="dataTransferForm" (submit)="sendFacture()" class="dataTransfer">
+                    <div class="flex flex-col items-start justify-start">
+                        <p class="font-semibold">Telefono</p>
+                        <mat-form-field appearance="outline" class="w-auto">
+                            <input matInput type="number" formControlName="Phone" (input)="validateMax($event, 12, 'Phone')">
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <p class="font-semibold">Ref</p>
+                        <mat-form-field appearance="outline" class="w-auto">
+                            <input matInput type="number" formControlName="Ref">
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <p class="font-semibold">Banco</p>
+                        <mat-form-field appearance="outline" class="w-auto">
+                            <mat-select formControlName="Bank">
+                                <ng-container *ngFor="let bank of banks">
+                                    <mat-option [value]="bank.IdBank">{{bank.BankName}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <p class="font-semibold">Cedula</p>
+                        <mat-form-field appearance="outline" class="w-auto">
+                            <input matInput type="number" formControlName="Identity" (input)="validateMax($event, 10, 'Identity')">
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <p class="font-semibold">Metodo de Pago</p>
+                        <mat-form-field appearance="outline" class="w-auto">
+                            <mat-select formControlName="PayMent">
+                                <ng-container *ngFor="let pay of paymenys">
+                                    <mat-option [value]="pay.IdPayMent">{{pay.Description}}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex flex-col items-start justify-start">
+                        <p class="font-semibold">Total</p>
+                        <mat-form-field appearance="outline" class="w-auto">
+                            <input matInput type="number" formControlName="Total">
+                        </mat-form-field>
+                    </div>
+                </form>
 
+                <div class="flex items-center justify-between w-full">
+                    <div class="nothing"></div>
+
+                    <button mat-raised-button type="submit" [disabled]="!dataTransferForm.valid" (click)="sendFacture()" color="primary">Facturar</button>
+
+                    <div class="flex flex-col items-end justify-center">
+                        <p>Subtotal: {{totalTransfer.Subtotal}}$</p>
+                        <p>IVA: {{totalTransfer.Iva}}$</p>
+                        <p>Total: {{totalTransfer.Total}}$</p>
+                    </div>
+                </div>
+
+            </mat-step>
+        </mat-stepper>
     </div>
 </div>

@@ -6,3 +6,14 @@
 .btnHidden{
   display: none;
 }
+
+.btnGenerate{
+  display: flex !important;
+}
+.mat-mdc-form-field-infix ng-tns-c18-16{
+  display: flex !important;
+}
+
+.disableInputColor{
+  color: #ccc !important;
+}

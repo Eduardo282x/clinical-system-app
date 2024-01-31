@@ -13,6 +13,7 @@ export class ClientsService {
 
   private ENDPOINT = `${environment.url}clients`;
   private GETCLIENT = `${this.ENDPOINT}/one`;
+  private DELETECLIENT = `${this.ENDPOINT}/delete`;
   private ADDCLIENT = `${this.ENDPOINT}/add`;
   private unsubscribe = new Subject<void>;
   
@@ -60,8 +61,8 @@ export class ClientsService {
     })
   }
 
-  getOneClient(clientIdentify: OneClient): void {
-    this.http.post<ClientsState>(this.GETCLIENT,clientIdentify)
+  getOneClient(clientId: any): void {
+    this.http.post<ClientsState>(this.GETCLIENT,clientId)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
@@ -71,6 +72,22 @@ export class ClientsService {
           console.log(err);
       },
       complete() {
+          // console.log('Complete');
+      },
+    })
+  }
+  deleteClient(clientIdentify: any): void {
+    this.http.post<ClientsState>(this.DELETECLIENT,clientIdentify)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        this.state.setState(response);
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete: () =>{
+        this.getClient();
           // console.log('Complete');
       },
     })

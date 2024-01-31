@@ -25,6 +25,16 @@ export class FormGenericComponent implements OnInit{
 
   }
 
+  validateMax(event: Event, maxLengh: number, formcontrol: string): void {
+    const input = event.target as HTMLInputElement;
+    
+    if (Number(input.value) > maxLengh) {
+      input.value = input.value.slice(0, 2);
+      this.formGeneric.controls[formcontrol].setValue(input.value);
+    }
+  }
+
+
   sendDataForm(): void {
     
   }
