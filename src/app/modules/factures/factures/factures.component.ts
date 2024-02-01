@@ -7,6 +7,7 @@ import { BaseComponent } from '../../base/base.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { takeUntil } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-factures',
@@ -22,7 +23,8 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
   constructor(
     private clientService: ClientsService,
     private dialog: MatDialog,
-    private _router: Router
+    private _router: Router,
+    private location: Location
   ) {
     super()
   }
@@ -31,10 +33,12 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
       this.clientService.getData$()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe({
-        next: (response: ResponseClient | any) => {
+        next: (response: ResponseClient ) => {
           if(response){
             if(response.success){
-              localStorage.setItem('client', JSON.stringify(response.client));
+              const client = response.client;
+              client.onlyShow = false;
+              localStorage.setItem('client', JSON.stringify(client));
               setTimeout(() => {
                 this._router.navigate(['home/factures/facture'])
               }, 1500);
@@ -52,6 +56,10 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
           }
         }
       })
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   redirectClient(): void {

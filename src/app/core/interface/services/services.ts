@@ -5,3 +5,7 @@ export interface Services {
     Cost: number;
     Avalible: boolean;
 }
+
+export interface EditService extends Omit<Services, "CodService"> {
+
+}

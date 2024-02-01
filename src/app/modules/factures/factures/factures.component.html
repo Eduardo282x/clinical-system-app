@@ -1,4 +1,13 @@
-<div class="w-[60rem] flex flex-col items-center justify-center bg-white rounded-2xl px-10 h-[23.5rem]">
+<div class="w-[60rem] flex flex-col relative items-center justify-center bg-white rounded-2xl px-10 h-[23.5rem]">
+
+    <div class="fixBtn">
+        <button mat-raised-button color="primary" (click)="goBack()">
+            <mat-icon>
+                arrow_back
+            </mat-icon>
+        </button>
+    </div>
+
     <p class="text-[#4758b8] text-left w-2/6 font-bold text-[20px]">Ingrese cedula del cliente:</p>
 
     <form [formGroup]="formClient" (submit)="onSubmitClient()" class="flex justify-center items-center w-full btnSeacrh">

@@ -1,8 +1,7 @@
 import { FormDialog } from "src/app/core/interface/form-dialog/form-dialog";
 import { ColumnDef } from "src/app/core/interface/shared/columnDef";
 
-export const displayedColumns: string[] = ['CodService','Description','Amount','Cost','Total','Edit',
-'Delete'];
+export const displayedColumns: string[] = ['CodService','Description','Amount','Cost','Total','Edit','Delete'];
 
 export const columns: ColumnDef[] = [
     {
