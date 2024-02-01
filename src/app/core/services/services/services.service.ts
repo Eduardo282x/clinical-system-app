@@ -5,7 +5,7 @@ import { environment } from 'src/env/enviroment';
 import { Clients } from '../../interface/clients/clients';
 import { ClientsState } from '../../state/clients/clients.state';
 import { ServicesState } from '../../state/services/services.state';
-import { Services } from '../../interface/services/services';
+import { EditService, Services } from '../../interface/services/services';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,7 @@ export class ServicesService {
 
   private ENDPOINT = `${environment.url}services`;
   private AVALIBLE = `${this.ENDPOINT}/avalibles`;
+  private UPDATE = `${this.ENDPOINT}/update`;
   private unsubscribe = new Subject<void>;
   
   constructor(
@@ -57,6 +58,23 @@ export class ServicesService {
           console.log(err);
       },
       complete() {
+          // console.log('Complete');
+      },
+    })
+  }
+
+  updateServices(prueba: EditService): void {
+    this.http.post<any>(this.UPDATE, prueba)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe({
+      next: (response: any) => {
+        this.state.setState(response);
+      },
+      error(err) {
+          console.log(err);
+      },
+      complete:() => {
+        this.getServices();
           // console.log('Complete');
       },
     })

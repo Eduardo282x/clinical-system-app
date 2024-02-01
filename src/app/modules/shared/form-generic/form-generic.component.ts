@@ -19,6 +19,8 @@ export class FormGenericComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
+    console.log(this.data.dataForm);
+    
     this.data.dataForm.map(form => {
       this.formGeneric.addControl(form.formControlName, new FormControl(form.value ? form.value : ''))
     })
