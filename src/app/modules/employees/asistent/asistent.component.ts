@@ -17,7 +17,7 @@ export class AsistentComponent implements OnInit {
     securityKey: new FormControl('')
   })
 
-  employeAssistent: Employe = {NameFull: 'asd', Identify: '', Rol:''};
+  employeAssistent: Employe = {NameFull: '', Identify: '', Rol:''};
   existAssistent: boolean = true;
 
   constructor(
@@ -28,9 +28,7 @@ export class AsistentComponent implements OnInit {
   ngOnInit(): void {
       this.employesService.getData$().subscribe({
         next: (asistent: Employe | any) => {
-          console.log(asistent);
-
-          if(asistent.success){
+          if(asistent && !asistent.success){
             this._snackBar.openFromComponent(SnackBarComponent,{
               duration: 2000,
               data: asistent
