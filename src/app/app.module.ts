@@ -17,7 +17,7 @@ import { RegisterEmployeComponent } from './modules/employees/register-employe/r
 import { ShowEmployesComponent } from './modules/employees/showEmployes/showEmployes.component';
 import { FormRegisterComponent } from './modules/shared/formRegister/formRegister.component';
 import { BaseFacturesComponent } from './modules/factures/baseFactures/baseFactures.component';
-
+import { ConsultLoginComponent } from './modules/authentication/consult-login/consult-login.component';
 import { FacturesComponent } from './modules/factures/factures/factures.component';
 import { ClientsComponent } from './modules/factures/clients/clients.component';
 import { AnulationComponent } from './modules/factures/anulation/anulation.component';
@@ -52,7 +52,8 @@ import { ChooseFactureComponent } from './modules/factures/choose-facture/choose
     BudgetComponent,
     ConfigurationComponent,
     RegisterClientsComponent,
-    ChooseFactureComponent
+    ChooseFactureComponent,
+    ConsultLoginComponent
   ],
   imports: [
     BrowserModule,

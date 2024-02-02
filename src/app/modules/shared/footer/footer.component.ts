@@ -30,12 +30,12 @@ export class FooterComponent implements OnInit {
 
     if(dataUser){
       const date = new Date();
-      this.footerData = [
-        'Bienvenido de Nuevo',
-        `${dataUser.NameFull.toUpperCase()}`,
-        `${dataUser.Rol}`,
-        `Ultima vez: ${date.toLocaleDateString()}`,
-        `${date.getFullYear()} ©Todos los derechos reservados.` ]
+      // this.footerData = [
+      //   'Bienvenido de Nuevo',
+      //   `${dataUser.NameFull.toUpperCase()}`,
+      //   `${dataUser.Rol}`,
+      //   `Ultima vez: ${date.toLocaleDateString()}`,
+      //   `${date.getFullYear()} ©Todos los derechos reservados.` ]
     }
   }
 }

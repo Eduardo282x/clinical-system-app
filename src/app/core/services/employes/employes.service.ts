@@ -90,8 +90,7 @@ export class EmployesService {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        console.log(response);
-        
+        // console.log(response);
         // this.state.setState(response)
       },
       error(err) {

@@ -17,7 +17,8 @@ import { Location } from '@angular/common';
 export class FacturesComponent extends BaseComponent implements OnInit, OnDestroy {
 
   formClient: FormGroup = new FormGroup({
-    clientIdentify: new FormControl('',[Validators.required])
+    clientIdentify: new FormControl('',[Validators.required]),
+    clientPrefix: new FormControl('',[Validators.required])
   })
 
   constructor(
@@ -67,7 +68,10 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
   }
 
   onSubmitClient(): void {
-    this.clientService.getOneClient(this.formClient.value);
+    const identify = {
+      clientIdentify: `${this.formClient.get('clientPrefix')?.value}${this.formClient.get('clientIdentify')?.value}`
+    };
+    this.clientService.getOneClient(identify);
   }
 
   ngOnDestroy(): void {

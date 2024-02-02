@@ -17,12 +17,13 @@ export class RegisterCompletedComponent implements OnInit{
   @Input() includePicture: any;
   @Output() dataForm = new EventEmitter<EmitFormOne>();
   disableInput: boolean = false;
+  isClient: boolean = false;
 
   registerGeneric: FormGroup = new FormGroup({
     Id: new FormControl(''),
     NameFull: new FormControl('', [Validators.required]),
     Prefix: new FormControl('', [Validators.required]),
-    Identify: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(10)]),
+    Identify: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]),
     Birhdate: new FormControl('', [Validators.required]),
     Age: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
     PhonePrimary: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(12)]),
@@ -43,6 +44,7 @@ export class RegisterCompletedComponent implements OnInit{
         next: (response: ClientsCompleted) => {
           if(response){
             this.disableInput = true;
+            this.isClient = true;
             this.registerGeneric.controls['Id'].setValue(response.IdClients)
             this.registerGeneric.controls['NameFull'].setValue(response.NameFull)
             if(response.Identify){
@@ -64,6 +66,7 @@ export class RegisterCompletedComponent implements OnInit{
         next: (response : EmployesComplete) => {
           if(response){
             this.disableInput = true;
+            this.isClient = false;
             this.registerGeneric.controls['Id'].setValue(response.Id)
             this.registerGeneric.controls['NameFull'].setValue(response.NameFull)
             if(response.Identify){
@@ -98,7 +101,9 @@ export class RegisterCompletedComponent implements OnInit{
         action: !this.disableInput ? 'add' : 'edit'
       };
       this.dataForm.emit(send);
-      this.location.back();
+      if(this.isClient){
+        this.location.back();
+      }
     }
   }
   

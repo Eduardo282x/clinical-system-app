@@ -58,6 +58,20 @@ export const menu: Menu[] = [
         icon: 'investigate',
         deploy: false,
         permisses: ['Dueño','Bioanalista'],
+        children: [
+            {
+                title: 'Ordenes pendientes',
+                icon: 'facturas',
+                redirect: '/home/factures/choose-facture',
+                permisses: ['Dueño','Administrador','Bioanalista'],
+            },
+            {
+                title: 'Configuración',
+                icon: 'configuracion',
+                redirect: '/home/factures/budget',
+                permisses: ['Dueño','Administrador','Bioanalista'],
+            },
+        ]
     },
     // {
     //     title: 'Carga de Resultados',

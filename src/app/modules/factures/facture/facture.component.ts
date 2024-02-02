@@ -120,9 +120,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       .subscribe({
         next: (banks: Banks[])=>{
           if(banks){
-            
             this.banks = banks
-            console.log(this.banks);
           }
         }
       });
@@ -132,9 +130,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       .subscribe({
         next: (payments: Payments[])=>{
           if(payments){
-            
             this.paymenys = payments;
-            console.log(this.paymenys);
           }
         }
       })

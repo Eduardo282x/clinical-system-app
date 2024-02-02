@@ -71,7 +71,7 @@ export class FactureService {
     .subscribe({
       next: (response: any) => {
         if(response){
-          console.log(response);
+          // console.log(response);
         }
       },
       error(err) {
@@ -136,7 +136,7 @@ export class FactureService {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        console.log(response);
+        // console.log(response);
       },
       error(err) {
           console.log(err);
@@ -153,7 +153,7 @@ export class FactureService {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        console.log(response);
+        // console.log(response);
       },
       error(err) {
           console.log(err);
@@ -170,13 +170,13 @@ export class FactureService {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        console.log(response);
+        // console.log(response);
       },
       error(err) {
           console.log(err);
       },
       complete:() => {
-        console.log(newService);
+        // console.log(newService);
         
         this.getTempFacture(newService.IdUser, IdClient);
           // console.log('Complete');

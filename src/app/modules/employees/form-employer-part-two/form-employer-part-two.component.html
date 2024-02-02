@@ -3,12 +3,12 @@
     <form [formGroup]="formEmployePartTwo" (submit)="sendFormDate()" class="flex flex-col items-center justify-center">
         <div class="flex flex-col items-center justify-center w-full px-10">
             <h1 class="text-[#4758b8]">DATOS PERSONALES</h1>
-            <fieldset [disabled]="disableInput" class="flex items-center justify-start">
+            <fieldset class="flex items-center justify-start">
                 <span class="pb-5 mx-2 text-[15px]">Datos Médicos
                     Relevantes</span>
                 <mat-form-field appearance="outline" class="w-[50rem]">
                     <mat-label>Datos Médicos Relevantes</mat-label>
-                    <input matInput formControlName="medicData" class="{{disableInput ? 'disableInputColor' : ''}}"/>
+                    <input matInput formControlName="medicData"/>
                     <mat-error *ngIf="formEmployePartTwo.get('medicData')?.hasError('required')">Este campo es requerido</mat-error>
                 </mat-form-field>
             </fieldset>
@@ -49,20 +49,20 @@
             </div>
 
             <div class="flex items-center justify-between w-full">
-                <fieldset [disabled]="disableInput" class="user">
+                <fieldset class="user">
                     <span class="pb-5 mx-2 text-[15px]">Usuario</span>
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Usuario</mat-label>
-                        <input matInput formControlName="user" class="{{disableInput ? 'disableInputColor' : ''}}"/>
+                        <input matInput formControlName="user"/>
                         <mat-error *ngIf="formEmployePartTwo.get('user')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
                 </fieldset>
 
-                <fieldset [disabled]="disableInput" class="password">
+                <fieldset class="password">
                     <span class="pb-5 mx-2 text-[15px]">Contraseña</span>
                     <mat-form-field appearance="outline" class="w-[20rem]">
                         <mat-label>Contraseña</mat-label>
-                        <input matInput formControlName="password" class="{{disableInput ? 'disableInputColor' : ''}}"/>
+                        <input matInput formControlName="password"/>
                         <mat-error *ngIf="formEmployePartTwo.get('password')?.hasError('required')">Este campo es requerido</mat-error>
                     </mat-form-field>
                 </fieldset>

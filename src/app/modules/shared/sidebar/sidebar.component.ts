@@ -99,7 +99,6 @@ export class SidebarComponent implements OnInit{
   }
 
   navigate(route: string): void {
-    console.log(route);
     if(route != ''){
       this._router.navigate([route])
     }

@@ -23,12 +23,14 @@ import { BaseFacturesComponent } from './modules/factures/baseFactures/baseFactu
 import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
 import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
 import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
+import { ConsultLoginComponent } from './modules/authentication/consult-login/consult-login.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'recuperar', component: RecuperarComponent},
   {path: 'help', component: HelpUserComponent},  
+  {path: 'consult', component: ConsultLoginComponent},  
 
   {
     path: 'home', 

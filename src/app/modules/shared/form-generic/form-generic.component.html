@@ -11,7 +11,7 @@
 
             <ng-container *ngIf="item.type == 'side'">
                 <div class="w-full flex items-center justify-end">    
-                    <mat-slide-toggle [(ngModel)]="isChecked" formControlName="{{item.formControlName}}">{{item.label}}</mat-slide-toggle>
+                    <mat-slide-toggle [(ngModel)]="isChecked" color="primary" formControlName="{{item.formControlName}}">{{item.label}}</mat-slide-toggle>
                 </div>
             </ng-container>
         </ng-container>

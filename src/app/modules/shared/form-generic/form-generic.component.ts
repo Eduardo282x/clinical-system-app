@@ -21,7 +21,6 @@ export class FormGenericComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    console.log(this.data.dataForm);
     const check = this.data.dataForm.find(form => form.type == 'side');
     this.isChecked = check?.value
     

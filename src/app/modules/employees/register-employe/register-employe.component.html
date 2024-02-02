@@ -1,14 +1,14 @@
-<div class="bg-white w-full h-[50rem] rounded-3xl px-10  py-12 flex flex-col items-center justify-center">
-    <div class="flex items-center justify-start w-full px-10">
+<div class="bg-white w-full h-auto rounded-3xl px-10 py-12 relative flex flex-col items-center justify-center">
+    <div class="flex items-center justify-start absolute top-6 left-0 h-auto w-full px-10 mb-5">
         <button mat-raised-button color="primary" (click)="goBack()">
             <mat-icon>
                 arrow_back
             </mat-icon>
         </button>
-        <h1>Registro empleado</h1>
+        <h1 class="h-[15px]">Registro empleado</h1>
     </div>
 
-    <mat-stepper linear #stepper>
+    <mat-stepper linear #stepper class="mt-10">
         <mat-step [stepControl]="firstFormGroup" [editable]="false">
             <form [formGroup]="firstFormGroup">
                 <ng-template matStepLabel>Paso 1</ng-template>
@@ -16,7 +16,7 @@
                 <app-register-completed [includePicture]="true" (dataForm)="getOneForm($event)" />
 
                 <div class="w-full flex items-center justify-center">
-                    <button mat-raised-button color="primary" (click)="goTwoStepper(stepper)">Siguiente</button>
+                    <button mat-raised-button color="primary"  (click)="goTwoStepper(stepper)">Siguiente</button>
                 </div>
             </form>
         </mat-step>
@@ -45,8 +45,8 @@
                     <p class="text-[16px]">Fecha de Ingreso: {{parseShortDate(preview.DateInit)}}</p>
                 </div>
                 <div class="securityKey">
-                    <p class="text-[16px]">Clave de seguridad: </p>
-                    <p class="text-[16px] text-center">{{preview.SecutiryKey}}</p>
+                    <p class="text-[20px]">Clave de seguridad: </p>
+                    <p class="text-[20px] text-center">{{preview.SecutiryKey}}</p>
                 </div>
             </div>
 

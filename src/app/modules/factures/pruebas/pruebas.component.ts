@@ -17,31 +17,31 @@ import { FormDialog } from 'src/app/core/interface/form-dialog/form-dialog';
   templateUrl: './pruebas.compoent.html',
   styleUrls: ['./pruebas.component.css'],
 })
-export class PruebasComponent { 
+export class PruebasComponent {
 
   displayedColumns: string[] = displayedColumns;
   columns: ColumnDef[] = columns;
   dataFormGeneric: FormDialog = dataform
   filter: string = '';
   dataSource: any;
-  
+
   constructor(
     private servicesService: ServicesService,
-    private location:Location,
+    private location: Location,
     private dialog: MatDialog,
     private filterState: FilterState
-  ){}
+  ) { }
   ngOnInit(): void {
     this.servicesService.getServices();
 
     this.servicesService.getData$()
-    .subscribe({
-      next: (services: Services[] | any) => {
-        if(services){
-          this.dataSource = services;
+      .subscribe({
+        next: (services: Services[] | any) => {
+          if (services) {
+            this.dataSource = services;
+          }
         }
-      }
-    })
+      })
   }
 
   applyFilter(event: Event) {
@@ -50,11 +50,10 @@ export class PruebasComponent {
   }
 
   getActionTable(getAction: EmitAction): void {
-    console.log(getAction);
-    if(getAction.action == 'Edit'){
+    if (getAction.action == 'Edit') {
       this.updatePrueba(getAction.data);
     }
-    if(getAction.action == 'Delete'){
+    if (getAction.action == 'Delete') {
       this.deletePrueba(getAction.data);
     }
   }
@@ -64,33 +63,28 @@ export class PruebasComponent {
     const descrip = this.dataFormGeneric.dataForm.find(formControl => formControl.formControlName == 'Description');
     const cost = this.dataFormGeneric.dataForm.find(formControl => formControl.formControlName == 'Cost');
     const avalible = this.dataFormGeneric.dataForm.find(formControl => formControl.formControlName == 'Avalible');
-    if(idService && descrip && cost && avalible){
+    if (idService && descrip && cost && avalible) {
       idService.value = prueba.IdService;
       descrip.value = prueba.Description;
       cost.value = prueba.Cost;
       avalible.value = prueba.Avalible;
     }
-    console.log(descrip);
-    
-    console.log(prueba);
-    
+    const diagloRef = this.dialog.open(FormGenericComponent, {
+      data: this.dataFormGeneric,
+      width: '30rem',
+      height: '20rem'
+    });
 
-      const diagloRef = this.dialog.open(FormGenericComponent,{
-        data: this.dataFormGeneric,
-        width: '30rem',
-        height: '20rem'
-      });
-  
-      diagloRef.afterClosed().subscribe(result => {
-        const updateService: EditService = {
-          IdService: result.IdService,
-          Description: result.Description,
-          Cost: result.Cost,
-          Avalible: result.Avalible,
-        }
-        this.updateService(updateService);
-      })
-    
+    diagloRef.afterClosed().subscribe(result => {
+      const updateService: EditService = {
+        IdService: result.IdService,
+        Description: result.Description,
+        Cost: result.Cost,
+        Avalible: result.Avalible,
+      }
+      this.updateService(updateService);
+    })
+
   }
 
   updateService(services: EditService): void {
@@ -106,7 +100,7 @@ export class PruebasComponent {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        console.log('Prueba eliminada', data.IdService);
+        // console.log('Prueba eliminada', data.IdService);
       }
     })
   }
