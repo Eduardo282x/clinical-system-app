@@ -88,7 +88,7 @@ export class PruebasComponent {
           Cost: result.Cost,
           Avalible: result.Avalible,
         }
-        this.updateService(updateService)
+        this.updateService(updateService);
       })
     
   }

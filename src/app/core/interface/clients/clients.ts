@@ -11,7 +11,7 @@ export interface OneClient {
 }
 
 export interface ClientsCompleted extends RegisterBase{
-    IdClients: string;
+    IdClients?: Number;
     Birhdate: Date;
 }
 

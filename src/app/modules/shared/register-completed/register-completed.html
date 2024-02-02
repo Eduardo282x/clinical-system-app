@@ -48,19 +48,19 @@
                 </div>
             </div>
             <div class="flex items-center justify-around w-full px-10">
-                <fieldset [disabled]="disableInput" class="flex items-center justify-center">
+                <fieldset class="flex items-center justify-center">
                     <span class="pb-5 mx-2 text-[15px]">Télefono Principal</span>
                     <mat-form-field appearance="outline">
                         <mat-label>Télefono Principal</mat-label>
-                        <input matInput type="number"  class="{{disableInput ? 'disableInputColor' : ''}}"  formControlName="PhonePrimary" (input)="validateMax($event, 12, 'PhonePrimary')">
+                        <input matInput type="number"   formControlName="PhonePrimary" (input)="validateMax($event, 12, 'PhonePrimary')">
                     </mat-form-field>
                 </fieldset>
 
-                <fieldset [disabled]="disableInput" class="flex items-center justify-center">
+                <fieldset class="flex items-center justify-center">
                     <span class="pb-5 mx-2 text-[15px]">Télefono Alterno</span>
                     <mat-form-field appearance="outline">
                         <mat-label>Télefono Alterno</mat-label>
-                        <input matInput type="number" class="{{disableInput ? 'disableInputColor' : ''}}"  formControlName="PhoneSecundary" (input)="validateMax($event, 12, 'PhoneSecundary')">
+                        <input matInput type="number"  formControlName="PhoneSecundary" (input)="validateMax($event, 12, 'PhoneSecundary')">
                     </mat-form-field>
                 </fieldset>
                     
@@ -73,20 +73,20 @@
 
             </div>
             <div class="flex items-center justify-start w-full px-10">
-                <fieldset [disabled]="disableInput" class="flex items-center justify-start">
+                <fieldset class="flex items-center justify-start">
                     <span class="pb-5 mx-2 text-[15px]">E-mail</span>
                     <mat-form-field appearance="outline" class="w-[40rem] px-6">
                         <mat-label>E-mail</mat-label>
-                        <input matInput formControlName="Email"  class="{{disableInput ? 'disableInputColor' : ''}}"  type="email">
+                        <input matInput formControlName="Email"   type="email">
                     </mat-form-field>
                 </fieldset>
             </div>
             <div class="flex items-center justify-start w-full px-10">
-                <fieldset [disabled]="disableInput" class="flex items-center justify-start">
+                <fieldset class="flex items-center justify-start">
                     <span class="pb-5 mx-2 text-[15px]">Dirección</span>
                     <mat-form-field appearance="outline" class="w-[40rem]">
                         <mat-label>Dirección</mat-label>
-                        <input matInput formControlName="Address" class="{{disableInput ? 'disableInputColor' : ''}}" >
+                        <input matInput formControlName="Address" >
                     </mat-form-field>
                 </fieldset>
             </div>

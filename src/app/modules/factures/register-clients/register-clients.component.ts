@@ -5,25 +5,32 @@ import { SnackBarComponent } from '../../shared/snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormGroup } from '@angular/forms';
 import { Location } from '@angular/common';
-import { ClientsCompleted } from 'src/app/core/interface/clients/clients';
+import { Clients, ClientsCompleted } from 'src/app/core/interface/clients/clients';
 import { BaseResponse } from 'src/app/core/interface/BaseResponse';
+import { EmitFormOne } from 'src/app/core/interface/form-generic/formGeneric';
+import { BaseComponent } from '../../base/base.component';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-register-clients',
   templateUrl: './register-clients.component.html',
   styleUrls: ['./register-clients.component.css'],
 })
-export class RegisterClientsComponent implements OnInit {
+export class RegisterClientsComponent  extends BaseComponent implements OnInit {
   
   constructor(
     private clientService: ClientsService,
     private location: Location,
     private _snackBar: MatSnackBar
-  ){}
+  ){
+    super();
+  }
 
   ngOnInit(): void {
-    this.clientService.getData$().subscribe({
-      next: (response: BaseResponse | any) => {
+    this.clientService.getResponse$()
+    .pipe(takeUntil(this.ngUnsubscribe))
+    .subscribe({
+      next: (response: BaseResponse) => {
         if(response){
           const dataSnackbar: Snackbar = {
             message: response.message,
@@ -43,18 +50,19 @@ export class RegisterClientsComponent implements OnInit {
     this.location.back();
   }
 
-  addClient(client: FormGroup): void {
-    const dataClient = {
-      NameFull: client.get('NameFull')?.value,
-      Identify: client.get('Prefix')?.value + client.get('Identify')?.value,
-      Birhdate: client.get('Birhdate')?.value,
-      Age: client.get('Age')?.value,
-      PhonePrimary: client.get('PhonePrimary')?.value,
-      PhoneSecundary: client.get('PhoneSecundary')?.value,
-      Email: client.get('Email')?.value,
-      Address: client.get('Address')?.value,
-      Sex: client.get('Sex')?.value,
+  getDataChild(client: EmitFormOne): void {
+    const dataClient: ClientsCompleted = {
+      NameFull: client.form.get('NameFull')?.value,
+      Identify: client.form.get('Prefix')?.value + client.form.get('Identify')?.value,
+      Birhdate: client.form.get('Birhdate')?.value,
+      Age: client.form.get('Age')?.value,
+      PhonePrimary: client.form.get('PhonePrimary')?.value,
+      PhoneSecundary: client.form.get('PhoneSecundary')?.value,
+      Email: client.form.get('Email')?.value,
+      Address: client.form.get('Address')?.value,
+      Sex: client.form.get('Sex')?.value,
+      IdClients: client.form.get('Id')?.value
     }
-    this.clientService.postClientAdd(dataClient);
+    this.clientService.postClient(dataClient);
   }
 }

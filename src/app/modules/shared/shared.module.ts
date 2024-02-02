@@ -35,6 +35,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/clientDialog.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { FormGenericComponent } from './form-generic/form-generic.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { FormEmployerPartTwoComponent } from '../employees/form-employer-part-two/form-employer-part-two.component';
 
 @NgModule({
@@ -79,6 +80,7 @@ import { FormEmployerPartTwoComponent } from '../employees/form-employer-part-tw
     MatSelectModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatSlideToggleModule,
   ],
   exports: [
     CardComponent,
@@ -117,6 +119,7 @@ import { FormEmployerPartTwoComponent } from '../employees/form-employer-part-tw
     MatSelectModule,
     MatDialogModule,
     MatAutocompleteModule,
+    MatSlideToggleModule,
   ],
 
   providers: [
