@@ -62,12 +62,13 @@ export class AnulationComponent implements OnInit{
     }
 
     if(getAction.action == 'Show'){
-      const setClient = {
+      const setClient: Clients = {
         IdClients: getAction.data.IdClients,
         IdFacture: getAction.data.IdFacture,
         FullName: getAction.data.NameFull,
         Identify:  getAction.data.Identify,
-        onlyShow: true
+        facture: true,
+        onlyShow: 'Anular'
       };
       localStorage.setItem('client', JSON.stringify(setClient));
       this._router.navigate(['/home/factures/facture'])
