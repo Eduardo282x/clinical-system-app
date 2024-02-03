@@ -2,7 +2,7 @@ import { ClientDialogComponent } from 'src/app/modules/factures/ClientDialog/cli
 import { ClientsService } from 'src/app/core/services/clients/clients.service';
 import { ResponseClient } from 'src/app/core/interface/BaseResponse';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BaseComponent } from '../../base/base.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -15,6 +15,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./factures.component.css'],
 })
 export class FacturesComponent extends BaseComponent implements OnInit, OnDestroy {
+
+  @Input() facture: boolean = true;
 
   formClient: FormGroup = new FormGroup({
     clientIdentify: new FormControl('',[Validators.required]),
@@ -38,11 +40,12 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
           if(response){
             if(response.success){
               const client = response.client;
-              client.onlyShow = false;
+              client.facture = this.facture;
+              client.onlyShow = client.facture ? 'Facturar' :  'Enviar';
               localStorage.setItem('client', JSON.stringify(client));
               setTimeout(() => {
                 this._router.navigate(['home/factures/facture'])
-              }, 1500);
+              }, 1000);
             }
   
             this.dialog.open(ClientDialogComponent,{
@@ -53,7 +56,7 @@ export class FacturesComponent extends BaseComponent implements OnInit, OnDestro
   
             setTimeout(() => {
               this.dialog.closeAll();
-            }, 1500);
+            }, 1000);
           }
         }
       })

@@ -30,6 +30,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
 
   client: Clients | any;
   user: DataUser | any;
+  showPayMethod: boolean = true;
   order: string ='000002';
 
   banks: Banks[] = [];
@@ -56,7 +57,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
   columns: ColumnDef[] = columns;
   dataSource: TempFacture[] = [];
   existData: boolean = false;
-  onlyShow: boolean = false;
+  onlyShow: string = '';
 
   myControl = new FormControl('');
   options: Services[] = [];
@@ -82,7 +83,9 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       this.onlyShow = this.client.onlyShow;
       this.factureService.getTempFacture(this.user.Id, this.client.IdClients, this.onlyShow ? this.client.IdFacture : null);
       
-      if(this.onlyShow){
+      this.showPayMethod = this.client.facture;
+
+      if(this.onlyShow == 'Anular'){
         this.displayedColumns = this.displayedColumns.filter(item => item != 'Edit' && item != 'Delete')
         this.columns = this.columns.filter(item => item.column != 'Edit' && item.column != 'Delete')
       }

@@ -1,10 +1,12 @@
 import { RegisterBase } from "../BaseResponse";
 
 export interface Clients { 
+    IdFacture?: number;
     IdClients: number;
     FullName: string;
     Identify: string;
-    onlyShow: boolean;
+    onlyShow: string;
+    facture: boolean;
 }
 export interface OneClient { 
     Identify: string;

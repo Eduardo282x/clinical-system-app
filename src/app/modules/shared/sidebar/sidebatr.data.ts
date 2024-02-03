@@ -2,7 +2,7 @@ import { Menu } from "src/app/core/interface/menuOption/MenuOption";
 
 export const menu: Menu[] = [
     {
-        title: 'Modulo de Empleados',
+        title: 'Modulo Empleados',
         icon: 'usuario-check',
         deploy: false,
         permisses: ['Dueño'],
@@ -28,7 +28,7 @@ export const menu: Menu[] = [
         ]
     },
     {
-        title: 'Modulo de Facturación',
+        title: 'Modulo Facturación',
         icon: 'usuario-pay',
         deploy: false,
         permisses: ['Dueño','Administrador'],
@@ -54,7 +54,7 @@ export const menu: Menu[] = [
         ]
     },
     {
-        title: 'Modulo de Exámenes',
+        title: 'Modulo Exámenes',
         icon: 'investigate',
         deploy: false,
         permisses: ['Dueño','Bioanalista'],

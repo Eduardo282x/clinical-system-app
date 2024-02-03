@@ -17,6 +17,7 @@ export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
   @Input() displayedColumns: string[] = [];
   @Input() columns: ColumnDef[] = [];
   @Input() dataTable: any;
+  @Input() left: boolean = true;
 
   @Output() actionTable = new EventEmitter<EmitAction>();
   pageSizeOptions: number[] = [4, 5, 10, 25, 100];
@@ -34,6 +35,8 @@ export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
   }
 
   ngOnInit(): void {
+    console.log(this.left);
+    
     this.cdr.detectChanges();
     this.labelPaginator.itemsPerPageLabel = 'Registros por pagina'
     if (this.dataTable != null) {

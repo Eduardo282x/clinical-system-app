@@ -53,6 +53,6 @@
 </div>
 
 <mat-paginator 
-    class="w-full flex items-center justify-end" 
+    class="{{left ? 'normalSide': 'leftSide'}}" 
     [pageSizeOptions]="pageSizeOptions"
 ></mat-paginator>
