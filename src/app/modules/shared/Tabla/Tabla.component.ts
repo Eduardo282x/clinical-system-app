@@ -36,8 +36,6 @@ export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
   }
 
   ngOnInit(): void {
-    console.log(this.left);
-    
     this.cdr.detectChanges();
     this.labelPaginator.itemsPerPageLabel = 'Registros por pagina'
     if (this.dataTable != null) {
