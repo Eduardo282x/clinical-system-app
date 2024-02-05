@@ -15,6 +15,8 @@ import { BodyFacture } from '../../interface/facture/facture';
 export class FactureService {
 
   private ENDPOINT = `${environment.url}facture`;
+  private ENDPOINTPRESUPUESTO = `${environment.url}presupuesto`;
+  private ENDPOINTFACTURAPDF = `${environment.url}facturepdf`;
   private ADD = `${this.ENDPOINT}/add`;
   private TEMP = `${this.ENDPOINT}/temp`;
   private BANKS = `${this.ENDPOINT}/banks`;
@@ -146,6 +148,30 @@ export class FactureService {
           // console.log('Complete');
       },
     })
+  };
+
+  getPresupuestoPDF(presupuesto: any): void {
+    this.http.post(this.ENDPOINTPRESUPUESTO, presupuesto, { responseType: 'blob' })
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Presupuesto.pdf`;
+        a.click();
+      })
+  };
+
+  getFacturaPDF(presupuesto: any): void {
+    this.http.post(this.ENDPOINTFACTURAPDF, presupuesto, { responseType: 'blob' })
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Factura.pdf`;
+        a.click();
+      })
   };
 
   updateTempFacture(newService: NewTempFacture, IdClient: number): void {

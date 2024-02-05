@@ -29,6 +29,9 @@ import { RegisterClientsComponent } from './modules/factures/register-clients/re
 import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
 import { OrdersComponent } from './modules/exams/orders/orders.component';
 import { ConfigOrdersComponent } from './modules/exams/config-orders/config-orders.component';
+import { StepperOrdersComponent } from './modules/exams/stepper-orders/stepper-orders.component';
+import { GetOrderDinamicComponent } from './modules/shared/get-order-dinamic/get-order-dinamic.component';
+import { ViewOrdersComponent } from './modules/view-orders/view-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +61,9 @@ import { ConfigOrdersComponent } from './modules/exams/config-orders/config-orde
     ConsultLoginComponent,
     OrdersComponent,
     ConfigOrdersComponent,
+    StepperOrdersComponent,
+    GetOrderDinamicComponent,
+    ViewOrdersComponent
   ],
   imports: [
     BrowserModule,

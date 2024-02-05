@@ -26,6 +26,9 @@ import { ChooseFactureComponent } from './modules/factures/choose-facture/choose
 import { ConsultLoginComponent } from './modules/authentication/consult-login/consult-login.component';
 import { OrdersComponent } from './modules/exams/orders/orders.component';
 import { ConfigOrdersComponent } from './modules/exams/config-orders/config-orders.component';
+import { StepperOrdersComponent } from './modules/exams/stepper-orders/stepper-orders.component';
+import { GetOrderDinamicComponent } from './modules/shared/get-order-dinamic/get-order-dinamic.component';
+import { ViewOrdersComponent } from './modules/view-orders/view-orders.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -33,6 +36,8 @@ const routes: Routes = [
   {path: 'recuperar', component: RecuperarComponent},
   {path: 'help', component: HelpUserComponent},  
   {path: 'consult', component: ConsultLoginComponent},  
+  {path: 'view-orders', component: ViewOrdersComponent},  
+  {path: 'confirm', component: GetOrderDinamicComponent},  
 
   {
     path: 'home', 
@@ -117,6 +122,10 @@ const routes: Routes = [
         {
           path:'config',
           component: ConfigOrdersComponent
+        },
+        {
+          path:'set-examns',
+          component: StepperOrdersComponent
         },
       ]
       },  

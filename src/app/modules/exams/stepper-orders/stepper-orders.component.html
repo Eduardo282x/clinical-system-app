@@ -1,0 +1,42 @@
+<div class="flex items-center justify-center w-full">
+
+    <mat-stepper linear #stepper class="matStepper">
+        <mat-step [stepControl]="stepOne" class="flex items-center justify-around w-full">
+            <ng-template matStepLabel>Bioquimica</ng-template>
+            <p>Bioquimica</p>
+            <p>Total de examenes {{totalExamns}}</p>
+            <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+        </mat-step>
+        <mat-step [stepControl]="stepTwo" >
+            <ng-template matStepLabel>Hematolofia</ng-template>
+            <div class="flex items-center justify-around w-full">
+                <p>Hematolofia</p>
+                <ng-container *ngIf="dataExamns">
+                    <div class="w-full">
+                        <app-tabla 
+                        [displayedColumns]="displayedColumns" 
+                        [columns]="columns" 
+                        [dataTable]="dataExamns"
+                        (actionTable)="getActionTable($event)" 
+                        [left]="true"/>
+                    </div>
+                </ng-container>
+                <button mat-raised-button color="primary"  (click)="backStepper(stepper)">Atras</button>
+                <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+            </div>
+        </mat-step>
+        <mat-step [stepControl]="stepThree" class="flex items-center justify-around w-full">
+            <ng-template matStepLabel>Heces Directas</ng-template>
+            <p>Heces Directas</p>
+            <button mat-raised-button color="primary"  (click)="backStepper(stepper)">Atras</button>
+            <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+        </mat-step>
+        <mat-step [stepControl]="stepFord" class="flex items-center justify-around w-full">
+            <ng-template matStepLabel>Uroanalisis</ng-template>
+            <p>Uroanalisis</p>
+            <button mat-raised-button color="primary"  (click)="backStepper(stepper)">Atras</button>
+            <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+        </mat-step>
+    </mat-stepper>
+
+</div>

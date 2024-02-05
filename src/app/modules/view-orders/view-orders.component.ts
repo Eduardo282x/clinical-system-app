@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
-import { columns, displayedColumns } from './orders.data';
+
 import { OrdersService } from 'src/app/core/services/orders/orders.service';
 import { takeUntil } from 'rxjs';
-import { BaseComponent } from '../../base/base.component';
+
 import { Orders } from 'src/app/core/interface/orders/orders';
 import { Location } from '@angular/common';
 import { FilterState } from 'src/app/core/state/tabla/filter.state';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../base/base.component';
+import { columns, displayedColumns } from './view-orders.data';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
-  selector: 'app-orders',
-  templateUrl:'./orders.component.html',
-  styleUrls: ['./orders.component.css'],
+  selector: 'app-view-orders',
+  templateUrl:'./view-orders.component.html',
+  styleUrls: ['./view-orders.component.css'],
 })
-export class OrdersComponent extends BaseComponent implements OnInit { 
+export class ViewOrdersComponent extends BaseComponent implements OnInit { 
 
   dataOrders: Orders[] = [];
   displayedColumns: string[] = displayedColumns;
@@ -25,19 +29,28 @@ export class OrdersComponent extends BaseComponent implements OnInit {
     private orderService: OrdersService,
     private location: Location,
     private filterState: FilterState,
-    private route: Router
+    private route: Router,
+    private http: HttpClient,
   ){
     super()
   }
 
   ngOnInit(): void {
+
     this.orderService.getOrders();
 
     this.orderService.getData$()
     .pipe(takeUntil(this.ngUnsubscribe))
     .subscribe({
       next:(response: Orders[]) => {
-        this.dataOrders = response;
+        this.dataOrders = [
+            {
+                IdOrders: 1,
+                IdFacture: 42,
+                Identify: "V29986990",
+                NameFull: "Aixa"
+            }
+        ];
       }
     })
   }
@@ -52,7 +65,12 @@ export class OrdersComponent extends BaseComponent implements OnInit {
   }
 
   getActionTable(event: any): void {
-    console.log(event);
-    this.route.navigate(['home/examenes/set-examns'])
+    this.http.get('assets/files/MODELO DE EXAMENES HINESTROZA FERRER C.A.pdf', { responseType: 'blob' }).subscribe((response) => {
+      const url = window.URL.createObjectURL(response);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Examenes.pdf';
+      a.click();
+    });
   }
 }

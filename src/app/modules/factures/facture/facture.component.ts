@@ -254,8 +254,20 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       Ref: this.dataTransferForm.get('Ref')?.value,
     };
 
+    const presupuesto = {
+      IdClient: this.client.IdClients,
+      IdUser: this.user.Id,
+      IdFacture: Number(this.order)
+    }
+
     if(this.onlyShow == 'Facturar'){
-      this.factureService.postAddFacture(addFacture);
+      // this.factureService.postAddFacture(addFacture);
+      this.factureService.getFacturaPDF(presupuesto);
+      // this._router.navigate(['home/factures/choose-facture'])
+    }
+
+    if(this.onlyShow == 'Enviar'){
+      this.factureService.getPresupuestoPDF(presupuesto);
       this._router.navigate(['home/factures/choose-facture'])
     }
   }
