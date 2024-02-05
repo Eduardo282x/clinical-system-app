@@ -5,7 +5,13 @@ export interface FormGeneric {
     formControlName: string;
     type: string;
     value?: any;
+    options?: DataSelect[];
     class?: string;
+}
+
+export interface DataSelect {
+    label: string;
+    value: string;
 }
 
 export interface EmitFormOne {
