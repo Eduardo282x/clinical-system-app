@@ -1,5 +1,5 @@
 import { CommonModule, Location } from '@angular/common';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, map, startWith, takeUntil } from 'rxjs';
 import { Clients } from 'src/app/core/interface/clients/clients';
@@ -8,7 +8,7 @@ import { ServicesService } from 'src/app/core/services/services/services.service
 import { BaseComponent } from '../../base/base.component';
 import { Services } from 'src/app/core/interface/services/services';
 import { ColumnDef } from 'src/app/core/interface/shared/columnDef';
-import { columns, dataform, displayedColumns } from './facture.data';
+import { columns, columnsPres, dataform, displayedColumns, displayedColumnsPres } from './facture.data';
 import { FactureService } from 'src/app/core/services/factures/facture.service';
 import { GetFactures, NewTempFacture, TempFacture, TotalTransfer } from 'src/app/core/interface/facture/tempFacture';
 import { DataUser } from 'src/app/core/interface/BaseResponse';
@@ -20,6 +20,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { Banks, Payments } from 'src/app/core/interface/facture/bank';
 import { BodyFacture } from 'src/app/core/interface/facture/facture';
 import { Router } from '@angular/router';
+import { TablaComponent } from '../../shared/Tabla/Tabla.component';
 
 @Component({
   selector: 'app-facture',
@@ -28,6 +29,7 @@ import { Router } from '@angular/router';
 })
 export class FactureComponent extends BaseComponent implements OnInit, AfterViewInit{ 
 
+  @ViewChild(TablaComponent) tablaData!: TablaComponent;
   client: Clients | any;
   user: DataUser | any;
   showPayMethod: boolean = true;
@@ -35,6 +37,7 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
 
   banks: Banks[] = [];
   paymenys: Payments[] = [];
+  dataPresupuesto: any;
 
   dataTransferForm: FormGroup = new FormGroup({
     Phone:    new FormControl('',Validators.required),
@@ -53,8 +56,10 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
 
 
   displayedColumns: string[] = displayedColumns;
+  displayedColumnsPres: string[] = displayedColumnsPres;
   dataFormGeneric: FormDialog = dataform;
   columns: ColumnDef[] = columns;
+  columnsPres: ColumnDef[] = columnsPres;
   dataSource: TempFacture[] = [];
   existData: boolean = false;
   onlyShow: string = '';
@@ -203,7 +208,14 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
   }
 
   nextStepper(stepper: MatStepper): void {
+    if(this.onlyShow == 'Enviar'){
+      this.tablaData.getAllData();
+    }
     stepper.next();
+  }
+
+  getTablaData(event: any): void{
+    this.dataPresupuesto = event
   }
 
   backStepper(stepper: MatStepper): void {
@@ -241,7 +253,10 @@ export class FactureComponent extends BaseComponent implements OnInit, AfterView
       IdPayment: this.dataTransferForm.get('PayMent')?.value,
       Ref: this.dataTransferForm.get('Ref')?.value,
     };
-    this.factureService.postAddFacture(addFacture);
-    this._router.navigate(['home/factures/choose-facture'])
+
+    if(this.onlyShow == 'Facturar'){
+      this.factureService.postAddFacture(addFacture);
+      this._router.navigate(['home/factures/choose-facture'])
+    }
   }
 }

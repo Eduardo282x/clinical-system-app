@@ -44,7 +44,7 @@ mat-icon{
 }
 
 .changeBackground{
-  background-color: aqua;
+  background-color: #fff;
   /* background-image: url('../../../../assets/consultBackground.jpg'); */
   background-position: center;
   background-repeat: no-repeat;

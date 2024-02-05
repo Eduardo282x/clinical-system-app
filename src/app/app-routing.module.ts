@@ -24,6 +24,8 @@ import { ConfigurationComponent } from './modules/factures/Configuration/Configu
 import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
 import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
 import { ConsultLoginComponent } from './modules/authentication/consult-login/consult-login.component';
+import { OrdersComponent } from './modules/exams/orders/orders.component';
+import { ConfigOrdersComponent } from './modules/exams/config-orders/config-orders.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -105,7 +107,19 @@ const routes: Routes = [
           }
         ]
       },  
-      {path: 'examenes', component: ExamsComponent},  
+      {path: 'examenes', 
+      component: ExamsComponent,
+      children: [
+        {
+          path:'orders',
+          component: OrdersComponent
+        },
+        {
+          path:'config',
+          component: ConfigOrdersComponent
+        },
+      ]
+      },  
     ]
   },
   

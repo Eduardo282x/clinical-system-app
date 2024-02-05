@@ -27,6 +27,8 @@ import { BudgetComponent } from './modules/factures/budget/budget.component';
 import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
 import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
 import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
+import { OrdersComponent } from './modules/exams/orders/orders.component';
+import { ConfigOrdersComponent } from './modules/exams/config-orders/config-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,9 @@ import { ChooseFactureComponent } from './modules/factures/choose-facture/choose
     ConfigurationComponent,
     RegisterClientsComponent,
     ChooseFactureComponent,
-    ConsultLoginComponent
+    ConsultLoginComponent,
+    OrdersComponent,
+    ConfigOrdersComponent,
   ],
   imports: [
     BrowserModule,

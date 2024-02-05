@@ -21,7 +21,7 @@
         <mat-form-field appearance="outline" class="inputCustom">
             <input matInput formControlName="clientIdentify" type="number">
         </mat-form-field>
-        <button mat-fab type="submit" class="ml-10" color="primary">
+        <button mat-fab type="submit" [disabled]="!formClient.valid" class="ml-10" color="primary">
             <mat-icon>search</mat-icon>
         </button>
     </form>

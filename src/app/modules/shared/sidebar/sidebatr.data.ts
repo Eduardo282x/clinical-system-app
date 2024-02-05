@@ -62,14 +62,14 @@ export const menu: Menu[] = [
             {
                 title: 'Ordenes pendientes',
                 icon: 'facturas',
-                redirect: '/home/factures/choose-facture',
-                permisses: ['Dueño','Administrador','Bioanalista'],
+                redirect: '/home/examenes/orders',
+                permisses: ['Dueño','Bioanalista'],
             },
             {
                 title: 'Configuración',
                 icon: 'configuracion',
-                redirect: '/home/factures/budget',
-                permisses: ['Dueño','Administrador','Bioanalista'],
+                redirect: '/home/examenes/config',
+                permisses: ['Dueño','Bioanalista'],
             },
         ]
     },

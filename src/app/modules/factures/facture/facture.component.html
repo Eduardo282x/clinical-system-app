@@ -35,8 +35,13 @@
                 </div>
                 <div class="flex items-center justify-center w-full">
                     <ng-container *ngIf="existData">
-                        <app-tabla [displayedColumns]="displayedColumns" [columns]="columns" [dataTable]="dataSource"
-                            (actionTable)="getActionTable($event)" [left]="false"/>
+                        <app-tabla 
+                        [displayedColumns]="displayedColumns" 
+                        [columns]="columns" 
+                        [dataTable]="dataSource"
+                        (actionTable)="getActionTable($event)" 
+                        (allData)="getTablaData($event)" 
+                        [left]="false"/>
                     </ng-container>
                 </div>
                 <div class="btnRightDown">
@@ -91,6 +96,13 @@
                             </mat-form-field>
                         </div>
                     </form>
+                </ng-container>
+
+                <ng-container *ngIf="dataPresupuesto">
+                    <div class="h-80 overflow-y-auto w-full mb-10">
+                        <app-tabla [displayedColumns]="displayedColumnsPres" [columns]="columnsPres" [dataTable]="dataSource"
+                        [left]="true"/>
+                    </div>
                 </ng-container>
 
                 <div class="flex items-center justify-between w-full">
