@@ -23,6 +23,7 @@ export class StepperOrdersComponent  extends BaseComponent implements OnInit {
   stepTwo: FormGroup = new FormGroup({})
   stepThree: FormGroup = new FormGroup({})
   stepFord: FormGroup = new FormGroup({})
+  stepFive: FormGroup = new FormGroup({})
   dataExamns: Examns[] = dataExamns;
 
   displayedColumns: string[] = displayedColumns;
@@ -44,6 +45,7 @@ export class StepperOrdersComponent  extends BaseComponent implements OnInit {
   columnsPreview: ColumnDef[] = columnsPreview;
 
   dataFormGeneric: FormDialog = dataform;
+  disabledBtnFinish: boolean = true;
 
   totalExamns: number= 18;
   constructor(
@@ -75,7 +77,11 @@ export class StepperOrdersComponent  extends BaseComponent implements OnInit {
     stepper.next();
   }
   goStepperFinish(stepper: MatStepper): void {
+
     this.dataComplete = this.dataExamns.concat(this.dataUronanalisis,this.dataHeces,this.dataBio);
+    this.disabledBtnFinish = this.dataComplete.some(item => item.Result == '');
+    console.log(this.disabledBtnFinish);
+    
     console.log(this.dataComplete);
     
     stepper.next();
@@ -90,8 +96,10 @@ export class StepperOrdersComponent  extends BaseComponent implements OnInit {
 
   getActionTable(data: any, table: string): void{
     const IdExamen = this.dataFormGeneric.dataForm.find(formControl => formControl.formControlName == 'Id');
+    const resultExamn = this.dataFormGeneric.dataForm.find(formControl => formControl.formControlName == 'Result');
 
-    if(IdExamen){
+    if(IdExamen && resultExamn){
+      resultExamn.value = data.data.Result;
       IdExamen.value = data.data.Id;
     }
     const diagloRef = this.dialog.open(FormGenericComponent, {
