@@ -38,8 +38,6 @@ export class AsistentComponent implements OnInit {
           if(asistent){
             this.existAssistent = true;
             this.employeAssistent = asistent;
-            console.log(asistent);
-            console.log(this.employeAssistent);
           }
           else{
             this.existAssistent = false;

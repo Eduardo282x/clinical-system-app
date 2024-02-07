@@ -15,7 +15,6 @@ export class BannerComponent implements OnInit {
 
   @ViewChild(SidebarComponent) sidebar!: SidebarComponent;
   widthMenuChild: string = 'closeSidebar';
-  openMenu: boolean = true;
 
   banner: Banner = {
     nameModule: '',
@@ -48,8 +47,7 @@ export class BannerComponent implements OnInit {
   }
 
   handleMenu(): void {
-    this.openMenu = !this.openMenu;
-    this.widthMenuChild = this.openMenu ? 'closeSidebar' : '';
+    this.widthMenuChild = 'closeSidebar' ? '' : 'closeSidebar';
   }
 
   redirect(): void{
@@ -63,7 +61,6 @@ export class BannerComponent implements OnInit {
       confirmButtonText: "Si",
       denyButtonText: `No`
     }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         this.loginService.logout();
         this._router.navigate(['/'])

@@ -47,7 +47,6 @@ export class ClientsComponent implements OnInit{
   }
 
   getActionTable(getAction: EmitAction): void {
-    console.log(getAction);
     if(getAction.action == 'Delete'){
       this.deleteClient(getAction.data)
     }
@@ -68,7 +67,6 @@ export class ClientsComponent implements OnInit{
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        console.log('cliente eliminada', data.IdClients);
         const client = {Id: data.IdClients}
         this.clientService.deleteClient(client);
       }

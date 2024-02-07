@@ -57,18 +57,18 @@ export class AnulationComponent implements OnInit{
   }
 
   getActionTable(getAction: EmitAction): void {
-    console.log(getAction);
     if(getAction.action == 'Delete'){
       this.deleteClient(getAction.data)
     }
 
     if(getAction.action == 'Show'){
-      const setClient = {
+      const setClient: Clients = {
         IdClients: getAction.data.IdClients,
         IdFacture: getAction.data.IdFacture,
         FullName: getAction.data.NameFull,
         Identify:  getAction.data.Identify,
-        onlyShow: true
+        facture: true,
+        onlyShow: 'Anular'
       };
       localStorage.setItem('client', JSON.stringify(setClient));
       this._router.navigate(['/home/factures/facture'])
@@ -85,7 +85,6 @@ export class AnulationComponent implements OnInit{
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         const facture = {IdFacture: data.IdFacture} 
-        console.log('cliente eliminada', facture);
         const getFacture = {
           IdUser: this.user.Id,
           IdClient: this.client.IdClients,

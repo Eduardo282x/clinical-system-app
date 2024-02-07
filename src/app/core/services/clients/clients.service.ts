@@ -5,6 +5,7 @@ import { environment } from 'src/env/enviroment';
 import { ClientsState } from '../../state/clients/clients.state';
 import { Clients, ClientsCompleted, OneClient } from '../../interface/clients/clients';
 import { registerGeneric } from '../../interface/form-generic/formGeneric';
+import { BaseResponseState } from '../../state/base-response';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,11 @@ export class ClientsService {
   private GETALLCLIENT = `${this.ENDPOINT}/oneAll`;
   private DELETECLIENT = `${this.ENDPOINT}/delete`;
   private ADDCLIENT = `${this.ENDPOINT}/add`;
+  private EDITCLIENT = `${this.ENDPOINT}/update`;
   private unsubscribe = new Subject<void>;
   
   constructor(
+    private stateReponse: BaseResponseState,
     private state: ClientsState,
     private http: HttpClient,
   ) { }
@@ -26,6 +29,10 @@ export class ClientsService {
   getData$(): Observable<Clients | ClientsCompleted | any>{
     return this.state.getState$();
   }
+  getResponse$(): Observable<Clients | ClientsCompleted | any>{
+    return this.stateReponse.getState$();
+  }
+
   clearData(): void{
     this.state.clearState();
   }
@@ -46,12 +53,12 @@ export class ClientsService {
     })
   }
 
-  postClientAdd(client: registerGeneric): void {
-    this.http.post<ClientsState>(this.ADDCLIENT,client)
+  postClient(client: ClientsCompleted): void {
+    this.http.post<ClientsState>(client.IdClients ? this.EDITCLIENT : this.ADDCLIENT, client)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        this.state.setState(response);
+        this.stateReponse.setState(response);
       },
       error(err) {
           console.log(err);

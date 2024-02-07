@@ -17,7 +17,7 @@ import { RegisterEmployeComponent } from './modules/employees/register-employe/r
 import { ShowEmployesComponent } from './modules/employees/showEmployes/showEmployes.component';
 import { FormRegisterComponent } from './modules/shared/formRegister/formRegister.component';
 import { BaseFacturesComponent } from './modules/factures/baseFactures/baseFactures.component';
-
+import { ConsultLoginComponent } from './modules/authentication/consult-login/consult-login.component';
 import { FacturesComponent } from './modules/factures/factures/factures.component';
 import { ClientsComponent } from './modules/factures/clients/clients.component';
 import { AnulationComponent } from './modules/factures/anulation/anulation.component';
@@ -27,6 +27,11 @@ import { BudgetComponent } from './modules/factures/budget/budget.component';
 import { ConfigurationComponent } from './modules/factures/Configuration/Configuration.component';
 import { RegisterClientsComponent } from './modules/factures/register-clients/register-clients.component';
 import { ChooseFactureComponent } from './modules/factures/choose-facture/choose-facture.component';
+import { OrdersComponent } from './modules/exams/orders/orders.component';
+import { ConfigOrdersComponent } from './modules/exams/config-orders/config-orders.component';
+import { StepperOrdersComponent } from './modules/exams/stepper-orders/stepper-orders.component';
+import { GetOrderDinamicComponent } from './modules/shared/get-order-dinamic/get-order-dinamic.component';
+import { ViewOrdersComponent } from './modules/view-orders/view-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +57,13 @@ import { ChooseFactureComponent } from './modules/factures/choose-facture/choose
     BudgetComponent,
     ConfigurationComponent,
     RegisterClientsComponent,
-    ChooseFactureComponent
+    ChooseFactureComponent,
+    ConsultLoginComponent,
+    OrdersComponent,
+    ConfigOrdersComponent,
+    StepperOrdersComponent,
+    GetOrderDinamicComponent,
+    ViewOrdersComponent
   ],
   imports: [
     BrowserModule,

@@ -16,6 +16,7 @@
 
 .helloStepper{
   display: none !important;
+  position: relative;
   background: blue !important;
 }
 
@@ -31,4 +32,13 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
+}
+
+.btnRightDown{
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }

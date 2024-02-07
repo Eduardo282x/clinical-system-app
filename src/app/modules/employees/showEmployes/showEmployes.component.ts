@@ -67,7 +67,7 @@ export class ShowEmployesComponent implements OnInit{
 
       this.employesService.getDataEmploye$().subscribe({
         next: (response: any) => {
-          console.log(response);
+          // console.log(response);
           
         }
       })

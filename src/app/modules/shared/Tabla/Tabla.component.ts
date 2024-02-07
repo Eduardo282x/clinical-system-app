@@ -17,8 +17,10 @@ export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
   @Input() displayedColumns: string[] = [];
   @Input() columns: ColumnDef[] = [];
   @Input() dataTable: any;
+  @Input() left: boolean = true;
 
   @Output() actionTable = new EventEmitter<EmitAction>();
+  @Output() allData = new EventEmitter<any>();
   pageSizeOptions: number[] = [4, 5, 10, 25, 100];
   dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
 
@@ -44,7 +46,7 @@ export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
 
     this.filterState.getState$().subscribe({
       next: (filter: any) => {
-        if (filter) {
+        if (filter || filter == '') {
           this.dataSource.filter = filter.trim().toLowerCase();
           if (this.dataSource.paginator) {
             this.dataSource.paginator.firstPage();
@@ -67,6 +69,10 @@ export class TablaComponent implements OnInit, AfterViewInit, OnChanges{
     this.dataSource = new MatTableDataSource<any>(this.dataTable);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  getAllData(): void {
+    this.allData.emit(this.dataTable);
   }
 
   getDataRows(data: any, columnData: string): void {

@@ -12,6 +12,7 @@ import { UsersService } from 'src/app/core/services/users/users.service';
 import { takeUntil } from 'rxjs';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
 import { Router } from '@angular/router';
+import { EmitFormOne } from 'src/app/core/interface/form-generic/formGeneric';
 
 @Component({
   selector: 'app-register-employe',
@@ -110,10 +111,10 @@ export class RegisterEmployeComponent extends BaseComponent implements OnInit {
     }
   }
 
-  getOneForm(formOne: FormGroup): void {
-    this.formOneLocal = formOne;
+  getOneForm(formOne: EmitFormOne): void {
+    this.formOneLocal = formOne.form;
     if(formOne){
-      this.validFirst = formOne.valid;
+      this.validFirst = formOne.form.valid;
     }
   }
 

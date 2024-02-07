@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientsCompleted } from 'src/app/core/interface/clients/clients';
 import { EmployesComplete } from 'src/app/core/interface/employes/employe';
-import { FormGeneric, registerGeneric } from 'src/app/core/interface/form-generic/formGeneric';
+import { EmitFormOne, FormGeneric, registerGeneric } from 'src/app/core/interface/form-generic/formGeneric';
 import { ClientsService } from 'src/app/core/services/clients/clients.service';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
 
@@ -15,13 +15,15 @@ import { EmployesService } from 'src/app/core/services/employes/employes.service
 export class RegisterCompletedComponent implements OnInit{ 
   
   @Input() includePicture: any;
-  @Output() dataForm = new EventEmitter<FormGroup>();
+  @Output() dataForm = new EventEmitter<EmitFormOne>();
   disableInput: boolean = false;
+  isClient: boolean = false;
 
   registerGeneric: FormGroup = new FormGroup({
+    Id: new FormControl(''),
     NameFull: new FormControl('', [Validators.required]),
     Prefix: new FormControl('', [Validators.required]),
-    Identify: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(10)]),
+    Identify: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]),
     Birhdate: new FormControl('', [Validators.required]),
     Age: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]),
     PhonePrimary: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(12)]),
@@ -41,9 +43,14 @@ export class RegisterCompletedComponent implements OnInit{
       this.clientService.getData$().subscribe({
         next: (response: ClientsCompleted) => {
           if(response){
+            this.disableInput = true;
+            this.isClient = true;
+            this.registerGeneric.controls['Id'].setValue(response.IdClients)
             this.registerGeneric.controls['NameFull'].setValue(response.NameFull)
-            this.registerGeneric.controls['Prefix'].setValue(response.Identify.charAt(0))
-            this.registerGeneric.controls['Identify'].setValue(response.Identify.substring(1))
+            if(response.Identify){
+              this.registerGeneric.controls['Prefix'].setValue(response.Identify.charAt(0))
+              this.registerGeneric.controls['Identify'].setValue(response.Identify.substring(1))
+            }
             this.registerGeneric.controls['Birhdate'].setValue(response.Birhdate)
             this.registerGeneric.controls['Age'].setValue(response.Age)
             this.registerGeneric.controls['PhonePrimary'].setValue(response.PhonePrimary)
@@ -57,12 +64,15 @@ export class RegisterCompletedComponent implements OnInit{
 
       this.employeService.getDataEmploye$().subscribe({
         next: (response : EmployesComplete) => {
-          console.log(response);
           if(response){
             this.disableInput = true;
+            this.isClient = false;
+            this.registerGeneric.controls['Id'].setValue(response.Id)
             this.registerGeneric.controls['NameFull'].setValue(response.NameFull)
-            this.registerGeneric.controls['Prefix'].setValue(response.Identify.charAt(0))
-            this.registerGeneric.controls['Identify'].setValue(response.Identify.substring(1))
+            if(response.Identify){
+              this.registerGeneric.controls['Prefix'].setValue(response.Identify.charAt(0))
+              this.registerGeneric.controls['Identify'].setValue(response.Identify.substring(1))
+            }
             this.registerGeneric.controls['Birhdate'].setValue(response.Birthdate)
             this.registerGeneric.controls['Age'].setValue(response.Age)
             this.registerGeneric.controls['PhonePrimary'].setValue(response.PhonePrimary)
@@ -84,7 +94,17 @@ export class RegisterCompletedComponent implements OnInit{
   }
 
   sendDataForm(): void {
-    this.dataForm.emit(this.registerGeneric);
+    if(this.registerGeneric.valid){
+
+      const send: EmitFormOne= {
+        form: this.registerGeneric,
+        action: !this.disableInput ? 'add' : 'edit'
+      };
+      this.dataForm.emit(send);
+      if(this.isClient){
+        this.location.back();
+      }
+    }
   }
   
   goBack(): void {

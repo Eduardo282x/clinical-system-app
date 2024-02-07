@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+
+mat-icon{
+    scale: 1.8;
+    margin-right: 1rem;
+}
+
+.logoutText{
+  font-size: 1.5rem;
+  margin: auto 1rem;
+}
+
+.titleMargin{
+  margin: 2rem 0 !important;
+}
+

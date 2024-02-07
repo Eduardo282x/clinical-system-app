@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { takeUntil } from 'rxjs';
 import { EmployesService } from 'src/app/core/services/employes/employes.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-see-asistent',
@@ -9,7 +11,7 @@ import { EmployesService } from 'src/app/core/services/employes/employes.service
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class SeeAsistentComponent implements OnInit {
+export class SeeAsistentComponent extends BaseComponent implements OnInit {
 
   minDate: Date = new Date();
   maxDate: Date = new Date();
@@ -21,7 +23,9 @@ export class SeeAsistentComponent implements OnInit {
 
   constructor(
     private employeService: EmployesService
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnInit(): void {
       const currentYear = new Date().getFullYear();
@@ -31,7 +35,7 @@ export class SeeAsistentComponent implements OnInit {
   }
 
   getAssistent(): void {
-    this.employeService.getAssistent(this.assistentForm.value);
+    this.employeService.getAssistentPDF(this.assistentForm.value);
   }
 
 }

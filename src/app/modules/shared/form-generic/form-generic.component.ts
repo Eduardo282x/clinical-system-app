@@ -10,6 +10,8 @@ import { FormDialog } from 'src/app/core/interface/form-dialog/form-dialog';
 })
 export class FormGenericComponent implements OnInit{
 
+  isChecked: boolean = false;
+
   formGeneric: FormGroup = new FormGroup({
 
   });
@@ -19,7 +21,8 @@ export class FormGenericComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    console.log(this.data.dataForm);
+    const check = this.data.dataForm.find(form => form.type == 'side');
+    this.isChecked = check?.value
     
     this.data.dataForm.map(form => {
       this.formGeneric.addControl(form.formControlName, new FormControl(form.value ? form.value : ''))

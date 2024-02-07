@@ -15,6 +15,8 @@ import { BodyFacture } from '../../interface/facture/facture';
 export class FactureService {
 
   private ENDPOINT = `${environment.url}facture`;
+  private ENDPOINTPRESUPUESTO = `${environment.url}presupuesto`;
+  private ENDPOINTFACTURAPDF = `${environment.url}facturepdf`;
   private ADD = `${this.ENDPOINT}/add`;
   private TEMP = `${this.ENDPOINT}/temp`;
   private BANKS = `${this.ENDPOINT}/banks`;
@@ -71,7 +73,7 @@ export class FactureService {
     .subscribe({
       next: (response: any) => {
         if(response){
-          console.log(response);
+          // console.log(response);
         }
       },
       error(err) {
@@ -136,7 +138,7 @@ export class FactureService {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        console.log(response);
+        // console.log(response);
       },
       error(err) {
           console.log(err);
@@ -148,12 +150,36 @@ export class FactureService {
     })
   };
 
+  getPresupuestoPDF(presupuesto: any): void {
+    this.http.post(this.ENDPOINTPRESUPUESTO, presupuesto, { responseType: 'blob' })
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Presupuesto.pdf`;
+        a.click();
+      })
+  };
+
+  getFacturaPDF(presupuesto: any): void {
+    this.http.post(this.ENDPOINTFACTURAPDF, presupuesto, { responseType: 'blob' })
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Factura.pdf`;
+        a.click();
+      })
+  };
+
   updateTempFacture(newService: NewTempFacture, IdClient: number): void {
     this.http.post<any>(this.EDITTEMP, newService)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        console.log(response);
+        // console.log(response);
       },
       error(err) {
           console.log(err);
@@ -170,13 +196,13 @@ export class FactureService {
     .pipe(takeUntil(this.unsubscribe))
     .subscribe({
       next: (response: any) => {
-        console.log(response);
+        // console.log(response);
       },
       error(err) {
           console.log(err);
       },
       complete:() => {
-        console.log(newService);
+        // console.log(newService);
         
         this.getTempFacture(newService.IdUser, IdClient);
           // console.log('Complete');

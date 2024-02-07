@@ -56,7 +56,6 @@ export class FormEmployerPartTwoComponent extends BaseComponent implements OnIni
 
       this.employesService.getDataEmploye$().subscribe({
         next: (response : any) => {
-          console.log(response);
           if(response){
             this.disableInput = true;
             this.formEmployePartTwo.controls['rol'].setValue(response.Rol);
@@ -65,9 +64,6 @@ export class FormEmployerPartTwoComponent extends BaseComponent implements OnIni
             this.formEmployePartTwo.controls['securityKey'].setValue(response.SecurityKey);
             this.formEmployePartTwo.controls['medicData'].setValue(response.MedicalData);
           }
-
-          console.log(this.formEmployePartTwo.value);
-          
         }
       })
   }

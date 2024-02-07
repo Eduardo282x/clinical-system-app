@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+
+.matStepper{
+  width: 100%;
+}
+
+.tabla {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: auto;
+}
+.titleTable{
+  border: 1px solid black;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: center;
+}
+
+
+th {
+  background-color: #ddd;
+}
+
+.fixTextExamns{
+  font-weight: bold;
+  font-size: 20px;
+  margin: 5rem 1rem ;
+}

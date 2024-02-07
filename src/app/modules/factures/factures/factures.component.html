@@ -11,10 +11,17 @@
     <p class="text-[#4758b8] text-left w-2/6 font-bold text-[20px]">Ingrese cedula del cliente:</p>
 
     <form [formGroup]="formClient" (submit)="onSubmitClient()" class="flex justify-center items-center w-full btnSeacrh">
+        <mat-form-field appearance="outline" class="h-[50px] w-[5rem]">
+            <mat-select formControlName="clientPrefix">
+                <mat-option value="V">V</mat-option>
+                <mat-option value="E">E</mat-option>
+                <mat-option value="J">J</mat-option>
+            </mat-select>
+        </mat-form-field>
         <mat-form-field appearance="outline" class="inputCustom">
             <input matInput formControlName="clientIdentify" type="number">
         </mat-form-field>
-        <button mat-fab type="submit" class="ml-10" color="primary">
+        <button mat-fab type="submit" [disabled]="!formClient.valid" class="ml-10" color="primary">
             <mat-icon>search</mat-icon>
         </button>
     </form>

@@ -1,0 +1,71 @@
+.formClass{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 2px solid #000;
+  background-color: #c3d4d2;
+  opacity: .9;
+  border-radius: 2rem;
+  padding: 2rem 1.5rem;
+  width: 40vw;
+}
+
+@media only screen and (max-width: 768px) {
+  .formClass{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid #000;
+    background-color: #c3d4d2;
+    opacity: .9;
+    border-radius: 2rem;
+    width: 100%;
+  }
+
+  .inputYellow{
+    width: 100% !important;
+    font-size: 14px;
+  }
+}
+
+.img{
+  background-image: url('../../../../assets/Logos/Logo-removebg-preview.png');
+  width: 8rem;
+  height: 8rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 2rem;
+}
+
+.formColumun{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 2rem;
+  height: 35vh;
+}
+
+.inputYellow{
+  width: 20vw;
+  font-size: 14px;
+}
+.inputForm p{
+  margin-top: -1rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+mat-icon{
+  scale: 1.5;
+}
+
+.changeBackground{
+  background-color: #fff;
+  /* background-image: url('../../../../assets/consultBackground.jpg'); */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -8,12 +8,26 @@
   border: 2px solid #000;
 }
 
+@media only screen and (max-width: 768px) {
+  .tableBorder{
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    height: 20rem;
+    overflow-y: auto;
+    border: none;
+  }
+}
+
 .maxWidth{
   width: 35rem;
 }
 
 .minWidth{
   width: 20rem;
+}
+.semiWidth{
+  width: 35em;
 }
 
 .centerTextTitle{
@@ -25,4 +39,15 @@
 }
 .checkGreen{
   color: green;
+}
+.leftSide{display: flex !important;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-start !important;
+}
+.normalSide{
+  display: flex !important;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
 }

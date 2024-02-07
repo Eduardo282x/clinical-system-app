@@ -2,6 +2,7 @@ import { FormDialog } from "src/app/core/interface/form-dialog/form-dialog";
 import { ColumnDef } from "src/app/core/interface/shared/columnDef";
 
 export const displayedColumns: string[] = ['CodService','Description','Amount','Cost','Total','Edit','Delete'];
+export const displayedColumnsPres: string[] = ['CodService','Description','Amount','Cost','Total'];
 
 export const columns: ColumnDef[] = [
     {
@@ -44,6 +45,35 @@ export const columns: ColumnDef[] = [
         color: 'warn',
         isIcon: true,
     }
+];
+
+export const columnsPres: ColumnDef[] = [
+    {
+        header: 'Cod',
+        column: 'CodService',
+        type: 'text'
+    },
+    {
+        header: 'Descripción',
+        column: 'Description',
+        type: 'text',
+        class: 'maxWidth'
+    },
+    {
+        header: 'Cantidad',
+        column: 'Amount',
+        type: 'text'
+    },
+    {
+        header: 'Precio',
+        column: 'Cost',
+        type: 'price'
+    },
+    {
+        header: 'Total',
+        column: 'Total',
+        type: 'price'
+    },
 ];
 
 export const dataform: FormDialog = {
