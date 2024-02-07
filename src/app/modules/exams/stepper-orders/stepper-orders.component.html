@@ -128,36 +128,8 @@
                     <button
                         mat-raised-button
                         color="primary"
-                        (click)="goStepperFinish(stepper)">
+                        (click)="goStepper(stepper)">
                         Siguiente
-                    </button>
-                </div>
-            </div>
-        </mat-step>
-        <mat-step [stepControl]="stepFord" class="flex items-center justify-around w-full">
-            <div class="flex flex-col items-center justify-between w-full">
-                <p>Resultados</p>
-                <ng-container *ngIf="dataComplete">
-                    <div class="w-full">
-                        <app-tabla
-                            [displayedColumns]="displayedColumnsPreviewt"
-                            [columns]="columnsPreview"
-                            [dataTable]="dataComplete"
-                            [left]="true" />
-                    </div>
-                </ng-container>
-                <div class="flex items-center justify-between w-full">
-                    <button
-                        mat-raised-button
-                        color="primary"
-                        (click)="backStepper(stepper)">
-                        Atras
-                    </button>
-                    <button
-                        mat-raised-button
-                        color="primary"
-                        (click)="redirect()">
-                        Finalizar
                     </button>
                 </div>
             </div>
@@ -185,11 +157,40 @@
                     <button
                         mat-raised-button
                         color="primary"
-                        (click)="goStepper(stepper)">
+                        (click)="goStepperFinish(stepper)">
                         Siguiente
                     </button>
                 </div>
             </div>
         </mat-step>
+        <mat-step [stepControl]="stepFive" class="flex items-center justify-around w-full">
+            <div class="flex flex-col items-center justify-between w-full">
+                <p>Resultados</p>
+                <ng-container *ngIf="dataComplete">
+                    <div class="w-full">
+                        <app-tabla
+                            [displayedColumns]="displayedColumnsPreviewt"
+                            [columns]="columnsPreview"
+                            [dataTable]="dataComplete"
+                            [left]="true" />
+                    </div>
+                </ng-container>
+                <div class="flex items-center justify-between w-full">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="backStepper(stepper)">
+                        Atras
+                    </button>
+                    <button
+                        mat-raised-button
+                        color="primary" [disabled]="disabledBtnFinish"
+                        (click)="redirect()">
+                        Finalizar
+                    </button>
+                </div>
+            </div>
+        </mat-step>
+
     </mat-stepper>
 </div>
