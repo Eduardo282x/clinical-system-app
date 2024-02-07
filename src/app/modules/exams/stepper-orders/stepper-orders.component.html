@@ -48,7 +48,7 @@
         <mat-step [stepControl]="stepTwo">
             <ng-template matStepLabel>Hematolofia</ng-template>
             <div class="flex flex-col items-center justify-between w-full">
-                <p>Hematologia</p>
+                <p class="text-[22px] font-bold">Hematologia</p>
                 <ng-container *ngIf="dataExamns">
                     <div class="w-full">
                         <app-tabla
@@ -78,7 +78,7 @@
         <mat-step [stepControl]="stepThree" class="flex items-center justify-around w-full">
             <ng-template matStepLabel>Heces Uroanalisis</ng-template>
             <div class="flex flex-col items-center justify-between w-full">
-                <p>Uroanalisis</p>
+                <p class="text-[22px] font-bold">Uroanalisis</p>
                 <ng-container *ngIf="dataExamns">
                     <div class="w-full">
                         <app-tabla
@@ -107,7 +107,7 @@
         </mat-step>
         <mat-step [stepControl]="stepFord" class="flex items-center justify-around w-full">
             <div class="flex flex-col items-center justify-between w-full">
-                <p>Heces Directa</p>
+                <p class="text-[22px] font-bold">Heces Directa</p>
                 <ng-container *ngIf="dataExamns">
                     <div class="w-full">
                         <app-tabla
@@ -165,7 +165,7 @@
         </mat-step>
         <mat-step [stepControl]="stepFive" class="flex items-center justify-around w-full">
             <div class="flex flex-col items-center justify-between w-full">
-                <p>Resultados</p>
+                <p class="text-[22px] font-bold">Resultados</p>
                 <ng-container *ngIf="dataComplete">
                     <div class="w-full">
                         <app-tabla
