@@ -52,7 +52,6 @@ export class OrdersComponent extends BaseComponent implements OnInit {
   }
 
   getActionTable(event: any): void {
-    console.log(event);
     this.route.navigate(['home/examenes/set-examns'])
   }
 }

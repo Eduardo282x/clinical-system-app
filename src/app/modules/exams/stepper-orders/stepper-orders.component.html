@@ -1,42 +1,195 @@
 <div class="flex items-center justify-center w-full">
-
     <mat-stepper linear #stepper class="matStepper">
-        <mat-step [stepControl]="stepOne" class="flex items-center justify-around w-full">
+        <mat-step
+            [stepControl]="stepOne"
+            class="flex flex-col items-center justify-around w-full">
             <ng-template matStepLabel>Bioquimica</ng-template>
-            <p>Bioquimica</p>
-            <p>Total de examenes {{totalExamns}}</p>
-            <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+            <div class="flex items-start justify-around w-full m-10">
+                    <div class="w-[30rem]">
+                        <div class="tabla">
+                            <table>
+                                <tr>
+                                    <th>Cod</th>
+                                    <th>Descripción</th>
+                                </tr>
+                                <ng-container *ngFor="let item of dataPreview">
+                                    <tr>
+                                        <td>{{ item.Cod }}</td>
+                                        <td>{{ item.Description }}</td>
+                                    </tr>
+                                </ng-container>
+                            </table>
+                        </div>
+                        <p class="fixTextExamns">Total de examenes {{ totalExamns }}</p>
+                    </div>
+                
+                    <div class="w-[30rem]">
+                        <div class="tabla">
+                            <table>
+                                <tr>
+                                    <th>Cod</th>
+                                    <th>Descripción</th>
+                                </tr>
+                                <ng-container *ngFor="let item of dataPreviewBio">
+                                    <tr>
+                                        <td>{{ item.Cod }}</td>
+                                        <td>{{ item.Description }}</td>
+                                    </tr>
+                                </ng-container>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+            <button mat-raised-button color="primary"
+                (click)="goStepper(stepper)">
+                Siguiente
+            </button>
         </mat-step>
-        <mat-step [stepControl]="stepTwo" >
+        <mat-step [stepControl]="stepTwo">
             <ng-template matStepLabel>Hematolofia</ng-template>
-            <div class="flex items-center justify-around w-full">
-                <p>Hematolofia</p>
+            <div class="flex flex-col items-center justify-between w-full">
+                <p>Hematologia</p>
                 <ng-container *ngIf="dataExamns">
                     <div class="w-full">
-                        <app-tabla 
-                        [displayedColumns]="displayedColumns" 
-                        [columns]="columns" 
-                        [dataTable]="dataExamns"
-                        (actionTable)="getActionTable($event)" 
-                        [left]="true"/>
+                        <app-tabla
+                            [displayedColumns]="displayedColumnsUronanalisis"
+                            [columns]="columnsUronanalisis"
+                            [dataTable]="dataExamns"
+                            (actionTable)="getActionTable($event, 'hema')"
+                            [left]="true" />
                     </div>
                 </ng-container>
-                <button mat-raised-button color="primary"  (click)="backStepper(stepper)">Atras</button>
-                <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+                <div class="flex items-center justify-between w-full">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="backStepper(stepper)">
+                        Atras
+                    </button>
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="goStepper(stepper)">
+                        Siguiente
+                    </button>
+                </div>
             </div>
         </mat-step>
         <mat-step [stepControl]="stepThree" class="flex items-center justify-around w-full">
-            <ng-template matStepLabel>Heces Directas</ng-template>
-            <p>Heces Directas</p>
-            <button mat-raised-button color="primary"  (click)="backStepper(stepper)">Atras</button>
-            <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+            <ng-template matStepLabel>Heces Uroanalisis</ng-template>
+            <div class="flex flex-col items-center justify-between w-full">
+                <p>Uroanalisis</p>
+                <ng-container *ngIf="dataExamns">
+                    <div class="w-full">
+                        <app-tabla
+                            [displayedColumns]="displayedColumnsUronanalisis"
+                            [columns]="columnsUronanalisis"
+                            [dataTable]="dataUronanalisis"
+                            (actionTable)="getActionTable($event, 'uro')"
+                            [left]="true" />
+                    </div>
+                </ng-container>
+                <div class="flex items-center justify-between w-full">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="backStepper(stepper)">
+                        Atras
+                    </button>
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="goStepper(stepper)">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
         </mat-step>
         <mat-step [stepControl]="stepFord" class="flex items-center justify-around w-full">
-            <ng-template matStepLabel>Uroanalisis</ng-template>
-            <p>Uroanalisis</p>
-            <button mat-raised-button color="primary"  (click)="backStepper(stepper)">Atras</button>
-            <button mat-raised-button color="primary"  (click)="goStepper(stepper)">Siguiente</button>
+            <div class="flex flex-col items-center justify-between w-full">
+                <p>Heces Directa</p>
+                <ng-container *ngIf="dataExamns">
+                    <div class="w-full">
+                        <app-tabla
+                            [displayedColumns]="displayedColumnsUronanalisis"
+                            [columns]="columnsUronanalisis"
+                            [dataTable]="dataHeces"
+                            (actionTable)="getActionTable($event, 'heces')"
+                            [left]="true" />
+                    </div>
+                </ng-container>
+                <div class="flex items-center justify-between w-full">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="backStepper(stepper)">
+                        Atras
+                    </button>
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="goStepperFinish(stepper)">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step [stepControl]="stepFord" class="flex items-center justify-around w-full">
+            <div class="flex flex-col items-center justify-between w-full">
+                <p>Resultados</p>
+                <ng-container *ngIf="dataComplete">
+                    <div class="w-full">
+                        <app-tabla
+                            [displayedColumns]="displayedColumnsPreviewt"
+                            [columns]="columnsPreview"
+                            [dataTable]="dataComplete"
+                            [left]="true" />
+                    </div>
+                </ng-container>
+                <div class="flex items-center justify-between w-full">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="backStepper(stepper)">
+                        Atras
+                    </button>
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="redirect()">
+                        Finalizar
+                    </button>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step [stepControl]="stepFord" class="flex items-center justify-around w-full">
+            <div class="flex flex-col items-center justify-between w-full">
+                <p>Bioquimica</p>
+                <ng-container *ngIf="dataExamns">
+                    <div class="w-full">
+                        <app-tabla
+                            [displayedColumns]="displayedColumnsUronanalisis"
+                            [columns]="columnsUronanalisis"
+                            [dataTable]="dataBio"
+                            (actionTable)="getActionTable($event, 'bio')"
+                            [left]="true" />
+                    </div>
+                </ng-container>
+                <div class="flex items-center justify-between w-full">
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="backStepper(stepper)">
+                        Atras
+                    </button>
+                    <button
+                        mat-raised-button
+                        color="primary"
+                        (click)="goStepper(stepper)">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
         </mat-step>
     </mat-stepper>
-
 </div>

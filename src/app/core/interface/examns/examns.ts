@@ -1,7 +1,7 @@
 export interface Examns {
     Id:          number;
     Description: string;
-    Result:      number;
+    Result:      number | string;
     Unit:        string;
     Reference:   string;
 }
