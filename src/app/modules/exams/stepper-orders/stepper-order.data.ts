@@ -52,7 +52,7 @@ export const displayedColumnsPreviewt: string[] = ['Cod','Result'];
 export const columnsPreview: ColumnDef[] = [
     {
         column: 'Cod',
-        header:'Cod',
+        header:'Examenes',
         type: 'text',
     },
     {
