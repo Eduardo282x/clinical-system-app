@@ -1,4 +1,4 @@
-import { AccountCircleIcon, HomeIcon, LogoutIcon, MedicalServicesIcon } from "../shared/materialUI";
+import { AccountCircleIcon, ChecklistIcon, FactCheckIcon, HomeIcon, LogoutIcon, MedicalServicesIcon } from "../shared/materialUI";
 import { Link, Outlet as Page, useNavigate } from "react-router-dom"
 import { menu } from "./menu"
 import './layout.css'
@@ -9,6 +9,8 @@ export const Layout = () => {
     const setIcon = (actionIcon: string) => {
         if (actionIcon == "home") return <HomeIcon />;
         if (actionIcon == "services") return <MedicalServicesIcon />;
+        if (actionIcon == "facture") return <FactCheckIcon />;
+        if (actionIcon == "orders") return <ChecklistIcon />;
     };
 
     const logout = () => {

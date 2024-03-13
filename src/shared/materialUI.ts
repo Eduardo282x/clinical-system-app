@@ -41,6 +41,8 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 
 export {
     Table,
@@ -83,7 +85,9 @@ export {
     SearchIcon,
     AcUnitIcon,
     DoneIcon,
-    CloseIcon
+    CloseIcon,
+    FactCheckIcon,
+    ChecklistIcon
 };
 
 export const style = {
