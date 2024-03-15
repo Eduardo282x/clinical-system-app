@@ -42,7 +42,6 @@ export const TableComponents: React.FC<ShortTableInterface> = ({tableConfig, ret
     const [page, setPage] = useState<number>(0);
     const [rowsPerPage, setRowsPerPage] = useState<number>(10);
     const [dataFilter, setDateFilter] = useState<any[]>([]);
-    const classWidth = `flex flex-col items-center justify-center bg-gray-200 rounded-3xl p-5 w-[90rem]`;
 
     const setIcon = (actionIcon: string | boolean) => {
         if (actionIcon == "Edit") return <EditIcon color="primary" />;
@@ -52,11 +51,6 @@ export const TableComponents: React.FC<ShortTableInterface> = ({tableConfig, ret
         if (actionIcon == false) return <CloseIcon sx={{ color: pink[500] }} />;
 
         if (actionIcon == "services") return <MedicalServicesIcon />;
-        // if (actionIcon == "info") return <InfoIcon />;
-        // if (actionIcon == "home") return <HomeIcon />;
-        // if (actionIcon == "location") return <LocationOnIcon />;
-        // if (actionIcon == "light") return <LightbulbIcon />;
-        // if (actionIcon == "engine") return <EngineeringIcon />;
     };
 
     const change = () => {
@@ -109,7 +103,7 @@ export const TableComponents: React.FC<ShortTableInterface> = ({tableConfig, ret
     }, [rows]);
 
     return (
-        <div className={classWidth}>
+        <div className="flex flex-col items-center justify-start0 bg-gray-200 rounded-3xl p-5 w-full mx-5 h-full">
             <div className="flex items-center justify-between w-full px-5">
                 <div className="flex items-center justify-center gap-3">
                     <p className="text-[#1565c0]">{setIcon(iconTitle)}</p>
@@ -159,10 +153,9 @@ export const TableComponents: React.FC<ShortTableInterface> = ({tableConfig, ret
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {dataFilter
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            {dataFilter && dataFilter.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => (
-                                    <TableRow key={index} sx={{ background: "#e5e7eb" }}>
+                                    <TableRow key={index} sx={{ background: "#f4f4f4" }}>
                                         {columns.map((ro: ColumnDef, key: number) => (
                                             <TableCell key={key} sx={{ width: ro.width ? ro.width : 100 }}>
                                                 {ro.type == "string" ? row[ro.column] : ""}

@@ -7,12 +7,12 @@ export const menu: Menu[] = [
         icon: 'home'
     },
     {
-        redirectTo: '/services',
+        redirectTo: '/orders',
         title: 'Ordenes',
         icon: 'orders'
     },
     {
-        redirectTo: '/services',
+        redirectTo: '/factures',
         title: 'Facturas',
         icon: 'facture'
     },

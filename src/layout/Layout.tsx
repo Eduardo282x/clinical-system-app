@@ -34,7 +34,7 @@ export const Layout = () => {
             </div>
 
 
-            <div className="flex h-[91%]">
+            <div className="flex fixHeight">
                 <div className="p-2 bg-white w-60 flex flex-col hidden md:flex h-full">
                     <nav>
                         {menu.map((list, index) => (
@@ -49,7 +49,7 @@ export const Layout = () => {
                     </p>
                 </div>
 
-                <div className="flex items-start justify-center w-full bg-white rounded-2xl m-8 py-14 text-black">
+                <div className="flex items-start justify-center w-full bg-white rounded-2xl m-8 text-black">
                     <Page />
                 </div>
             </div>

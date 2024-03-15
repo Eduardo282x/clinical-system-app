@@ -4,9 +4,9 @@
 
 .tableScroll{
     width: 98% !important;
-    position: relative;
+    /* position: relative; */
     overflow-y: auto;
-    height: 30rem;
+    height: 46vh;
     margin-top: 2rem;
     padding: 0 .5rem;
 }

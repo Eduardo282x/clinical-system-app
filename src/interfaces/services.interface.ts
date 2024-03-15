@@ -1,5 +1,5 @@
 export interface ServicesData {
-    idService:   number;
+    idService?:   number;
     codService:  string;
     description: string;
     cost:        string;

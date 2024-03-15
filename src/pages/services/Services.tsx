@@ -1,15 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
 import { getDataApi } from "../../backend/BasicAxios"
 import { ServicesData } from "../../interfaces/services.interface";
 import { TableComponents } from "../../components/table/TableComponents";
-import { configTable } from "./services.data";
+import { configTable, formServices } from "./services.data";
 import { RowAction, TableInterface } from "../../interfaces/table.interface";
+import * as React from 'react';
+import { Dialog } from "../../shared/materialUI";
+import { FormGenerator } from "../../components/form/FormGenerator";
+import { FormStructure } from "../../interfaces/form.interface";
 
 export const Services = () => {
 
-    const [config, setConfig] = useState<TableInterface>(configTable);
-    const [servicesData, setServicesData] = useState<ServicesData[]>([]);
+    const [config, setConfig] = React.useState<TableInterface>(configTable);
+    const [formService, setFormService] = React.useState<FormStructure>(formServices);
+    const [servicesData, setServicesData] = React.useState<ServicesData[]>([]);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const getServices = () => {
         getDataApi('services').then((data: ServicesData[]) => {
@@ -40,7 +53,7 @@ export const Services = () => {
         }
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         getServices();
     }, []);
 
@@ -48,13 +61,33 @@ export const Services = () => {
         const {action} = data
         const dataRow: ServicesData = data.dataRow;
         console.log(dataRow);
-        console.log(action);
+        const form: FormStructure = formService;
+
+        if(action == 'Add'){
+            form.title = 'Agregar Servicio';
+            setFormService(form);
+        }
+
+        if(action == 'Edit'){
+            form.title = 'Editar Servicio';
+            setFormService(form);
+        }
+
+        if(action == 'Add' || action == 'Edit'){
+            handleClickOpen();
+        }
     }
 
     return (
-        <div>
+        <div className="flex items-center justify-center m-auto w-full">
             <TableComponents tableConfig={config} returnData={getData} secondFunction={changeData}/>
 
+            <Dialog
+                open={open}
+                onClose={handleClose}
+            >
+                <FormGenerator form={formService} returnDataForm={getData}></FormGenerator>
+            </Dialog>
         </div>
     )
 }

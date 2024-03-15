@@ -14,6 +14,7 @@ import InputLabel from '@mui/material/InputLabel';
 import TextField from '@mui/material/TextField';
 import Switch from '@mui/material/Switch';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
 
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
@@ -64,6 +65,7 @@ export {
     TextField,
     MenuItem,
     Select,
+    Dialog,
 
     Backdrop,
     Box,
