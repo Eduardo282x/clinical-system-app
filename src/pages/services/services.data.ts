@@ -72,24 +72,28 @@ const dataForm: DataForm[] = [
         label: 'Codigo',
         type: 'string',
         formName: 'codService',
+        name: 'codService',
         value: '',
     },
     {
         label: 'Descripción',
         type: 'string',
         formName: 'description',
+        name: 'description',
         value: '',
     },
     {
         label: 'Precio',
         type: 'number',
         formName: 'cost',
+        name: 'cost',
         value: '',
     },
     {
         label: 'Disponible',
         type: 'bool',
         formName: 'avalible',
+        name: 'avalible',
         value: '',
     },
 ]

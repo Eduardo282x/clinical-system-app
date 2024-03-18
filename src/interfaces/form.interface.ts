@@ -7,7 +7,7 @@ export interface FormGeneratorInterface {
 export interface FormStructure {
     title: string;
     dataForm: DataForm[];
-    body: object;
+    body: any;
     validationSchema: object;
     action: string;
 }
@@ -15,6 +15,7 @@ export interface FormStructure {
 export interface DataForm {
     label: string;
     type: string;
+    name: string;
     formName: string;
     value: string | number ;
 }
