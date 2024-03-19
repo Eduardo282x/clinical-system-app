@@ -60,24 +60,23 @@ export const configTable: TableInterface = {
 }
 
 const validationSchema = yup.object({
-    area: yup.string().required('El campo es requerido'),
     codService: yup.string().required('El campo es requerido'),
     description: yup.string().required('El campo es requerido'),
-    cost: yup.string().required('El campo es requerido'),
-    avalible: yup.bool().required('El campo es requerido'),
+    cost: yup.number().required('El campo es requerido'),
+    avalible: yup.string().required('El campo es requerido'),
 });
 
 const dataForm: DataForm[] = [
     {
         label: 'Codigo',
-        type: 'string',
+        type: 'text',
         formName: 'codService',
         name: 'codService',
         value: '',
     },
     {
         label: 'Descripción',
-        type: 'string',
+        type: 'text',
         formName: 'description',
         name: 'description',
         value: '',
@@ -98,15 +97,15 @@ const dataForm: DataForm[] = [
     },
 ]
 
-const bodyServices: ServicesData ={
+export const bodyServices: ServicesData ={
     codService: '',
     description: '',
-    cost: '',
+    cost: 0,
     avalible: false,
 }
 
-export const formServices: FormStructure = {
-    title: 'Agregar Servicios',
+export const formServicesData: FormStructure = {
+    title: '',
     dataForm: dataForm,
     body: bodyServices,
     validationSchema: validationSchema,

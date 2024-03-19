@@ -8,7 +8,7 @@ export interface FormStructure {
     title: string;
     dataForm: DataForm[];
     body: any;
-    validationSchema: object;
+    validationSchema: any;
     action: string;
 }
 

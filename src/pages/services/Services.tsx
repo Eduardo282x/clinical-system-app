@@ -2,7 +2,7 @@
 import { getDataApi } from "../../backend/BasicAxios"
 import { ServicesData } from "../../interfaces/services.interface";
 import { TableComponents } from "../../components/table/TableComponents";
-import { configTable, formServices } from "./services.data";
+import { bodyServices, configTable, formServicesData } from "./services.data";
 import { RowAction, TableInterface } from "../../interfaces/table.interface";
 import * as React from 'react';
 import { Dialog } from "../../shared/materialUI";
@@ -12,7 +12,7 @@ import { FormStructure } from "../../interfaces/form.interface";
 export const Services = () => {
 
     const [config, setConfig] = React.useState<TableInterface>(configTable);
-    const [formService, setFormService] = React.useState<FormStructure>(formServices);
+    const [formService, setFormService] = React.useState<FormStructure>(formServicesData);
     const [servicesData, setServicesData] = React.useState<ServicesData[]>([]);
     const [open, setOpen] = React.useState(false);
 
@@ -60,16 +60,21 @@ export const Services = () => {
     const getData = (data: RowAction) => {
         const {action} = data
         const dataRow: ServicesData = data.dataRow;
-        console.log(dataRow);
         const form: FormStructure = formService;
-
         if(action == 'Add'){
             form.title = 'Agregar Servicio';
+            form.body = bodyServices;
             setFormService(form);
+        }
+        if(action == 'addNew'){
+            console.log(data.dataRow);
+            
+            handleClose()
         }
 
         if(action == 'Edit'){
             form.title = 'Editar Servicio';
+            form.body = dataRow;
             setFormService(form);
         }
 
