@@ -5,7 +5,11 @@ System Preview
 
 Made with
 -React
+
 -TypeScript
+
 -Vite
+
 -MaterialUI
+
 -Tailwind
